@@ -1,0 +1,36 @@
+.navbar-container{
+
+  background-color: #fafafa;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 21px;
+}
+
+.nav-buttons{
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+
+}
+
+.right-buttons{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dropdown {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  padding: 0.25rem 0.75rem;
+}
+
+.profile-button{
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding: 5px;
+}
