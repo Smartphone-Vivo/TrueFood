@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiButton} from '@taiga-ui/core';
+import {TuiButton, TuiTextfieldOptionsDirective} from '@taiga-ui/core';
 
 import {inject} from '@angular/core';
 import {Router} from '@angular/router';
@@ -19,7 +19,8 @@ import {MyTasksPage} from '../../pages/my-tasks-page/my-tasks-page';
     TuiButton,
     TuiChevron,
     TuiDropdown,
-    TuiObscured
+    TuiObscured,
+    TuiTextfieldOptionsDirective
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',

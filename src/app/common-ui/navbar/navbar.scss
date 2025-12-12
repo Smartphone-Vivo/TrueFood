@@ -1,3 +1,7 @@
+:host{
+
+}
+
 .navbar-container{
 
   background-color: #fafafa;
@@ -11,7 +15,6 @@
   display: flex;
   justify-content: space-between;
   gap: 20px;
-
 }
 
 .right-buttons{
@@ -28,9 +31,14 @@
   padding: 0.25rem 0.75rem;
 }
 
-.profile-button{
+.dropdown-buttons{
   display: flex;
   flex-direction: column;
   width: 150px;
   padding: 5px;
+}
+
+.profile-button{
+  display: flex;
+  justify-content: left;
 }

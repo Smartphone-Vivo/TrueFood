@@ -87,12 +87,14 @@
     Choose
 
     <ng-template #dropdownContentAdd>
+      <div class="dropdown-buttons">
       <button
         class="profile-button"
         appearance="flat-grayscale"
         tuiButton
         type="button"
         size="s"
+        iconStart="@tui.plus"
         (click)="toCreateAdvertisementPage()"
       >
         Создать объявление
@@ -104,10 +106,12 @@
         tuiButton
         type="button"
         size="s"
+        iconStart="@tui.plus"
         (click)="toCreateTaskPage()"
       >
         Создать заказ
       </button>
+      </div>
 
     </ng-template>
   </button>
@@ -131,38 +135,43 @@
   >
     Choose
     <ng-template #dropdownContentProfile>
-      <button
-        class="profile-button"
-        appearance="flat-grayscale"
-        tuiButton
-        type="button"
-        size="s"
-        (click)="toProfilePage()"
-      >
-        Профиль
-      </button>
+      <div class="dropdown-buttons">
+        <button
+          class="profile-button"
+          appearance="flat-grayscale"
+          tuiButton
+          type="button"
+          size="s"
+          iconStart="@tui.user"
+          (click)="toProfilePage()"
+        >
+          Профиль
+        </button>
 
-      <button
-        class="profile-button"
-        appearance="flat-grayscale"
-        tuiButton
-        type="button"
-        size="s"
-        (click)="toMyTasksPage()"
-      >
-        Мои заказы
-      </button>
+        <button
+          class="profile-button"
+          appearance="flat-grayscale"
+          tuiButton
+          type="button"
+          size="s"
+          iconStart="@tui.layout-list"
+          (click)="toMyTasksPage()"
+        >
+          Мои заказы
+        </button>
 
-      <button
-        class="profile-button"
-        appearance="flat-destructive"
-        tuiButton
-        type="button"
-        size="s"
-        (click)="toMainPage()"
-      >
-        Выйти
-      </button>
+        <button
+          class="profile-button"
+          appearance="flat-destructive"
+          tuiButton
+          type="button"
+          size="s"
+          iconStart="@tui.log-out"
+          (click)="toMainPage()"
+        >
+          Выйти
+        </button>
+      </div>
     </ng-template>
   </button>
 
