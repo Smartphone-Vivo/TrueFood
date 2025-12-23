@@ -1,0 +1,28 @@
+
+.page-container{
+  display: flex;
+  gap: 100px;
+  padding: 100px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+  gap: 24px;
+
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* 1 колонка */
+    gap: 16px;
+  }
+}
+
+

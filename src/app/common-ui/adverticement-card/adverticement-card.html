@@ -1,0 +1,25 @@
+<div class="card-container" tuiAppearance="floating">
+  <div class="adv-image"></div>
+
+  <div class="card-actions">
+
+    <div class="card-content">
+      <h3 class="title">{{advertisement.title}}</h3>
+      <div class="price">{{advertisement.price}}</div>
+    </div>
+    <div class="card-like">
+      <button
+        appearance="positive"
+        iconStart="@tui.heart"
+        size="m"
+        tuiIconButton
+        type="button"
+        [style.border-radius.%]="100"
+      >
+        Favorite
+      </button>
+    </div>
+
+  </div>
+
+</div>
