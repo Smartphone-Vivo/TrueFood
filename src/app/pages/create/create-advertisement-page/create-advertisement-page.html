@@ -1,1 +1,55 @@
-<p>create-advertisement-page works!</p>
+<div class="center">
+  <div class="create-card">
+    <h1>Создать объявление</h1>
+
+    <div>
+      <h3>Название</h3>
+      <tui-textfield>
+        <textarea
+          [(ngModel)]="newAdverticement.title"
+          placeholder="Название объявления"
+          tuiTextarea
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+    <div>
+      <h3>Описание</h3>
+      <tui-textfield [style.margin-block-end.rem]="1">
+        <label tuiLabel>Описание</label>
+        <textarea
+          [(ngModel)]="newAdverticement.description"
+          tuiTextarea
+          [limit]="100"
+          [max]="6"
+          [min]="3"
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+
+    <div>
+      <h3>Стоимость:</h3>
+      <tui-textfield>
+        <textarea
+          [(ngModel)]="newAdverticement.price"
+          placeholder="Стоимость"
+          tuiTextarea
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+
+    <button class="send-button"
+      appearance="positive"
+      size="m"
+      tuiButton
+      type="button"
+            (click)="addNewAdverticement()"
+    >
+      Опубликовать
+    </button>
+
+  </div>
+</div>
+

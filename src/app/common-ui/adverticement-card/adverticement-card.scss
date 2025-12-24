@@ -10,36 +10,32 @@
 }
 
 .adv-image {
-  height: 200px;
-  width: 200px;
+  height: 230px;
+  width: 230px;
   background-color: darkgrey;
-  margin-top: 20px;
+  margin-top: 10px;
   border-radius: 10px;
 }
 
-.card-actions{
+.card-content{
+  width: 250px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
-.card-content {
+.card-text{
+  margin-left: 10px;
+}
+
+.card-actions{
   padding: 10px;
-  flex: 1;
-}
-
-.title {
-  margin: 0 0 8px 0;
-  font-weight: bold;
 }
 
 .price {
   font-size: 18px;
   color: var(--tui-positive);
   font-weight: bold;
+  padding-bottom: 10px;
 }
 
-.card-footer {
-  padding: 16px;
-  border-top: 1px solid var(--tui-base-03);
-}
