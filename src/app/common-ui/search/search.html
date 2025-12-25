@@ -1,0 +1,33 @@
+<div class="search">
+  <div class="search-component">
+    <h1 class="header">Поиск</h1>
+
+    <div class="search-input">
+      <tui-textfield class="input">
+        <label tuiLabel>Search</label>
+        <textarea
+          tuiTextarea
+          [(ngModel)]="value"
+        ></textarea>
+      </tui-textfield>
+
+      <button
+
+        appearance="positive"
+        iconStart="@tui.search"
+        size="l"
+        tuiIconButton
+
+        tuiButton
+        tuiChevron
+        type="button"
+        (click)="search()"
+      >
+        Choose
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
