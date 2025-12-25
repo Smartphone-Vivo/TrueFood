@@ -4,22 +4,33 @@
   <div class="page-container">
 
     <div class="categories-tree">
+
+      <h2>Категории:</h2>
+
       <div
         role="tree"
         [tuiTreeController]="true"
       >
-
-        <tui-tree-item>
-          Fruits
-          <tui-tree-item>
-            Apples
+        @for(category of categories; track category){
+          @if(category.parent == null){
             <tui-tree-item>
-              Granny Smith
+              {{category.name}}
+              @for (childCategory of categories; track childCategory){
+                <tui-tree-item>
+                @if (childCategory.parent != null && childCategory.id != null){
+                  @if(childCategory.parent.id == category.id){
+                    <button
+                      (click)="setCategory(childCategory.id)"
+                      class="category-button">
+                      {{childCategory.name}}
+                    </button>
+                  }
+                }
+                </tui-tree-item>
+              }
             </tui-tree-item>
-
-          </tui-tree-item>
-
-        </tui-tree-item>
+          }
+        }
 
       </div>
     </div>
@@ -100,6 +111,7 @@
   [index]="index"
   [length]="length"
   (indexChange)="goToPage($event)"
+
 />
 
 

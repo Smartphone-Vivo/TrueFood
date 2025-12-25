@@ -3,9 +3,10 @@ import {AdverticementCard} from '../../common-ui/adverticement-card/adverticemen
 import {AdverticementService} from '../../services/adverticement-service';
 import {Adverticement} from '../../models/adverticement';
 import {TuiChevron, TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
-import {TuiButton, TuiDropdownDirective, TuiDropdownManual} from '@taiga-ui/core';
+import {TuiAppearance, TuiButton, TuiDropdownDirective, TuiDropdownManual} from '@taiga-ui/core';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import {Search} from '../../common-ui/search/search';
+import {Category} from '../../models/category';
 
 @Component({
   selector: 'app-advertisements-page',
@@ -21,6 +22,7 @@ import {Search} from '../../common-ui/search/search';
     TuiObscured,
     TuiActiveZone,
     Search,
+    TuiAppearance,
   ],
   templateUrl: './advertisements-page.html',
   styleUrl: './advertisements-page.scss',
@@ -33,7 +35,9 @@ export class AdvertisementsPage implements OnInit{
 
   newAdverticements: Adverticement[] = []
 
-  categories: any = []
+  categories: Category[] = []
+
+  currentCategory: number | null = null
 
   protected length = 12
 
@@ -46,6 +50,7 @@ export class AdvertisementsPage implements OnInit{
   ngOnInit() {
     this.getAdverticements('')
     this.getCategories()
+
   }
 
   protected openProfile = false;
@@ -65,6 +70,12 @@ export class AdvertisementsPage implements OnInit{
     this.openProfile = active && this.openProfile;
   }
 
+  setCategory(categoryName: number | null){
+    this.currentCategory = categoryName
+    this.getAdverticements(this.searchValue)
+    console.log('выбранная категория', this.currentCategory)
+  }
+
   onSearch(searchValue: string){
     console.log('searchValue',searchValue)
     this.getAdverticements(searchValue)
@@ -73,20 +84,39 @@ export class AdvertisementsPage implements OnInit{
 
   getAdverticements(search: string){
     console.log('значение поиск', this.searchValue)
-    this.adverticementService.getAllAdverticements(this.index, search)
-      .subscribe({
-          next: (response: any) => {
-            this.newAdverticements = response.content
-            this.length = response.totalPages
-            this.index = response.number
-            this.currentPage = response.number
-            console.log(this.newAdverticements)
+    if(this.currentCategory == null) {
+      this.adverticementService.getAllAdverticements(this.index, search)
+        .subscribe({
+            next: (response: any) => {
+              this.newAdverticements = response.content
+              this.length = response.totalPages
+              this.index = response.number
+              this.currentPage = response.number
+              console.log(this.newAdverticements)
 
-            this.changeDetector.detectChanges()
+              this.changeDetector.detectChanges()
+            }
           }
-        }
-      )
-  }
+        )
+    }
+      else{
+        this.adverticementService.getAdverticementsByCategory(this.index, search, this.currentCategory)
+          .subscribe({
+              next: (response: any) => {
+                this.newAdverticements = response.content
+                this.length = response.totalPages
+                this.index = response.number
+                this.currentPage = response.number
+                console.log(this.newAdverticements)
+
+                this.changeDetector.detectChanges()
+              }
+            }
+          )
+      }
+    }
+
+
 
   protected goToPage(index: number): void {
     this.index = index;
