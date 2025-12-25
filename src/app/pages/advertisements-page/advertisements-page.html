@@ -1,44 +1,102 @@
-<div class="page-container">
-  <div class="categories-tree">
-    <div
-      role="tree"
-      [tuiTreeController]="true"
-    >
-      <tui-tree-item>
-        Fruits
-        <tui-tree-item>
-          Apples
-          <tui-tree-item>Granny Smith</tui-tree-item>
-          <tui-tree-item>Red Delicious</tui-tree-item>
-        </tui-tree-item>
-        <tui-tree-item>Oranges</tui-tree-item>
-      </tui-tree-item>
-      <tui-tree-item>
-        Animals
-        <tui-tree-item>Cats</tui-tree-item>
-        <tui-tree-item>Dogs</tui-tree-item>
-      </tui-tree-item>
-    </div>
-  </div>
+<app-search (searchValue)="onSearch($event)" ></app-search>
 
-  <div class="cards-container">
-    @if (newAdverticements.length > 0) {
+<div class="adv">
+  <div class="page-container">
+
+    <div class="categories-tree">
+      <div
+        role="tree"
+        [tuiTreeController]="true"
+      >
+
+        <tui-tree-item>
+          Fruits
+          <tui-tree-item>
+            Apples
+            <tui-tree-item>
+              Granny Smith
+            </tui-tree-item>
+
+          </tui-tree-item>
+
+        </tui-tree-item>
+
+      </div>
+    </div>
+
+    <div class="cards-block">
+
+      <div class="sort">
+        Сортировка:
+
+        <button
+          appearance="positive"
+          size="s"
+          tuiIconButton
+          tuiButton
+          tuiChevron
+          type="button"
+          [tuiDropdown]="dropdownContentProfile"
+          [tuiDropdownManual]="openProfile"
+          [tuiObscuredEnabled]="openProfile"
+          (click)="onClickProfile ()"
+          (tuiActiveZoneChange)="onActiveZoneProfile($event)"
+          (tuiObscured)="onObscuredProfile($event)"
+        >
+          По цене
+          <ng-template #dropdownContentProfile>
+            <div class="dropdown-buttons">
+              <button
+                class="profile-button"
+                appearance="flat-grayscale"
+                tuiButton
+                type="button"
+                size="s"
+                (click)="toDorogo()"
+              >
+                Подороже
+              </button>
+
+              <button
+                class="profile-button"
+                appearance="flat-grayscale"
+                tuiButton
+                type="button"
+                size="s"
+                (click)="toDeshevo()"
+              >
+                Подешевле
+              </button>
+
+            </div>
+          </ng-template>
+
+        </button>
+      </div>
+
       <div class="cards-container">
-        @for (ad of newAdverticements; track ad.id) {
-          <app-adverticement-card [advertisement]="ad" />
+        @if (newAdverticements.length > 0) {
+          <div class="cards-container">
+            @for (ad of newAdverticements; track ad.id) {
+              <app-adverticement-card [advertisement]="ad" />
+            }
+          </div>
+        } @else {
+          <div class="loading-state">
+            <p>Загрузка объявлений...</p>
+          </div>
         }
       </div>
-    } @else {
-      <div class="loading-state">
-        <p>Загрузка объявлений...</p>
-      </div>
-    }
+    </div>
+
+
   </div>
 </div>
 
 
 
-<tui-pagination
+
+<tui-pagination class="pagination"
   [index]="index"
   [length]="length"
   (indexChange)="goToPage($event)"

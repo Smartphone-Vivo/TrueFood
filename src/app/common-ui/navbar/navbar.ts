@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {TuiButton, TuiTextfieldOptionsDirective} from '@taiga-ui/core';
+import {TuiButton} from '@taiga-ui/core';
 
 import {inject} from '@angular/core';
 import {Router} from '@angular/router';
@@ -7,10 +7,6 @@ import {Router} from '@angular/router';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import { TuiDropdown} from '@taiga-ui/core';
 import {TuiChevron} from '@taiga-ui/kit';
-import {CreateAdvertisementPage} from '../../pages/create/create-advertisement-page/create-advertisement-page';
-import {CreateTaskPage} from '../../pages/create/create-task-page/create-task-page';
-import {ProfilePage} from '../../pages/profile-page/profile-page';
-import {MyTasksPage} from '../../pages/my-tasks-page/my-tasks-page';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +16,6 @@ import {MyTasksPage} from '../../pages/my-tasks-page/my-tasks-page';
     TuiChevron,
     TuiDropdown,
     TuiObscured,
-    TuiTextfieldOptionsDirective
   ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',

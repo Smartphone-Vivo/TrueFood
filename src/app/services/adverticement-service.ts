@@ -9,12 +9,16 @@ export class AdverticementService {
 
   http = inject(HttpClient)
 
-  getAllAdverticements(page : number){
-    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12`)
+  getAllAdverticements(page : number, name: string){
+    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}`)
   }
 
   addNewAdverticement(adverticement: Adverticement){
     return this.http.post<Adverticement>('http://localhost:8080/api/general/adverticement', adverticement)
+  }
+
+  getCategories(){
+    return this.http.get('http://localhost:8080/api/general/categories')
   }
 
 }

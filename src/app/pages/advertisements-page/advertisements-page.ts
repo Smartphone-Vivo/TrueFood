@@ -2,7 +2,10 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Adverticement} from '../../models/adverticement';
-import {TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
+import {TuiChevron, TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
+import {TuiButton, TuiDropdownDirective, TuiDropdownManual} from '@taiga-ui/core';
+import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
+import {Search} from '../../common-ui/search/search';
 
 @Component({
   selector: 'app-advertisements-page',
@@ -10,7 +13,14 @@ import {TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
     AdverticementCard,
     TuiTreeItemController,
     TuiTreeItem,
-    TuiPagination
+    TuiPagination,
+    TuiButton,
+    TuiChevron,
+    TuiDropdownDirective,
+    TuiDropdownManual,
+    TuiObscured,
+    TuiActiveZone,
+    Search,
   ],
   templateUrl: './advertisements-page.html',
   styleUrl: './advertisements-page.scss',
@@ -23,19 +33,47 @@ export class AdvertisementsPage implements OnInit{
 
   newAdverticements: Adverticement[] = []
 
-  protected length = 12;
+  categories: any = []
 
-  protected index = 0;
+  protected length = 12
+
+  protected index = 0
 
   currentPage = 0
 
+  searchValue: string = ''
+
   ngOnInit() {
-    this.getNewAdverticements()
+    this.getAdverticements('')
+    this.getCategories()
   }
 
+  protected openProfile = false;
 
-  getNewAdverticements(){
-    this.adverticementService.getAllAdverticements(this.index)
+
+  protected onClickProfile(): void {
+    this.openProfile = !this.openProfile;
+  }
+
+  protected onObscuredProfile(obscured: boolean): void {
+    if (obscured) {
+      this.openProfile = false;
+    }
+  }
+
+  protected onActiveZoneProfile(active: boolean): void {
+    this.openProfile = active && this.openProfile;
+  }
+
+  onSearch(searchValue: string){
+    console.log('searchValue',searchValue)
+    this.getAdverticements(searchValue)
+    this.searchValue = searchValue
+  }
+
+  getAdverticements(search: string){
+    console.log('значение поиск', this.searchValue)
+    this.adverticementService.getAllAdverticements(this.index, search)
       .subscribe({
           next: (response: any) => {
             this.newAdverticements = response.content
@@ -50,14 +88,27 @@ export class AdvertisementsPage implements OnInit{
       )
   }
 
-
-
-
-
   protected goToPage(index: number): void {
     this.index = index;
-    this.getNewAdverticements()
+    this.getAdverticements(this.searchValue)
     console.info('New page:', index);
   }
+
+  getCategories(){
+    this.adverticementService.getCategories().subscribe(
+      {
+        next:(response: any) => {
+          this.categories = response
+          console.log('Категории', this.categories)
+          this.changeDetector.detectChanges()
+        }
+      }
+    )
+  }
+
+  toDorogo() {}
+
+  toDeshevo() {}
+
 
 }

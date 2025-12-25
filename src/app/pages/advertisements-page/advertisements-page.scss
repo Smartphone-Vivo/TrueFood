@@ -1,14 +1,23 @@
+.adv{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 .page-container{
   display: flex;
-  gap: 100px;
-  padding: 100px;
+  gap: 20px;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 колонки */
-  gap: 20px;
+  gap: 10px;
 
   /* Адаптив */
   @media (max-width: 1400px) {
@@ -25,4 +34,19 @@
   }
 }
 
+.sort{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.pagination{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.dropdown-buttons{
+  display: flex;
+  flex-direction: column;
+}
 
