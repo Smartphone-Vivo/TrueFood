@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Adverticement} from '../models/adverticement';
+import {FormControl} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,10 @@ export class AdverticementService {
 
   getCategories(){
     return this.http.get('http://localhost:8080/api/general/categories')
+  }
+
+  uploadFile(file: FormControl<File | null>){
+    return this.http.put('http://localhost:9001/api/v1/buckets/images', file)
   }
 
 }

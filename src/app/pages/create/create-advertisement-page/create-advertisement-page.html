@@ -39,6 +39,28 @@
       </tui-textfield>
     </div>
 
+    @if (!control.value) {
+      <label
+        tuiInputFiles
+      >
+        <input
+          accept="image/*"
+          capture="user"
+          title="Choose files (no limits)"
+          tuiInputFiles
+          [formControl]="control"
+        />
+      </label>
+    }
+
+    @if (control.valueChanges | async; as file) {
+      <tui-files class="tui-space_top-1">
+        <tui-file
+          [file]="file"
+          (remove)="removeFile()"
+        />
+      </tui-files>
+    }
 
     <button class="send-button"
       appearance="positive"

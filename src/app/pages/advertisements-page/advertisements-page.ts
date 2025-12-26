@@ -7,6 +7,7 @@ import {TuiAppearance, TuiButton, TuiDropdownDirective, TuiDropdownManual} from 
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import {Search} from '../../common-ui/search/search';
 import {Category} from '../../models/category';
+import {TuiLoader} from '@taiga-ui/core';
 
 @Component({
   selector: 'app-advertisements-page',
@@ -23,9 +24,11 @@ import {Category} from '../../models/category';
     TuiActiveZone,
     Search,
     TuiAppearance,
+    TuiLoader,
   ],
   templateUrl: './advertisements-page.html',
   styleUrl: './advertisements-page.scss',
+  standalone: true
 })
 export class AdvertisementsPage implements OnInit{
 

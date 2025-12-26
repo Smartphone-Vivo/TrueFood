@@ -14,6 +14,7 @@ import {TuiChevron, TuiTextarea} from '@taiga-ui/kit';
   ],
   templateUrl: './search.html',
   styleUrl: './search.scss',
+  standalone: true
 })
 export class Search {
 

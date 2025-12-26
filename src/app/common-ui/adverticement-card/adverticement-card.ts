@@ -10,6 +10,7 @@ import {Adverticement} from '../../models/adverticement';
   ],
   templateUrl: './adverticement-card.html',
   styleUrl: './adverticement-card.scss',
+  standalone: true
 })
 export class AdverticementCard implements OnInit{
 
