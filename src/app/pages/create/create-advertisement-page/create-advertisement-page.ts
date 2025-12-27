@@ -1,11 +1,12 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {TuiButton, TuiTextfield} from '@taiga-ui/core';
-import {TuiFileLike, TuiFiles, TuiTextarea, TuiTextareaLimit} from '@taiga-ui/kit';
+import {TuiChevron, TuiFileLike, TuiFiles, TuiSelect, TuiTextarea, TuiTextareaLimit} from '@taiga-ui/kit';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {form} from '@angular/forms/signals';
 import {Adverticement} from '../../../models/adverticement';
 import {AdverticementService} from '../../../services/adverticement-service';
 import {AsyncPipe} from '@angular/common';
+import {Category} from '../../../models/category';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -17,14 +18,43 @@ import {AsyncPipe} from '@angular/common';
     TuiButton,
     FormsModule,
     TuiFiles,
-    AsyncPipe
+    AsyncPipe,
+    TuiSelect,
+    TuiChevron
   ],
   templateUrl: './create-advertisement-page.html',
   styleUrl: './create-advertisement-page.scss',
   standalone: true
 })
-export class CreateAdvertisementPage {
+export class CreateAdvertisementPage implements OnInit{
 
+  categories: Category[] = []
+  changeDetector = inject(ChangeDetectorRef)
+
+  ngOnInit() {
+    this.getCategories()
+  }
+
+  getCategories(){
+    this.adverticementService.getCategories().subscribe(
+      {
+        next:(response: any) => {
+          this.categories = response
+          console.log('Категории', this.categories)
+          this.changeDetector.detectChanges()
+        }
+      }
+    )
+  }
+
+  protected groupItems: ReadonlyArray<readonly string[]> = [
+    ['Caesar', 'Greek', 'Apple and Chicken'],
+    ['Broccoli Cheddar', 'Chicken and Rice', 'Chicken Noodle'],
+  ];
+
+  protected readonly labels = ['Salad', 'Soup'];
+
+  protected readonly categoryControl = new FormControl<string | null>(null);
   protected readonly control = new FormControl<File | null>(null);
 
   protected removeFile(): void {
@@ -45,6 +75,10 @@ export class CreateAdvertisementPage {
     }
 
   }
+
+
+
+
 
 
 }

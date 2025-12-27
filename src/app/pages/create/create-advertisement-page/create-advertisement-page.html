@@ -27,6 +27,20 @@
       </tui-textfield>
     </div>
 
+    <div class="input-category">
+      <h3>Выбор категории</h3>
+      <tui-textfield tuiChevron>
+        <select
+          aria-label="Select food"
+          placeholder="Выбрать категорию"
+          tuiSelect
+          [formControl]="categoryControl"
+          [items]="groupItems"
+          [labels]="labels"
+        ></select>
+      </tui-textfield>
+    </div>
+
 
     <div>
       <h3>Стоимость:</h3>
@@ -53,6 +67,7 @@
       </label>
     }
 
+
     @if (control.valueChanges | async; as file) {
       <tui-files class="tui-space_top-1">
         <tui-file
@@ -61,6 +76,8 @@
         />
       </tui-files>
     }
+
+
 
     <button class="send-button"
       appearance="positive"
