@@ -1,13 +1,24 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {TuiButton, TuiTextfield} from '@taiga-ui/core';
-import {TuiChevron, TuiFileLike, TuiFiles, TuiSelect, TuiTextarea, TuiTextareaLimit} from '@taiga-ui/kit';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TuiButton, TuiError, TuiTextfield} from '@taiga-ui/core';
+import {
+  TuiChevron, TuiFieldErrorPipe,
+  TuiFileLike,
+  TuiFiles,
+  tuiFilesAccepted,
+  TuiSelect,
+  TuiTextarea,
+  TuiTextareaLimit
+} from '@taiga-ui/kit';
+import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
 import {form} from '@angular/forms/signals';
 import {Adverticement} from '../../../models/adverticement';
 import {AdverticementService} from '../../../services/adverticement-service';
 import {AsyncPipe} from '@angular/common';
 import {Category} from '../../../models/category';
 import {ImageService} from '../../../services/image-service';
+import {TuiValidationError} from '@taiga-ui/cdk';
+import {map} from 'rxjs';
+import {Image} from '../../../models/Image';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -21,7 +32,9 @@ import {ImageService} from '../../../services/image-service';
     TuiFiles,
     AsyncPipe,
     TuiSelect,
-    TuiChevron
+    TuiChevron,
+    TuiError,
+    TuiFieldErrorPipe
   ],
   templateUrl: './create-advertisement-page.html',
   styleUrl: './create-advertisement-page.scss',
@@ -45,6 +58,8 @@ export class CreateAdvertisementPage implements OnInit{
     this.getCategories()
   }
 
+
+
   getCategories(){
     this.adverticementService.getCategories().subscribe(
       {
@@ -65,7 +80,7 @@ export class CreateAdvertisementPage implements OnInit{
   protected readonly labels = ['Salad', 'Soup'];
 
   protected readonly categoryControl = new FormControl<string | null>(null);
-  protected readonly control = new FormControl<File>(null!);
+  // protected readonly control = new FormControl<File>(null!);
 
   protected removeFile(): void {
     this.control.setValue(null);
@@ -77,11 +92,16 @@ export class CreateAdvertisementPage implements OnInit{
     this.newAdverticement.categoryId = 1
 
     if (this.control.value) {
+      console.log('control.value', this.control.value)
       this.imageService.addImage(this.control.value).subscribe(
         {
           next: (response: any) => {
             console.log('imageUrl',response)
-            this.newAdverticement.imagesId.imageUrl = response.fileUrl
+
+            const imageUrls = response.map((item : any) => item.fileUrl)
+
+            this.newAdverticement.imagesId.imageUrls = imageUrls
+            console.log('newAdverticement', this.newAdverticement)
             this.adverticementService.addNewAdverticement(this.newAdverticement).subscribe()
           }
         }
@@ -89,4 +109,36 @@ export class CreateAdvertisementPage implements OnInit{
     }
   }
 
+  protected readonly control = new FormControl<File[]>([], [maxFilesLength(5)]);
+  protected readonly accepted$ = this.control.valueChanges.pipe(
+    map(() => tuiFilesAccepted(this.control)),
+  );
+
+  protected rejected: readonly File[] = [];
+
+  protected onReject(files: readonly File[]): void {
+    this.rejected = Array.from(new Set(this.rejected.concat(files)));
+  }
+
+  protected onRemove(file: File): void {
+    this.rejected = this.rejected.filter((rejected) => rejected !== file);
+    this.control.setValue(
+      this.control.value?.filter((current) => current !== file) ?? [],
+    );
+  }
 }
+
+
+export function maxFilesLength(maxLength: number): ValidatorFn {
+  return ({value}: AbstractControl) =>
+    value.length > maxLength
+      ? {
+        maxLength: new TuiValidationError(
+          'Error: maximum limit - 5 files for upload',
+        ),
+      }
+      : null;
+
+
+}
+

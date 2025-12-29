@@ -2,9 +2,9 @@ export class Image{
 
   constructor() {
     this.id = null
-    this.imageUrl = ""
+    this.imageUrls = []
   }
 
   id: number | null
-  imageUrl: string
+  imageUrls: string[]
 }

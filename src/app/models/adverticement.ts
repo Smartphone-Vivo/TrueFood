@@ -12,7 +12,7 @@ export class Adverticement{
     this.location = ""
     this.imagesId = {
       id: null,
-      imageUrl: ''
+      imageUrls: []
     }
     this.itemType = ""
     this.createdAt = ""

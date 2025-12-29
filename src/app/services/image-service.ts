@@ -8,10 +8,14 @@ import {HttpClient} from '@angular/common/http';
 export class ImageService {
   http = inject(HttpClient)
 
-  addImage(file: File){
+  addImage(files: File[]){
     const formData = new FormData()
 
-    formData.append('file', file)
+    files.forEach(file => {
+      formData.append('file', file);
+    });
+
+    console.log('formData', formData)
 
     return this.http.post<Image>(`http://localhost:8080/api/files/upload`, formData)
   }

@@ -1,8 +1,8 @@
 <div class="card-container" tuiAppearance="floating">
 
-  @if (advertisement.imagesId?.imageUrl) {
+  @if (advertisement.imagesId?.imageUrls) {
     <img
-      [src]="advertisement.imagesId.imageUrl"
+      [src]="advertisement.imagesId.imageUrls[0]"
       class="adv-image"
       [alt]="advertisement.title"
     />
