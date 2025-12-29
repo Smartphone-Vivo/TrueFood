@@ -61,7 +61,6 @@ export class AdvertisementsPage implements OnInit{
 
   protected openProfile = false;
 
-
   protected onClickProfile(): void {
     this.openProfile = !this.openProfile;
   }
@@ -91,7 +90,7 @@ export class AdvertisementsPage implements OnInit{
   getAdverticements(search: string){
     console.log('значение поиск', this.searchValue)
     if(this.currentCategory == null) {
-      this.adverticementService.getAllAdverticements(this.index, search)
+      this.adverticementService.getAllAdverticements(this.index, 12, search)
         .subscribe({
             next: (response: any) => {
               this.newAdverticements = response.content
@@ -147,7 +146,7 @@ export class AdvertisementsPage implements OnInit{
   toDeshevo() {}
 
   toAdvertisement(id: number | null){
-    this.router.navigate(['/advertisement'])
+    this.router.navigate(['/advertisement', id])
   }
 
 }

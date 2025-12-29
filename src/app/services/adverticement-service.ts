@@ -10,11 +10,11 @@ export class AdverticementService {
 
   http = inject(HttpClient)
 
-  getAllAdverticements(page : number, name: string){
-    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}`)
+  getAllAdverticements(page : number, size: number, name: string){
+    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/${size}?name=${name}`)
   }
 
-  getAdvertisementById(id: number){
+  getAdvertisementById(id: string){
     return this.http.get(`http://localhost:8080/api/general/advertisement/${id}`)
   }
 

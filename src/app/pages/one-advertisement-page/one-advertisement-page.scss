@@ -1,0 +1,102 @@
+.main-container{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card-container {
+  width: 800px;
+  height: 2000px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+}
+
+.price{
+  background-color: #66ff5b;
+  width: max-content;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
+.adv-image{
+  border-radius: 15px;
+  height: 500px;
+  width: 700px;
+}
+
+.mini-images{
+  border-radius: 15px;
+}
+
+.photo-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.other-image{
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  width: 100px;
+  gap: 10px;
+  margin-left: 10px;
+  cursor: pointer;
+
+}
+
+.other-image:active{
+  border-color: #66ff5b;
+}
+
+.top-buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.report-button{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.title{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.heart-button{
+  margin-top: 15px;
+}
+
+.navigation{
+  padding: 10px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 колонки */
+  gap: 10px;
+
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* 1 колонка */
+    gap: 16px;
+  }
+}

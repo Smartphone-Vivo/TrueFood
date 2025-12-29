@@ -17,7 +17,7 @@ export const routes: Routes = [
       {path: 'advertisements', component: AdvertisementsPage},
       {path: 'feed', component: FeedPage},
       {path: 'tasks', component: TaskPage},
-      {path: 'advertisement', component: OneAdvertisementPage},
+      {path: 'advertisement/:id', component: OneAdvertisementPage},
 
       {path: 'newadvertisement', component: CreateAdvertisementPage},
       {path: 'newtask', component: CreateTaskPage},

@@ -20,6 +20,7 @@ import {TuiChevron} from '@taiga-ui/kit';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true
 })
 export class Navbar {
 

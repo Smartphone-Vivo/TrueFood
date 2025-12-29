@@ -89,11 +89,11 @@
         @if (newAdverticements.length > 0) {
           <div class="cards-container">
             @for (ad of newAdverticements; track ad.id) {
-              <button
+              <div
                 class="adv-container"
-              (click)="toAdvertisement(ad.id)">
+                (click)="toAdvertisement(ad.id)">
                 <app-adverticement-card [advertisement]="ad" />
-              </button>
+              </div>
             }
           </div>
         } @else {

@@ -1,1 +1,117 @@
-<p>one-advertisement-page works!</p>
+<div class="main-container">
+  <div
+    class="card-container"
+    tuiAppearance="floating"
+  >
+    <div class="top-buttons">
+      <div class="back-button">
+        <button
+          appearance="flat-grayscale"
+          iconStart="@tui.move-left"
+          size="m"
+          tuiIconButton
+          type="button"
+          [style.border-radius.%]="100"
+          (click)="toAdvertisements()"
+        >
+          Favorite
+        </button>
+      </div>
+
+      <div class="report-heart-button">
+
+        <button
+          appearance="flat-grayscale"
+          size="m"
+          tuiButton
+          type="button"
+        >
+          Пожаловаться
+        </button>
+      </div>
+
+    </div>
+
+    <div class="title">
+      <input
+        class="heart-button"
+        tuiLike
+        type="checkbox"
+        appearance="positive"
+      />
+      <h1>{{currentAdvertisement.title}}</h1>
+    </div>
+
+
+    <div class="navigation">
+      <tui-breadcrumbs>
+        <ng-container>
+          @for (item of items; track item) {
+            <a
+              *tuiItem
+              tuiLink
+              [routerLink]="item.routerLink"
+            >
+              {{ item.caption }}
+            </a>
+          }
+        </ng-container>
+      </tui-breadcrumbs>
+
+    </div>
+
+
+    <div class="photo-container">
+      <div class="main-image">
+        <img
+          [src]="currentAdvertisement.imagesId.imageUrls[currentImageId]"
+          class="adv-image"
+          [alt]="currentAdvertisement.title"
+        />
+      </div>
+      <div class="other-image">
+        @for(image of imageUrls; track image; let i = $index){
+          <img
+            (mouseenter)="setCurrentImage(i)"
+            [src]="image"
+            class="mini-images"
+            [alt]="currentAdvertisement.title"
+          />
+        }
+
+      </div>
+
+    </div>
+
+
+    <h1  class="price" >{{currentAdvertisement.price}} ₽</h1>
+
+    <h1>Описание:</h1>
+    <div>{{currentAdvertisement.description}}</div>
+
+    <h1>Другие объявления:</h1>
+    <div class="cards-container">
+      @if (newAdvertisements.length > 0) {
+        <div class="cards-container">
+          @for (ad of newAdvertisements; track ad.id) {
+            <div
+              class="adv-container"
+              (click)="toAdvertisement(ad.id)">
+              <app-adverticement-card [advertisement]="ad" />
+            </div>
+          }
+        </div>
+      } @else {
+        <div class="loading-state">
+          <tui-loader
+            size="l"
+          />
+        </div>
+      }
+    </div>
+
+  </div>
+
+</div>
+
+
