@@ -8,6 +8,7 @@ import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import {Search} from '../../common-ui/search/search';
 import {Category} from '../../models/category';
 import {TuiLoader} from '@taiga-ui/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-advertisements-page',
@@ -35,6 +36,8 @@ export class AdvertisementsPage implements OnInit{
   adverticementService = inject(AdverticementService)
 
   changeDetector = inject(ChangeDetectorRef)
+
+  router = inject(Router)
 
   newAdverticements: Adverticement[] = []
 
@@ -143,5 +146,8 @@ export class AdvertisementsPage implements OnInit{
 
   toDeshevo() {}
 
+  toAdvertisement(id: number | null){
+    this.router.navigate(['/advertisement'])
+  }
 
 }

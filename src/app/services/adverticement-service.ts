@@ -14,6 +14,10 @@ export class AdverticementService {
     return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}`)
   }
 
+  getAdvertisementById(id: number){
+    return this.http.get(`http://localhost:8080/api/general/advertisement/${id}`)
+  }
+
   getAdverticementsByCategory(page : number, name: string, categoryId: number){
     return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}&categoryId=${categoryId}`)
   }

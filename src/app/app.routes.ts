@@ -9,6 +9,7 @@ import {MyTasksPage} from './pages/my-tasks-page/my-tasks-page';
 import {CreateAdvertisementPage} from './pages/create/create-advertisement-page/create-advertisement-page';
 import {CreateTaskPage} from './pages/create/create-task-page/create-task-page';
 import {Layout} from './common-ui/layout/layout';
+import {OneAdvertisementPage} from './pages/one-advertisement-page/one-advertisement-page';
 
 export const routes: Routes = [
   {path: "", component: Layout, children:[
@@ -16,6 +17,7 @@ export const routes: Routes = [
       {path: 'advertisements', component: AdvertisementsPage},
       {path: 'feed', component: FeedPage},
       {path: 'tasks', component: TaskPage},
+      {path: 'advertisement', component: OneAdvertisementPage},
 
       {path: 'newadvertisement', component: CreateAdvertisementPage},
       {path: 'newtask', component: CreateTaskPage},
