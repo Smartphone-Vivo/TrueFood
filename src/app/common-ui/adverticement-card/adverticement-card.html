@@ -1,5 +1,22 @@
 <div class="card-container" tuiAppearance="floating">
-  <div class="adv-image"></div>
+
+<!--  <img src="{{advertisement.imagesId.imageUrl}}" class="adv-image" alt="">-->
+
+
+  @if (advertisement.imagesId?.imageUrl) {
+    <img
+      [src]="advertisement.imagesId.imageUrl"
+      class="adv-image"
+      [alt]="advertisement.title"
+    />
+  } @else {
+    <div class="adv-image placeholder">
+      <tui-icon icon="tuiImage" class="icon"></tui-icon>
+      <span>No image available</span>
+    </div>
+  }
+
+  <!--  <div class="adv-image"></div>-->
 
   <div class="card-content">
 

@@ -1,3 +1,5 @@
+import {Image} from './Image';
+
 export class Adverticement{
 
   constructor() {
@@ -8,7 +10,10 @@ export class Adverticement{
     this.categoryId = null
     this.price = null
     this.location = ""
-    this.imagesId = null
+    this.imagesId = {
+      id: null,
+      imageUrl: ''
+    }
     this.itemType = ""
     this.createdAt = ""
     this.enable = true
@@ -18,10 +23,10 @@ export class Adverticement{
   id: number | null
   title: string
   description: string
-  categoryId: null
+  categoryId: number | null
   price: number | null
   location: string
-  imagesId: number | null
+  imagesId: Image
   itemType: string
   createdAt: string
   enable: boolean

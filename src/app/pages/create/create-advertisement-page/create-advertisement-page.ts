@@ -7,6 +7,7 @@ import {Adverticement} from '../../../models/adverticement';
 import {AdverticementService} from '../../../services/adverticement-service';
 import {AsyncPipe} from '@angular/common';
 import {Category} from '../../../models/category';
+import {ImageService} from '../../../services/image-service';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -28,8 +29,17 @@ import {Category} from '../../../models/category';
 })
 export class CreateAdvertisementPage implements OnInit{
 
-  categories: Category[] = []
+  adverticementService = inject(AdverticementService)
+
+  imageService = inject(ImageService)
+
   changeDetector = inject(ChangeDetectorRef)
+
+  newAdverticement = new Adverticement()
+
+  categories: Category[] = []
+
+  imageUrl: string = ''
 
   ngOnInit() {
     this.getCategories()
@@ -55,30 +65,28 @@ export class CreateAdvertisementPage implements OnInit{
   protected readonly labels = ['Salad', 'Soup'];
 
   protected readonly categoryControl = new FormControl<string | null>(null);
-  protected readonly control = new FormControl<File | null>(null);
+  protected readonly control = new FormControl<File>(null!);
 
   protected removeFile(): void {
     this.control.setValue(null);
   }
 
-  adverticementService = inject(AdverticementService)
+  addNewAdverticement() {
+    console.log('Новое объявление', this.newAdverticement, this.control)
 
-  newAdverticement = new Adverticement()
+    this.newAdverticement.categoryId = 1
 
-
-
-  addNewAdverticement(){
-    console.log('Новое объявление',this.newAdverticement, this.control)
-    this.adverticementService.addNewAdverticement(this.newAdverticement).subscribe()
-    if(this.control != null){
-      this.adverticementService.uploadFile(this.control)
+    if (this.control.value) {
+      this.imageService.addImage(this.control.value).subscribe(
+        {
+          next: (response: any) => {
+            console.log('imageUrl',response)
+            this.newAdverticement.imagesId.imageUrl = response.fileUrl
+            this.adverticementService.addNewAdverticement(this.newAdverticement).subscribe()
+          }
+        }
+      )
     }
-
   }
-
-
-
-
-
 
 }
