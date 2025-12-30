@@ -1,0 +1,23 @@
+.main-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  align-items: center;
+  height: 800px;
+  width: 600px;
+  border-radius: 15px;
+}
+
+.input-login{
+  width: 500px;
+}
+
+.send-button{
+  width: 84%;
+}

@@ -4,12 +4,15 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {authTokenInterceptor} from './auth/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
         provideAnimations(),
         provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    provideHttpClient(withInterceptors([authTokenInterceptor])),
         provideEventPlugins()
     ]
 };

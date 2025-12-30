@@ -1,0 +1,61 @@
+<form
+  [formGroup]="form"
+>
+  <div class="main-container">
+    <div
+      class="card-container"
+      tuiAppearance="floating"
+    >
+      <div class="content">
+
+      </div>
+      <h1>Вход:</h1>
+
+      <div class="input-login">
+        <h3>Почта:</h3>
+        <tui-textfield>
+        <textarea
+          formControlName="email"
+          placeholder="Введите ваш email:"
+          tuiTextarea
+        ></textarea>
+        </tui-textfield>
+      </div>
+
+      <div class="input-login">
+        <h3>Пароль:</h3>
+        <tui-textfield>
+        <textarea
+          formControlName="password"
+          placeholder="Введите ваш пароль:"
+          tuiTextarea
+        ></textarea>
+        </tui-textfield>
+      </div>
+
+      <button class="send-button"
+              appearance="positive"
+              size="m"
+              tuiButton
+              type="button"
+              (click)="loginUser()"
+      >
+        Войти
+      </button>
+
+
+      <button class="send-button"
+              appearance="positive"
+              size="m"
+              tuiButton
+              type="button"
+              (click)="toRegisterPage()"
+      >
+        Зарегистрироваться
+      </button>
+
+    </div>
+  </div>
+</form>
+
+

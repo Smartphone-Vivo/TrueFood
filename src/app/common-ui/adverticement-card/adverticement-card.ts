@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TuiAppearance, TuiButton, TuiIcon} from '@taiga-ui/core';
+import {TuiAppearance, TuiIcon} from '@taiga-ui/core';
 import {Adverticement} from '../../models/adverticement';
 import {TuiLike} from '@taiga-ui/kit';
 
@@ -7,7 +7,6 @@ import {TuiLike} from '@taiga-ui/kit';
   selector: 'app-adverticement-card',
   imports: [
     TuiAppearance,
-    TuiButton,
     TuiIcon,
     TuiLike
   ],

@@ -56,7 +56,6 @@ export class AdvertisementsPage implements OnInit{
   ngOnInit() {
     this.getAdverticements('')
     this.getCategories()
-
   }
 
   protected openProfile = false;

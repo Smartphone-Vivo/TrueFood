@@ -1,0 +1,82 @@
+<form
+  class="register-form"
+  [formGroup]="form"
+>
+<div class="main-container">
+  <div
+    class="card-container"
+    tuiAppearance="floating"
+  >
+    <div class="content">
+
+    </div>
+    <h1>Регистрация:</h1>
+      <div class="input-login">
+        <h3>Ваше имя:</h3>
+        <tui-textfield>
+        <textarea
+          formControlName="fio"
+          placeholder="Введите имя:"
+          tuiTextarea
+        ></textarea>
+        </tui-textfield>
+      </div>
+
+      <div class="input-login">
+        <h3>Почта:</h3>
+        <tui-textfield>
+        <textarea
+          formControlName="email"
+          placeholder="Введите ваш email:"
+          tuiTextarea
+        ></textarea>
+        </tui-textfield>
+      </div>
+
+      <div class="input-login">
+        <h3>Пароль:</h3>
+        <tui-textfield>
+        <textarea
+          formControlName="password"
+          placeholder="Введите ваш пароль:"
+          tuiTextarea
+        ></textarea>
+        </tui-textfield>
+      </div>
+
+<!--      <div class="input-login">-->
+<!--        <h3>Аватарка:</h3>-->
+<!--        <tui-textfield>-->
+<!--        <textarea-->
+<!--          [(ngModel)]="register.avatar"-->
+<!--          placeholder="Введите ваш пароль:"-->
+<!--          tuiTextarea-->
+<!--        ></textarea>-->
+<!--        </tui-textfield>-->
+<!--      </div>-->
+
+
+    <button class="send-button"
+            appearance="positive"
+            size="m"
+            tuiButton
+            type="button"
+            (click)="registerUser()"
+    >
+      Зарегистрироваться
+    </button>
+
+    <button class="send-button"
+            appearance="positive"
+            size="m"
+            tuiButton
+            type="button"
+            (click)="toLoginPage()"
+    >
+      Войти
+    </button>
+
+
+  </div>
+</div>
+</form>

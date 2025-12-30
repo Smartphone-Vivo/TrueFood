@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {TuiButton} from '@taiga-ui/core';
 
 import {inject} from '@angular/core';
@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import { TuiDropdown} from '@taiga-ui/core';
 import {TuiChevron} from '@taiga-ui/kit';
+import {AuthService} from '../../services/auth-service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,14 +23,25 @@ import {TuiChevron} from '@taiga-ui/kit';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true
 })
-export class Navbar {
+export class Navbar implements OnInit{
+
+  authService = inject(AuthService)
 
   router : Router = inject(Router)
+
+  cdr = inject(ChangeDetectorRef)
 
   protected openAdd = false;
 
   protected openProfile = false;
 
+  ngOnInit(){
+    this.isAuth()
+  }
+
+  isAuth(){
+    return this.authService.isAuth()
+  }
 
   protected onClickProfile(): void {
     this.openProfile = !this.openProfile;
@@ -60,6 +72,9 @@ export class Navbar {
     this.openAdd = active && this.openAdd;
   }
 
+  toLoginPage(){
+    this.router.navigate(['/login'])
+  }
 
   toMainPage(){
     console.log('to main')
@@ -82,20 +97,34 @@ export class Navbar {
   }
 
   toFavoritePage(){
-    console.log('to main')
-    this.router.navigate(['/favorite'])
+    if(this.isAuth()){
+      console.log('to main')
+      this.router.navigate(['/favorite'])
+    }
+    else{
+      this.toLoginPage()
+    }
   }
 
   toCreateAdvertisementPage(){
-    console.log('to main')
-    this.router.navigate(['/newadvertisement'])
-    this.openAdd = false;
+    if(!this.isAuth()) {
+      console.log('to main')
+      this.router.navigate(['/newadvertisement'])
+      this.openAdd = false;
+    }else{
+      this.toLoginPage()
+    }
   }
 
   toCreateTaskPage(){
-    console.log('to main')
-    this.router.navigate(['/newtask'])
-    this.openAdd = false;
+    if(this.isAuth()) {
+      console.log('to main')
+      this.router.navigate(['/newtask'])
+      this.openAdd = false;
+    }
+    else{
+      this.toLoginPage()
+    }
   }
 
   toProfilePage(){
@@ -110,4 +139,8 @@ export class Navbar {
     this.openProfile = false;
   }
 
+  logout() {
+    this.authService.logout()
+    this.cdr.detectChanges()
+  }
 }

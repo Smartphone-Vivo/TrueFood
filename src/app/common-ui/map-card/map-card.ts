@@ -7,9 +7,6 @@ import {TuiCardLarge, TuiHeader} from '@taiga-ui/layout';
   imports: [
     TuiAppearance,
     TuiCardLarge,
-    TuiHeader,
-    TuiTitle,
-    TuiButton
   ],
   templateUrl: './map-card.html',
   styleUrl: './map-card.scss',

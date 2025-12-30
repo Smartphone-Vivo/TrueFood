@@ -10,6 +10,9 @@ import {CreateAdvertisementPage} from './pages/create/create-advertisement-page/
 import {CreateTaskPage} from './pages/create/create-task-page/create-task-page';
 import {Layout} from './common-ui/layout/layout';
 import {OneAdvertisementPage} from './pages/one-advertisement-page/one-advertisement-page';
+import {LoginPage} from './pages/login-register-page/login-page/login-page';
+import {RegisterPage} from './pages/login-register-page/register-page/register-page';
+import {canActivateAuth} from './auth/access.guard';
 
 export const routes: Routes = [
   {path: "", component: Layout, children:[
@@ -19,12 +22,15 @@ export const routes: Routes = [
       {path: 'tasks', component: TaskPage},
       {path: 'advertisement/:id', component: OneAdvertisementPage},
 
-      {path: 'newadvertisement', component: CreateAdvertisementPage},
-      {path: 'newtask', component: CreateTaskPage},
+      {path: 'newadvertisement', component: CreateAdvertisementPage, canActivate: [canActivateAuth]},
+      {path: 'newtask', component: CreateTaskPage, canActivate: [canActivateAuth]},
 
-      {path: 'favorite', component: FavoritesPage},
+      {path: 'favorite', component: FavoritesPage, canActivate: [canActivateAuth]},
       {path: 'profile', component: ProfilePage},
-      {path: 'mytasks', component: MyTasksPage},
+      {path: 'mytasks', component: MyTasksPage, canActivate: [canActivateAuth]},
+
+      {path: 'login', component: LoginPage},
+      {path: 'register', component: RegisterPage},
     ]},
 
   //логин авторизация
