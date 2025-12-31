@@ -3,10 +3,18 @@
     <h1>Профиль:</h1>
 
     <div class="header">
-      <tui-avatar
-        src="@tui.user"
-        size="xxl"
-      />
+      @if (user.avatar.imageUrls[0]){
+        <tui-avatar
+          src="{{user.avatar.imageUrls[0]}}"
+          size="xxl"
+        />
+      } @else {
+        <tui-avatar
+          src="@tui.user"
+          size="xxl"
+        />
+      }
+
 
       <div class="header-info">
         <h1>{{user.fio}}</h1>

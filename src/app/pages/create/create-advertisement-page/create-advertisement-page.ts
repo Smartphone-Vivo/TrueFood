@@ -89,11 +89,11 @@ export class CreateAdvertisementPage implements OnInit{
   addNewAdverticement() {
     console.log('Новое объявление', this.newAdverticement, this.control)
 
-    this.newAdverticement.categoryId = 1
+    this.newAdverticement.categoryId = 1 //todo это убрать надо
 
     if (this.control.value) {
       console.log('control.value', this.control.value)
-      this.imageService.addImage(this.control.value).subscribe(
+      this.imageService.addMultipleImages(this.control.value).subscribe(
         {
           next: (response: any) => {
             console.log('imageUrl',response)

@@ -1,17 +1,22 @@
+import {Image} from './Image';
+
 export class User{
 
   constructor() {
     this.email = ''
     this.password = ''
     this.fio = ''
-    this.avatar = ''
+    this.imagesId = {
+      id: null,
+      imageUrls: []
+    }
     this.rating = ''
   }
 
   email: string
   password: string
   fio: string
-  avatar: string
+  imagesId: Image
   rating: string
 
 }
