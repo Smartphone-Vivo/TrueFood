@@ -40,7 +40,7 @@ export class Navbar implements OnInit{
   }
 
   isAuth(){
-    return this.authService.isAuth()
+    return this.authService.isAuth
   }
 
   protected onClickProfile(): void {
@@ -107,7 +107,7 @@ export class Navbar implements OnInit{
   }
 
   toCreateAdvertisementPage(){
-    if(!this.isAuth()) {
+    if(this.isAuth()) {
       console.log('to main')
       this.router.navigate(['/newadvertisement'])
       this.openAdd = false;
@@ -141,6 +141,7 @@ export class Navbar implements OnInit{
 
   logout() {
     this.authService.logout()
+    this.router.navigate(['/advertisements'])
     this.cdr.detectChanges()
   }
 }

@@ -32,14 +32,14 @@ export class LoginPage {
   })
 
   loginUser(){
-    console.log(this.authService.isAuth())
+    console.log(this.authService.isAuth)
     if(this.form.valid){
       this.authService.login(this.form.value as any).subscribe(
         response => {
           if(response){
             this.router.navigate(['/advertisements'])
-            this.authService.isAuth()
-            console.log(this.authService.isAuth())
+            this.authService.isAuth
+            console.log(this.authService.isAuth)
           }
         }
       )

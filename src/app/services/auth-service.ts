@@ -4,6 +4,7 @@ import {Register} from '../models/Register';
 import {tap} from 'rxjs';
 import {TokenResponse} from '../auth/auth.interface';
 import {CookieService} from 'ngx-cookie-service';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -32,18 +33,36 @@ export class AuthService {
     )
   }
 
-  isAuth(){
-    if(this.cookieService.check('accessToken')){
-      return true
-    }else{
-      return false
+  get isAuth(){
+    if(!this.token){
+      this.token = this.cookieService.get('accessToken')
+      // console.log('decoded token')
     }
+    return !!this.token
   }
 
   logout(){
     this.cookieService.deleteAll()
-    this.isAuth()
+    this.isAuth
 
+  }
+
+  getDecodedAccessToken(token: string){
+    try{
+      return jwtDecode(token)
+    } catch(Error){
+      return null
+    }
+  }
+
+  getMe(){
+    if(this.isAuth){
+      this.token = this.cookieService.get('accessToken')
+      console.log('расшифровка токена ',this.getDecodedAccessToken(this.token)?.id)
+      return this.getDecodedAccessToken(this.token)?.id
+    } else{
+      return null
+    }
   }
 
 }
