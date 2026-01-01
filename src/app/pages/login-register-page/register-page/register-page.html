@@ -1,6 +1,6 @@
 <form
   class="register-form"
-  [formGroup]="form"
+  [ngModel]="newUser"
 >
 <div class="main-container">
   <div
@@ -15,7 +15,8 @@
         <h3>Ваше имя:</h3>
         <tui-textfield>
         <textarea
-          formControlName="fio"
+          [(ngModel)]="newUser.fio"
+          name="fio"
           placeholder="Введите имя:"
           tuiTextarea
         ></textarea>
@@ -26,7 +27,8 @@
         <h3>Почта:</h3>
         <tui-textfield>
         <textarea
-          formControlName="email"
+          [(ngModel)]="newUser.email"
+          name="email"
           placeholder="Введите ваш email:"
           tuiTextarea
         ></textarea>
@@ -37,7 +39,8 @@
         <h3>Пароль:</h3>
         <tui-textfield>
         <textarea
-          formControlName="password"
+          [(ngModel)]="newUser.password"
+          name="password"
           placeholder="Введите ваш пароль:"
           tuiTextarea
         ></textarea>

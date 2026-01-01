@@ -5,6 +5,7 @@ import {tap} from 'rxjs';
 import {TokenResponse} from '../auth/auth.interface';
 import {CookieService} from 'ngx-cookie-service';
 import {jwtDecode} from 'jwt-decode';
+import {User} from '../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,9 @@ export class AuthService {
 
   authUrl: string = 'http://localhost:8080/api/auth'
 
-  registerNewUser(payload:{fio: string, email: string, password: string}){
-    return this.http.post(`${this.authUrl}/register`, payload)
+  registerNewUser(user: User){
+
+    return this.http.post(`${this.authUrl}/register`, user)
   }
 
   login(payload:{email: string, password: string}){

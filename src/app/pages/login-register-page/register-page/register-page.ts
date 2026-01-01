@@ -9,6 +9,8 @@ import {form, validate} from '@angular/forms/signals';
 import {finalize, map, Observable, of, Subject, switchMap, timer} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
 import {ImageService} from '../../../services/image-service';
+import {User} from '../../../models/User';
+import {Image} from '../../../models/Image';
 
 @Component({
   selector: 'app-register-page',
@@ -32,20 +34,11 @@ export class RegisterPage {
   imageService = inject(ImageService)
   router = inject(Router)
 
-  form = new FormGroup(
-    {
-      fio: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      imagesId: new FormControl(null),
-    }
-  )
+  newUser: User = new User()
+  newImage: Image = new Image()
 
   registerUser() {
-    console.log(this.form.valid)
-    if(this.form.valid){
-      console.log('form value', this.form)
-
+    console.log('newUser', this.newUser)
       if(this.control.value){
         this.imageService.addOneImage(this.control.value).subscribe(
           {
@@ -53,15 +46,13 @@ export class RegisterPage {
               const firstItem = response[0];
               const fileUrl = firstItem.fileUrl;
 
-              console.log('fileUrl', fileUrl)
+              this.newUser.imageUrl = fileUrl
+
+              this.newUser.rating = "0"
+
               console.log('fileUrl', fileUrl)
 
-              const userData = {
-                ...this.form.value,
-                fileUrl: fileUrl
-              }
-
-              this.authService.registerNewUser(userData as any).subscribe()
+              this.authService.registerNewUser(this.newUser).subscribe()
               this.router.navigate(['/login'])
             }
 
@@ -69,10 +60,9 @@ export class RegisterPage {
         )
       }
 
-
-    }
-
   }
+
+
 
   toLoginPage() {
     this.router.navigate(['/login'])

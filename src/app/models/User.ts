@@ -6,17 +6,19 @@ export class User{
     this.email = ''
     this.password = ''
     this.fio = ''
-    this.imagesId = {
+    this.imageUrl = ''
+    this.rating = ''
+    this.avatar = {
       id: null,
       imageUrls: []
     }
-    this.rating = ''
   }
 
   email: string
   password: string
   fio: string
-  imagesId: Image
+  avatar: Image
+  imageUrl: string //todo url и urls и вообще с данными перелопатить эту кучу
   rating: string
 
 }
