@@ -1,10 +1,14 @@
-<div class="card-container" tuiAppearance="floating">
+<div
+  class="card-container"
+  tuiAppearance="floating"
+  >
 
   @if (advertisement.imagesId?.imageUrls) {
     <img
       [src]="advertisement.imagesId.imageUrls[0]"
       class="adv-image"
       [alt]="advertisement.title"
+      (click)="toAdvertisement(advertisement.id)"
     />
   } @else {
     <div class="adv-image placeholder">
@@ -15,7 +19,10 @@
 
   <div class="card-content">
 
-    <div class="card-text">
+    <div
+      class="card-text"
+      (click)="toAdvertisement(advertisement.id)"
+    >
       <h3 class="title">{{advertisement.title}}</h3>
       <div class="price">{{advertisement.price}} ₽</div>
     </div>
@@ -26,7 +33,10 @@
         tuiLike
         type="checkbox"
         appearance="positive"
+        [(ngModel)]="liked"
+        (click)="addToFavourites()"
       />
+      {{liked}}
     </div>
 
   </div>

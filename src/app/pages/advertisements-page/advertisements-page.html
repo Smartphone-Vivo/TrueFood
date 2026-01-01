@@ -90,8 +90,8 @@
           <div class="cards-container">
             @for (ad of newAdverticements; track ad.id) {
               <div
-                class="adv-container"
-                (click)="toAdvertisement(ad.id)">
+                class="adv-container">
+
                 <app-adverticement-card [advertisement]="ad" />
               </div>
             }

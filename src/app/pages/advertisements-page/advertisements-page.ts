@@ -45,7 +45,7 @@ export class AdvertisementsPage implements OnInit{
 
   currentCategory: number | null = null
 
-  protected length = 12
+  protected length = 6
 
   protected index = 0
 

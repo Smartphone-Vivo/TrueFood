@@ -1,2 +1,25 @@
-<p>favorites-page works!</p>
 
+
+<div class="main-container">
+  <div class="content">
+    <h1>Избранное</h1>
+    <div class="cards-container">
+      @for (ad of advertisements; track ad.id) {
+        <div
+          class="adv-container"
+          (click)="toAdvertisement(ad.id)"
+        >
+          <app-adverticement-card [advertisement]="ad" />
+        </div>
+      }
+    </div>
+  </div>
+
+</div>
+
+<tui-pagination class="pagination"
+                [index]="index"
+                [length]="length"
+                (indexChange)="goToPage($event)"
+
+/>

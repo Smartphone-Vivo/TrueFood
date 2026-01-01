@@ -38,6 +38,7 @@
         tuiLike
         type="checkbox"
         appearance="positive"
+        (click)="addToFavourites()"
       />
       <h1>{{currentAdvertisement.title}}</h1>
     </div>
@@ -59,6 +60,8 @@
       </tui-breadcrumbs>
 
     </div>
+
+    <div class="text"> Дата создания: {{currentAdvertisement.createdAt}}</div>
 
 
     <div class="photo-container">
@@ -87,7 +90,7 @@
     <h1  class="price" >{{currentAdvertisement.price}} ₽</h1>
 
     <h1>Описание:</h1>
-    <div>{{currentAdvertisement.description}}</div>
+    <div class="text">{{currentAdvertisement.description}}</div>
 
     <h1>Другие объявления:</h1>
     <div class="cards-container">

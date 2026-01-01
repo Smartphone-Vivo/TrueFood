@@ -144,5 +144,10 @@ export class OneAdvertisementPage implements OnInit{
 
   }
 
+  addToFavourites() {
+    if(this.currentAdvertisement.id){
+      this.advertisementService.addAdvertisementToFavourites(this.currentAdvertisement.id).subscribe()
+    }
 
+  }
 }

@@ -38,4 +38,14 @@ export class AdverticementService {
     return this.http.get<Adverticement[]>(`http://localhost:8080/api/user/advertisements-by-user/${id}/${page}/6`)
   }
 
+  addAdvertisementToFavourites(id: number){
+    return this.http.get(`http://localhost:8080/api/user/add-to-favourites/${id}`)
+  }
+
+
+
+  getFavouriteAdvertisements(page: number, size: number){
+    return this.http.get(`http://localhost:8080/api/user/get-favourite-advertisements/${page}/8`)
+  }
+
 }
