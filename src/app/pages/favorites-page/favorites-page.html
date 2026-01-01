@@ -4,12 +4,14 @@
   <div class="content">
     <h1>Избранное</h1>
     <div class="cards-container">
-      @for (ad of advertisements; track ad.id) {
+      @for (ad of favouriteAdvertisements; track ad.id) {
         <div
           class="adv-container"
-          (click)="toAdvertisement(ad.id)"
         >
-          <app-adverticement-card [advertisement]="ad" />
+          <app-adverticement-card
+            [advertisement]="ad"
+            [favouriteAdvertisements]="favouriteAdvertisements"
+          />
         </div>
       }
     </div>
@@ -21,5 +23,4 @@
                 [index]="index"
                 [length]="length"
                 (indexChange)="goToPage($event)"
-
 />

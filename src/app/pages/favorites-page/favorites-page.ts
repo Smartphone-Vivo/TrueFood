@@ -26,7 +26,7 @@ export class FavoritesPage implements OnInit{
   cdr = inject(ChangeDetectorRef)
   router = inject(Router)
 
-  advertisements: Adverticement[] = []
+  favouriteAdvertisements: Adverticement[] = []
 
   protected length = 0
 
@@ -42,7 +42,7 @@ export class FavoritesPage implements OnInit{
     this.advertisementServise.getFavouriteAdvertisements(this.index, 5)
       .subscribe({
         next: (response: any) => {
-          this.advertisements = response.content
+          this.favouriteAdvertisements = response.content
           this.length = response.totalPages
           this.index = response.number
           this.currentPage = response.number

@@ -33,14 +33,26 @@
     </div>
 
     <div class="title">
-      <input
-        class="heart-button"
-        tuiLike
-        type="checkbox"
-        appearance="positive"
-        (click)="addToFavourites()"
-      />
+      <div class="favourite-button">
+        @if (favouriteAdvertisements.length > 0 && currentAdvertisement) {
+          <app-like-button
+            [advertisement]="currentAdvertisement"
+            [favouriteAdvertisements]="favouriteAdvertisements"
+          ></app-like-button>
+        } @else {
+          <input
+            class="heart-button"
+            tuiLike
+            type="checkbox"
+            appearance="positive"
+            disabled
+          />
+        }
+      </div>
+
       <h1>{{currentAdvertisement.title}}</h1>
+
+
     </div>
 
 

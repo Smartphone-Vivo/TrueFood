@@ -43,6 +43,8 @@ export class AdvertisementsPage implements OnInit{
 
   categories: Category[] = []
 
+  favouriteAdvertisements: Adverticement[] = []
+
   currentCategory: number | null = null
 
   protected length = 6
@@ -56,6 +58,7 @@ export class AdvertisementsPage implements OnInit{
   ngOnInit() {
     this.getAdverticements('')
     this.getCategories()
+    this.getFavouriteAdvertisements()
   }
 
   protected openProfile = false;
@@ -146,6 +149,20 @@ export class AdvertisementsPage implements OnInit{
 
   toAdvertisement(id: number | null){
     this.router.navigate(['/advertisement', id])
+  }
+
+  getFavouriteAdvertisements(){
+    this.adverticementService.getFavouriteAdvertisements(this.index, 5)
+      .subscribe({
+          next: (response: any) => {
+            this.favouriteAdvertisements = response.content
+            this.length = response.totalPages
+            this.index = response.number
+            this.currentPage = response.number
+            this.changeDetector.detectChanges()
+          }
+        }
+      )
   }
 
 }

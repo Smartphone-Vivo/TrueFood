@@ -37,8 +37,7 @@
         @if (advertisements.length > 0) {
           <div class="cards-container">
             @for (ad of advertisements; track ad.id) {
-              <div
-                (click)="toAdvertisement(ad.id)">
+              <div>
                 <app-adverticement-card
                   [advertisement]="ad"
                 />

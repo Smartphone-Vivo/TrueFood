@@ -8,6 +8,7 @@ import {TuiBreadcrumbs, TuiLike} from '@taiga-ui/kit';
 import {TuiItem} from '@taiga-ui/cdk';
 import {Category} from '../../models/category';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {LikeButton} from '../../common-ui/like-button/like-button';
 
 @Component({
   selector: 'app-one-advertisement-page',
@@ -20,7 +21,8 @@ import {AdverticementCard} from '../../common-ui/adverticement-card/adverticemen
     TuiLink,
     TuiItem,
     AdverticementCard,
-    TuiLoader
+    TuiLoader,
+    LikeButton
   ],
   templateUrl: './one-advertisement-page.html',
   styleUrl: './one-advertisement-page.scss',
@@ -48,6 +50,8 @@ export class OneAdvertisementPage implements OnInit{
 
   newAdvertisements: Adverticement[] = []
 
+  favouriteAdvertisements: Adverticement[] = []
+
   ngOnInit(){
     this.route.params.subscribe(
       params => {
@@ -58,6 +62,7 @@ export class OneAdvertisementPage implements OnInit{
     this.getAdvertisement()
     this.getCategories()
     this.getAdvertisements('')
+    this.getFavouriteAdvertisements()
   }
   //todo категории сделать по человечески
   getCategoriesList(){
@@ -149,5 +154,16 @@ export class OneAdvertisementPage implements OnInit{
       this.advertisementService.addAdvertisementToFavourites(this.currentAdvertisement.id).subscribe()
     }
 
+  }
+
+  getFavouriteAdvertisements(){
+    this.advertisementService.getFavouriteAdvertisements(0, 5)
+      .subscribe({
+          next: (response: any) => {
+            this.favouriteAdvertisements = response.content
+            this.changeDetector.detectChanges()
+          }
+        }
+      )
   }
 }

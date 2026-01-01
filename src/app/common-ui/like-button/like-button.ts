@@ -1,57 +1,53 @@
-import {Component, inject, Input, OnInit, Output} from '@angular/core';
-import {TuiAppearance, TuiIcon} from '@taiga-ui/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {TuiLike} from "@taiga-ui/kit";
 import {Adverticement} from '../../models/adverticement';
-import {TuiLike} from '@taiga-ui/kit';
 import {Router} from '@angular/router';
 import {AdverticementService} from '../../services/adverticement-service';
-import {FormsModule} from '@angular/forms';
-import {LikeButton} from '../like-button/like-button';
 
 @Component({
-  selector: 'app-adverticement-card',
+  selector: 'app-like-button',
   imports: [
-    TuiAppearance,
-    TuiIcon,
+    ReactiveFormsModule,
     TuiLike,
-    FormsModule,
-    LikeButton
+    FormsModule
   ],
-  templateUrl: './adverticement-card.html',
-  styleUrl: './adverticement-card.scss',
-  standalone: true
+  templateUrl: './like-button.html',
+  styleUrl: './like-button.scss',
 })
-export class AdverticementCard implements OnInit{
+export class LikeButton implements OnInit{
 
   @Input({ required: true }) advertisement!: Adverticement;
   @Input({ required: false }) favouriteAdvertisements!: Adverticement[];
 
+  ngOnInit(): void {
+    this.likeCheck()
+    console.log('likecheck' ,this.favouriteAdvertisements)
+  }
 
   router = inject(Router)
   advertisementService = inject(AdverticementService)
   liked: boolean = false;
 
-  ngOnInit() {
-
-  }
-
-  toAdvertisement(id: number | null){
-    this.router.navigate(['/advertisement', id])
-  }
-
-
   addToFavourites() {
     if(this.advertisement.id){
       if(!this.liked){
         this.advertisementService.addAdvertisementToFavourites(this.advertisement.id).subscribe()
+        this.liked = true
       }
       else{
         this.advertisementService.deleteFromFavouriteAdvertisements(this.advertisement.id).subscribe()
+        this.liked = false
       }
     }
   }
 
-
-
-
-
+  likeCheck(){
+    if(this.favouriteAdvertisements.some(item => item.id === this.advertisement.id)){
+      this.liked = true
+    }
+    else{
+      this.liked = false
+    }
+  }
 }

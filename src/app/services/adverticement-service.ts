@@ -42,10 +42,13 @@ export class AdverticementService {
     return this.http.get(`http://localhost:8080/api/user/add-to-favourites/${id}`)
   }
 
-
-
   getFavouriteAdvertisements(page: number, size: number){
     return this.http.get(`http://localhost:8080/api/user/get-favourite-advertisements/${page}/8`)
+  }
+
+
+  deleteFromFavouriteAdvertisements(advId: number){
+    return this.http.delete(`http://localhost:8080/api/user/delete-favoirite-advertisement/${advId}`)
   }
 
 }
