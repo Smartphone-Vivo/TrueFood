@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {TuiButton} from '@taiga-ui/core';
+import {TuiButton, TuiDialogService} from '@taiga-ui/core';
 
 import {inject} from '@angular/core';
 import {Router} from '@angular/router';
@@ -128,8 +128,8 @@ export class Navbar implements OnInit{
   }
 
   toProfilePage(){
-    console.log('to main')
-    this.router.navigate(['/profile'])
+    console.log('to profile', this.authService.getMe())
+    this.router.navigate(['/profile', this.authService.getMe()])
     this.openProfile = false;
   }
 
@@ -144,4 +144,9 @@ export class Navbar implements OnInit{
     this.router.navigate(['/advertisements'])
     this.cdr.detectChanges()
   }
+
+
+
+
+
 }

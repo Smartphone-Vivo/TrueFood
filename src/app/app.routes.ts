@@ -26,7 +26,7 @@ export const routes: Routes = [
       {path: 'newtask', component: CreateTaskPage, canActivate: [canActivateAuth]},
 
       {path: 'favorite', component: FavoritesPage, canActivate: [canActivateAuth]},
-      {path: 'profile', component: ProfilePage},
+      {path: 'profile/:id', component: ProfilePage},
       {path: 'mytasks', component: MyTasksPage, canActivate: [canActivateAuth]},
 
       {path: 'login', component: LoginPage},

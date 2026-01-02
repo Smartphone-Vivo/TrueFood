@@ -9,7 +9,9 @@ import {AdverticementService} from '../../services/adverticement-service';
 import {Adverticement} from '../../models/adverticement';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {TuiLoader} from '@taiga-ui/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ReviewCard} from '../../common-ui/review-card/review-card';
+import {Review} from '../../models/Review';
 
 @Component({
   selector: 'app-profile-page',
@@ -19,7 +21,8 @@ import {Router} from '@angular/router';
     FormsModule,
     AdverticementCard,
     TuiLoader,
-    TuiPagination
+    TuiPagination,
+    ReviewCard
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
@@ -35,6 +38,8 @@ export class ProfilePage implements OnInit{
 
   cdr = inject(ChangeDetectorRef)
 
+  route = inject(ActivatedRoute)
+
   user: User = new User()
 
   currentId: any = this.authService.getMe()
@@ -45,30 +50,45 @@ export class ProfilePage implements OnInit{
 
   currentPage = 0
 
+  currentPath : number| null = null
+
+  reviews: Review[] = []
+
+
   ngOnInit() {
+    this.getCurrentPath()
+    console.log('activated route', this.currentPath)
     this.authService.getMe()
-    this.getMyProfile()
+    this.getProfile()
     this.getAdvertisementsByUser()
   }
 
+  getCurrentPath(){
+    this.route.params.subscribe(params => {
+      this.currentPath = params['id'];
+    })
+  }
 
-  getMyProfile(){
-    this.profileService.getMyProfile().subscribe(
-      response => {
-        this.user = response
-        this.cdr.detectChanges()
-      }
-    )
+  getProfile(){
+    this.profileService.getProfile(this.currentPath).subscribe({
+        next: (response) => {
+          this.user = response
+          this.reviews = response.reviews
+          console.log('profile-reviews', this.reviews)
+          this.cdr.detectChanges()
+        }
+      })
   }
 
   getAdvertisementsByUser(){
-    this.advertisementService.getAdvertisementsByUser(this.currentId, this.index)
+    this.advertisementService.getAdvertisementsByUser(this.currentPath, this.index)
       .subscribe({
         next: (response: any) => {
           this.advertisements = response.content
           this.length = response.totalPages
           this.index = response.number
           this.currentPage = response.number
+
           this.cdr.detectChanges()
         }
       }

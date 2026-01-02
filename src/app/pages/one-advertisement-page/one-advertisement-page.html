@@ -104,6 +104,12 @@
     <h1>Описание:</h1>
     <div class="text">{{currentAdvertisement.description}}</div>
 
+    <h1>Автор:</h1>
+    <app-profile-card
+      [id]="currentAdvertisement.authorId"
+    ></app-profile-card>
+
+
     <h1>Другие объявления:</h1>
     <div class="cards-container">
       @if (newAdvertisements.length > 0) {
@@ -126,6 +132,8 @@
     </div>
 
   </div>
+
+
 
 </div>
 

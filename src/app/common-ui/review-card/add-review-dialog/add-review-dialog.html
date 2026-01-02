@@ -1,0 +1,36 @@
+<h1>Оценка:</h1>
+
+<label>
+  <tui-rating
+    class="rating"
+    [(ngModel)]="review.rating"
+  />
+</label>
+
+<div>
+  <h3>Оставить отзыв:</h3>
+  <tui-textfield
+    [style.margin-block-end.rem]="1"
+
+  >
+    <label tuiLabel>Описание</label>
+    <textarea
+      [(ngModel)]="review.reviewText"
+      tuiTextarea
+      [limit]="100"
+      [max]="6"
+      [min]="3"
+
+    ></textarea>
+  </tui-textfield>
+</div>
+
+<button
+  appearance="primary-grayscale"
+  size="l"
+  tuiButton
+  type="button"
+  (click)="addReview()"
+>
+  Оставить отзыв
+</button>

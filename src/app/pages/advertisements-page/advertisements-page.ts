@@ -151,7 +151,7 @@ export class AdvertisementsPage implements OnInit{
     this.router.navigate(['/advertisement', id])
   }
 
-  getFavouriteAdvertisements(){
+  getFavouriteAdvertisements(){ //todo вот эту функцию убрать
     this.adverticementService.getFavouriteAdvertisements(this.index, 5)
       .subscribe({
           next: (response: any) => {

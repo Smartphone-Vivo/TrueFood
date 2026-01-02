@@ -1,1 +1,64 @@
-<p>feed-page works!</p>
+
+<h1 class="header">Тиндер для овощей!!!!!!!</h1>
+<div class="main-container">
+
+  <div
+    class="card-container"
+    tuiAppearance="floating">
+    <div class="main-image">
+      <img
+        class="tinder-image"
+        [src]="advertisements[0].imagesId.imageUrls[0]"
+        [alt]="advertisements[0].title"
+      />
+    </div>
+
+    <h1 class="card-title">{{advertisements[0].title}}</h1>
+
+    <div class="text">{{advertisements[0].description}}</div>
+
+    <div class="text">{{advertisements[0].price}} ₽</div>
+
+    <div class="actions">
+      <button
+        class="buttons"
+        appearance="positive"
+        iconStart="@tui.heart"
+
+        tuiIconButton
+        type="button"
+        [style.border-radius.%]="100"
+        (click)="toFavoritePage()"
+      >
+        Favorite
+      </button>
+
+      <button
+        class="buttons"
+        appearance="secondary-grayscale"
+        iconStart="@tui.message-circle-heart"
+        size="xl"
+        tuiIconButton
+        type="button"
+        [style.border-radius.%]="100"
+        (click)="toFavoritePage()"
+      >
+        Favorite
+      </button>
+
+      <button
+        class="buttons"
+        appearance="secondary-destructive"
+        iconStart="@tui.x"
+        size="xl"
+        tuiIconButton
+        type="button"
+        [style.border-radius.%]="100"
+        (click)="toFavoritePage()"
+      >
+        Favorite
+      </button>
+    </div>
+
+  </div>
+</div>

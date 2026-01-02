@@ -15,6 +15,7 @@ export class Adverticement{
       imageUrls: []
     }
     this.itemType = ""
+    this.authorId = null
     this.createdAt = ""
     this.enable = true
 
@@ -28,6 +29,7 @@ export class Adverticement{
   location: string
   imagesId: Image
   itemType: string
+  authorId: number | null
   createdAt: string
   enable: boolean
 

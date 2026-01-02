@@ -1,0 +1,43 @@
+.review-cards-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.review-card{
+  height: 150px;
+  width: 200px;
+}
+
+.rating {
+  fill: currentColor;
+  font-size: 0.3rem;
+  inline-size: 5rem;
+  margin-top: 10px;
+}
+
+.review-card-header{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.add-review-button{
+  margin-top: 20px;
+}
+
+.review-author{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-content{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-text{
+  font-size: 14px;
+  font-weight: 400;
+}

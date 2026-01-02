@@ -34,7 +34,7 @@ export class AdverticementService {
     return this.http.put('http://localhost:9001/api/v1/buckets/images', file)
   }
 
-  getAdvertisementsByUser(id: string, page: number){
+  getAdvertisementsByUser(id: number| null, page: number){
     return this.http.get<Adverticement[]>(`http://localhost:8080/api/user/advertisements-by-user/${id}/${page}/6`)
   }
 

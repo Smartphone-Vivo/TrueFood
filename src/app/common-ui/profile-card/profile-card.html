@@ -1,0 +1,34 @@
+<div class="main-container">
+  <div class="avatar">
+    @if (user.avatar.imageUrls[0]){
+      <tui-avatar
+        src="{{user.avatar.imageUrls[0]}}"
+        size="xl"
+      />
+    } @else {
+      <tui-avatar
+        src="@tui.user"
+        size="xxl"
+      />
+    }
+  </div>
+  <div class="profile-text">
+    <h1
+      class="seller-name"
+    (click)="toProfile()"
+    >{{user.fio}}</h1>
+
+    <label>
+      <tui-rating
+        class="rating"
+        icon="@tui.star-filled"
+        [max]="5"
+        [ngModel]="user.rating"
+        [readOnly]="true"
+      />
+    </label>
+
+  </div>
+
+</div>
+

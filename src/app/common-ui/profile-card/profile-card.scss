@@ -1,0 +1,23 @@
+.main-container{
+  display: flex;
+  flex-direction: row;
+  gap: 21px
+}
+
+.avatar{
+  margin-top: 21px;
+}
+
+.rating {
+  fill: currentColor;
+  font-size: 0.4rem;
+  inline-size: 7rem;
+}
+
+.profile-text{
+  margin: 0;
+  padding: 0;
+}
+.seller-name{
+  cursor: pointer;
+}

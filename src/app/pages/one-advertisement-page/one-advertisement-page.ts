@@ -9,6 +9,7 @@ import {TuiItem} from '@taiga-ui/cdk';
 import {Category} from '../../models/category';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {LikeButton} from '../../common-ui/like-button/like-button';
+import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 
 @Component({
   selector: 'app-one-advertisement-page',
@@ -22,7 +23,8 @@ import {LikeButton} from '../../common-ui/like-button/like-button';
     TuiItem,
     AdverticementCard,
     TuiLoader,
-    LikeButton
+    LikeButton,
+    ProfileCard
   ],
   templateUrl: './one-advertisement-page.html',
   styleUrl: './one-advertisement-page.scss',
