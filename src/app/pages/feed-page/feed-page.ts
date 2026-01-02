@@ -21,6 +21,8 @@ export class FeedPage implements OnInit{
 
   advertisements: Adverticement[] = []
 
+  currentCard: number = 0
+
   protected length = 6
 
   protected index = 0
@@ -50,4 +52,17 @@ export class FeedPage implements OnInit{
   toFavoritePage() {
 
   }
+
+  swipeDirection: string = '';
+
+  swipeLeft() {
+    this.currentCard++;
+
+  }
+
+  swipeRight() {
+    this.currentCard++;
+  }
+
+
 }

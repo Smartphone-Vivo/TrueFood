@@ -9,15 +9,7 @@
   padding: 20px;
 }
 
-.card-container {
-  width: 500px;
-  min-height: 800px;
-  border-radius: 21px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
+
 
 .card-title{
   margin: 0;
@@ -58,3 +50,14 @@
   height: 70px;
   width: 70px;
 }
+
+.card-container {
+  width: 500px;
+  min-height: 800px;
+  border-radius: 21px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+

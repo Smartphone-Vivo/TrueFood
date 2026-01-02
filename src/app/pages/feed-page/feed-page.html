@@ -4,20 +4,23 @@
 
   <div
     class="card-container"
-    tuiAppearance="floating">
+    tuiAppearance="floating"
+    [class.swipe-left]="swipeDirection === 'left'"
+    [class.swipe-right]="swipeDirection === 'right'"
+  >
     <div class="main-image">
       <img
         class="tinder-image"
-        [src]="advertisements[0].imagesId.imageUrls[0]"
-        [alt]="advertisements[0].title"
+        [src]="advertisements[currentCard].imagesId.imageUrls[0]"
+        [alt]="advertisements[currentCard].title"
       />
     </div>
 
-    <h1 class="card-title">{{advertisements[0].title}}</h1>
+    <h1 class="card-title">{{advertisements[currentCard].title}}</h1>
 
-    <div class="text">{{advertisements[0].description}}</div>
+    <div class="text">{{advertisements[currentCard].description}}</div>
 
-    <div class="text">{{advertisements[0].price}} ₽</div>
+    <div class="text">{{advertisements[currentCard].price}} ₽</div>
 
     <div class="actions">
       <button
@@ -28,7 +31,7 @@
         tuiIconButton
         type="button"
         [style.border-radius.%]="100"
-        (click)="toFavoritePage()"
+        (click)="swipeLeft()"
       >
         Favorite
       </button>
@@ -54,7 +57,7 @@
         tuiIconButton
         type="button"
         [style.border-radius.%]="100"
-        (click)="toFavoritePage()"
+        (click)="swipeRight()"
       >
         Favorite
       </button>
