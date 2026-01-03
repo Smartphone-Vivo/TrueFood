@@ -2,14 +2,17 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {Search} from '../../common-ui/search/search';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
+import {TaskCard} from '../../common-ui/task-card/task-card';
 
 @Component({
   selector: 'app-task-page',
   imports: [
-    Search
+    Search,
+    TaskCard
   ],
   templateUrl: './task-page.html',
   styleUrl: './task-page.scss',
+  standalone: true
 })
 export class TaskPage implements OnInit{
 

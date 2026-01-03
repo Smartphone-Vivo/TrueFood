@@ -1,1 +1,46 @@
-<p>task-card works!</p>
+<div class="very-main-container">
+  <div class="main-container">
+    @for(task of tasks; track task){
+      <div
+        class="card-container"
+        tuiAppearance="floating"
+      >
+        <div class="card-text-left">
+          <div>
+            <h1>{{task.title}}</h1>
+
+            <div class="card-description">{{task.description}}</div>
+
+          </div>
+
+          <div class="card-price">{{task.price}} ₽</div>
+
+        </div>
+
+        <div class="card-text-right">
+
+          <button
+            class="answer-button"
+            appearance="primary-grayscale"
+            size="l"
+            tuiButton
+            type="button"
+            (click)="answer()"> Откликнуться
+          </button>
+
+          <div>
+            <div class="card-description">Откликов: 0</div>
+
+            <div class="card-description">Дедлайн: 18.01.26</div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    }
+  </div>
+</div>
+
