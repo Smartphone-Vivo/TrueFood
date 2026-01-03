@@ -76,43 +76,7 @@
     tuiButton
     tuiChevron
     type="button"
-    [tuiDropdown]="dropdownContentAdd"
-    [tuiDropdownManual]="openAdd"
-    [tuiObscuredEnabled]="openAdd"
-    (click)="onClickAdd()"
-    (tuiActiveZoneChange)="onActiveZoneAdd($event)"
-    (tuiObscured)="onObscuredAdd($event)"
-  >
-    Choose
-
-    <ng-template #dropdownContentAdd>
-      <div class="dropdown-buttons">
-      <button
-        class="profile-button"
-        appearance="flat-grayscale"
-        tuiButton
-        type="button"
-        size="s"
-        iconStart="@tui.plus"
-        (click)="toCreateAdvertisementPage()"
-      >
-        Создать объявление
-      </button>
-
-      <button
-        class="profile-button"
-        appearance="flat-grayscale"
-        tuiButton
-        type="button"
-        size="s"
-        iconStart="@tui.plus"
-        (click)="toCreateTaskPage()"
-      >
-        Создать заказ
-      </button>
-      </div>
-
-    </ng-template>
+    (click)="toCreateAdvertisementPage()">
   </button>
 
   @if (isAuth()){

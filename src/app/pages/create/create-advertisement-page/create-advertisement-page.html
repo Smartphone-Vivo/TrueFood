@@ -1,13 +1,35 @@
 <div class="center">
   <div class="create-card">
-    <h1>Создать объявление</h1>
 
+    <div class="choose-type">
+      <tui-segmented class="choose-create-type">
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setCreateionType('advertisement')"
+        >Объявление</button>
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setCreateionType('task')"
+        >Заказ</button>
+
+      </tui-segmented>
+    </div>
     <div>
+
+    @if(createType == 'advertisement'){
+      <h1>Создать объявление</h1>
+    } @else {
+      <h1>Создать заказ</h1>
+    }
+
+
       <h3>Название:</h3>
       <tui-textfield>
         <textarea
-          [(ngModel)]="newAdverticement.title"
-          placeholder="Название объявления"
+          [(ngModel)]="newAdvertisement.title"
+          placeholder="Название"
           tuiTextarea
         ></textarea>
       </tui-textfield>
@@ -18,7 +40,7 @@
       <tui-textfield [style.margin-block-end.rem]="1">
         <label tuiLabel>Описание</label>
         <textarea
-          [(ngModel)]="newAdverticement.description"
+          [(ngModel)]="newAdvertisement.description"
           tuiTextarea
           [limit]="100"
           [max]="6"
@@ -46,7 +68,7 @@
       <h3>Стоимость:</h3>
       <tui-textfield>
         <textarea
-          [(ngModel)]="newAdverticement.price"
+          [(ngModel)]="newAdvertisement.price"
           placeholder="Стоимость"
           tuiTextarea
         ></textarea>
@@ -88,15 +110,27 @@
       [formControl]="control"
     />
 
-    <button class="send-button"
-      appearance="positive"
-      size="m"
-      tuiButton
-      type="button"
-            (click)="addNewAdverticement()"
-    >
-      Опубликовать
-    </button>
+    @if(createType == 'advertisement'){
+      <button class="send-button"
+              appearance="positive"
+              size="m"
+              tuiButton
+              type="button"
+              (click)="addNewAdvertisement()"
+      >
+        Опубликовать объявление
+      </button>
+    } @else {
+      <button class="send-button"
+              appearance="positive"
+              size="m"
+              tuiButton
+              type="button"
+              (click)="addNewAdvertisement()"
+      >
+        Опубликовать заказ
+      </button>
+    }
 
   </div>
 </div>

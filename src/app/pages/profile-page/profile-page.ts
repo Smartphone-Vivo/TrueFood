@@ -6,7 +6,7 @@ import {TuiAvatar, TuiPagination, TuiRating} from '@taiga-ui/kit';
 import {FormsModule} from '@angular/forms';
 import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
 import {AdverticementService} from '../../services/adverticement-service';
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {TuiLoader} from '@taiga-ui/core';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit{
   advertisementService = inject(AdverticementService)
   router = inject(Router)
 
-  advertisements: Adverticement[] = []
+  advertisements: Order[] = []
 
   cdr = inject(ChangeDetectorRef)
 
@@ -84,6 +84,7 @@ export class ProfilePage implements OnInit{
     this.advertisementService.getAdvertisementsByUser(this.currentPath, this.index)
       .subscribe({
         next: (response: any) => {
+          console.log('объявления', response)
           this.advertisements = response.content
           this.length = response.totalPages
           this.index = response.number

@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 
 import {ChangeDetectionStrategy} from '@angular/core';
 import {AdverticementService} from '../../services/adverticement-service';
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {Router} from '@angular/router';
 import {TuiPagination} from '@taiga-ui/kit';
@@ -26,7 +26,7 @@ export class FavoritesPage implements OnInit{
   cdr = inject(ChangeDetectorRef)
   router = inject(Router)
 
-  favouriteAdvertisements: Adverticement[] = []
+  favouriteAdvertisements: Order[] = []
 
   protected length = 0
 

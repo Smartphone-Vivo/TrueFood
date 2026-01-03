@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Adverticement} from '../models/adverticement';
+import {Order} from '../models/Order';
 import {FormControl} from '@angular/forms';
 
 @Injectable({
@@ -10,8 +10,12 @@ export class AdverticementService {
 
   http = inject(HttpClient)
 
-  getAllAdverticements(page : number, size: number, name: string){
-    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/${size}?name=${name}`)
+  // getAllAdverticements(page : number, size: number, name: string){
+  //   return this.http.get<Order[]>(`http://localhost:8080/api/general/adverticement/${page}/${size}?name=${name}`)
+  // }
+
+  getAllAdvertisements(orderType: string, page : number, size: number, name: string){
+    return this.http.get<Order[]>(`http://localhost:8080/api/general/order/${orderType}/${page}/${size}?name=${name}`)
   }
 
   getAdvertisementById(id: string){
@@ -19,11 +23,11 @@ export class AdverticementService {
   }
 
   getAdverticementsByCategory(page : number, name: string, categoryId: number){
-    return this.http.get<Adverticement[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}&categoryId=${categoryId}`)
+    return this.http.get<Order[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}&categoryId=${categoryId}`)
   }
 
-  addNewAdverticement(adverticement: Adverticement){
-    return this.http.post<Adverticement>('http://localhost:8080/api/general/adverticement', adverticement)
+  addNewAdverticement(adverticement: Order){
+    return this.http.post<Order>('http://localhost:8080/api/general/adverticement', adverticement)
   }
 
   getCategories(){
@@ -35,7 +39,7 @@ export class AdverticementService {
   }
 
   getAdvertisementsByUser(id: number| null, page: number){
-    return this.http.get<Adverticement[]>(`http://localhost:8080/api/user/advertisements-by-user/${id}/${page}/6`)
+    return this.http.get<Order[]>(`http://localhost:8080/api/user/advertisements-by-user/${id}/${page}/6`)
   }
 
   addAdvertisementToFavourites(id: number){

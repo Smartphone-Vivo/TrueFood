@@ -1,17 +1,18 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {TuiButton, TuiError, TuiTextfield} from '@taiga-ui/core';
+import {TuiButton, TuiError, TuiIcon, TuiTextfield} from '@taiga-ui/core';
 import {
+  TuiBadgeNotification,
   TuiChevron, TuiFieldErrorPipe,
   TuiFileLike,
   TuiFiles,
-  tuiFilesAccepted,
+  tuiFilesAccepted, TuiSegmented,
   TuiSelect,
   TuiTextarea,
   TuiTextareaLimit
 } from '@taiga-ui/kit';
 import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
 import {form} from '@angular/forms/signals';
-import {Adverticement} from '../../../models/adverticement';
+import {Order} from '../../../models/Order';
 import {AdverticementService} from '../../../services/adverticement-service';
 import {AsyncPipe} from '@angular/common';
 import {Category} from '../../../models/category';
@@ -19,6 +20,7 @@ import {ImageService} from '../../../services/image-service';
 import {TuiValidationError} from '@taiga-ui/cdk';
 import {map} from 'rxjs';
 import {Image} from '../../../models/Image';
+import {TaskService} from '../../../services/task-service';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -34,7 +36,10 @@ import {Image} from '../../../models/Image';
     TuiSelect,
     TuiChevron,
     TuiError,
-    TuiFieldErrorPipe
+    TuiFieldErrorPipe,
+    TuiIcon,
+    TuiBadgeNotification,
+    TuiSegmented
   ],
   templateUrl: './create-advertisement-page.html',
   styleUrl: './create-advertisement-page.scss',
@@ -44,21 +49,28 @@ export class CreateAdvertisementPage implements OnInit{
 
   adverticementService = inject(AdverticementService)
 
+  taskService = inject(TaskService)
+
   imageService = inject(ImageService)
 
   changeDetector = inject(ChangeDetectorRef)
 
-  newAdverticement = new Adverticement()
+  newAdvertisement = new Order()
 
   categories: Category[] = []
 
   imageUrl: string = ''
 
+  createType = 'advertisement'
+
   ngOnInit() {
     this.getCategories()
   }
 
-
+  setCreateionType(type: string){
+    this.createType = type
+    this.changeDetector.detectChanges()
+  }
 
   getCategories(){
     this.adverticementService.getCategories().subscribe(
@@ -86,10 +98,10 @@ export class CreateAdvertisementPage implements OnInit{
     this.control.setValue(null);
   }
 
-  addNewAdverticement() {
-    console.log('Новое объявление', this.newAdverticement, this.control)
+  addNewAdvertisement() {
+    console.log('Новое объявление', this.newAdvertisement, this.control)
 
-    this.newAdverticement.categoryId = 1 //todo это убрать надо
+    this.newAdvertisement.categoryId = 3 //todo это убрать надо
 
     if (this.control.value) {
       console.log('control.value', this.control.value)
@@ -100,13 +112,24 @@ export class CreateAdvertisementPage implements OnInit{
 
             const imageUrls = response.map((item : any) => item.fileUrl)
 
-            this.newAdverticement.imagesId.imageUrls = imageUrls
-            console.log('newAdverticement', this.newAdverticement)
-            this.adverticementService.addNewAdverticement(this.newAdverticement).subscribe()
+            this.newAdvertisement.imagesId.imageUrls = imageUrls
+            this.newAdvertisement.orderType = 'advertisement'
+            console.log('newAdverticement', this.newAdvertisement)
+            if(this.createType == 'advertisement'){
+              this.adverticementService.addNewAdverticement(this.newAdvertisement).subscribe()
+            }
+            else{
+              this.newAdvertisement.orderType = 'task'
+              this.taskService.addNewTask(this.newAdvertisement).subscribe()
+            }
           }
         }
       )
     }
+  }
+
+  addNewTask() {
+
   }
 
   protected readonly control = new FormControl<File[]>([], [maxFilesLength(5)]);
@@ -126,6 +149,8 @@ export class CreateAdvertisementPage implements OnInit{
       this.control.value?.filter((current) => current !== file) ?? [],
     );
   }
+
+
 }
 
 

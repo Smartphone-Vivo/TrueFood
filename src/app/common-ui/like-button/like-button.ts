@@ -1,7 +1,7 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TuiLike} from "@taiga-ui/kit";
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {Router} from '@angular/router';
 import {AdverticementService} from '../../services/adverticement-service';
 
@@ -14,15 +14,16 @@ import {AdverticementService} from '../../services/adverticement-service';
   ],
   templateUrl: './like-button.html',
   styleUrl: './like-button.scss',
+  standalone: true
 })
 export class LikeButton implements OnInit{
 
-  @Input({ required: true }) advertisement!: Adverticement;
-  @Input({ required: false }) favouriteAdvertisements!: Adverticement[];
+  @Input({ required: true }) advertisement!: Order;
+  @Input({ required: false }) favouriteAdvertisements!: Order[];
 
   ngOnInit(): void {
     this.likeCheck()
-    console.log('likecheck' ,this.favouriteAdvertisements)
+    // console.log('likecheck' ,this.favouriteAdvertisements)
   }
 
   router = inject(Router)

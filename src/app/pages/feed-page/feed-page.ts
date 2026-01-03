@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {AdverticementService} from '../../services/adverticement-service';
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiLike} from '@taiga-ui/kit';
 
@@ -19,7 +19,7 @@ export class FeedPage implements OnInit{
   advertisementService = inject(AdverticementService)
   cdr = inject(ChangeDetectorRef)
 
-  advertisements: Adverticement[] = []
+  advertisements: Order[] = []
 
   currentCard: number = 0
 
@@ -34,7 +34,7 @@ export class FeedPage implements OnInit{
   }
 
   getAdvertisements(){
-    this.advertisementService.getAllAdverticements(this.index, 12,'')
+    this.advertisementService.getAllAdvertisements('ADVERTISEMENT',this.index, 12,'')
       .subscribe({
           next: (response: any) => {
             this.advertisements = response.content

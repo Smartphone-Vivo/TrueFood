@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {AdverticementService} from '../../services/adverticement-service';
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {TuiChevron, TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
 import {TuiAppearance, TuiButton, TuiDropdownDirective, TuiDropdownManual} from '@taiga-ui/core';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
@@ -39,11 +39,11 @@ export class AdvertisementsPage implements OnInit{
 
   router = inject(Router)
 
-  newAdverticements: Adverticement[] = []
+  newAdverticements: Order[] = []
 
   categories: Category[] = []
 
-  favouriteAdvertisements: Adverticement[] = []
+  favouriteAdvertisements: Order[] = []
 
   currentCategory: number | null = null
 
@@ -92,7 +92,7 @@ export class AdvertisementsPage implements OnInit{
   getAdverticements(search: string){
     console.log('значение поиск', this.searchValue)
     if(this.currentCategory == null) {
-      this.adverticementService.getAllAdverticements(this.index, 12, search)
+      this.adverticementService.getAllAdvertisements('ADVERTISEMENT', this.index, 12, search)
         .subscribe({
             next: (response: any) => {
               this.newAdverticements = response.content

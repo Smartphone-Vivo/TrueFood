@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {AdverticementService} from '../../services/adverticement-service';
-import {Adverticement} from '../../models/adverticement';
+import {Order} from '../../models/Order';
 import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
 import {TuiAppearance, TuiButton, TuiLink, TuiLoader} from '@taiga-ui/core';
 import {TuiBreadcrumbs, TuiLike} from '@taiga-ui/kit';
@@ -50,9 +50,9 @@ export class OneAdvertisementPage implements OnInit{
 
   categoriesList: string[] = []
 
-  newAdvertisements: Adverticement[] = []
+  newAdvertisements: Order[] = []
 
-  favouriteAdvertisements: Adverticement[] = []
+  favouriteAdvertisements: Order[] = []
 
   ngOnInit(){
     this.route.params.subscribe(
@@ -132,7 +132,7 @@ export class OneAdvertisementPage implements OnInit{
   }
 
   getAdvertisements(search: string){
-    this.advertisementService.getAllAdverticements(0, 6, '')
+    this.advertisementService.getAllAdvertisements("ADVERTISEMENT",0, 6, '')
       .subscribe({
           next: (response: any) => {
             this.newAdvertisements = response.content
