@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {TuiButton, TuiDialogService} from '@taiga-ui/core';
 
 import {inject} from '@angular/core';
@@ -8,6 +8,7 @@ import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import { TuiDropdown} from '@taiga-ui/core';
 import {TuiChevron} from '@taiga-ui/kit';
 import {AuthService} from '../../services/auth-service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -35,8 +36,11 @@ export class Navbar implements OnInit{
 
   protected openProfile = false;
 
+
+
   ngOnInit(){
     this.isAuth()
+    this.cdr.detectChanges()
   }
 
   isAuth(){
@@ -141,7 +145,9 @@ export class Navbar implements OnInit{
 
   logout() {
     this.authService.logout()
-    this.router.navigate(['/advertisements'])
+    this.router.navigate(['/advertisements']).then(() => {
+      window.location.reload();
+    })
     this.cdr.detectChanges()
   }
 

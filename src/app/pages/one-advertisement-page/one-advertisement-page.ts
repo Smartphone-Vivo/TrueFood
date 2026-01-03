@@ -143,10 +143,12 @@ export class OneAdvertisementPage implements OnInit{
     }
 
   toAdvertisement(id: number | null){
-    console.log('advertisement id', id)
     if(id != null){
       this.advertisementId = String(id)
+      window.location.reload()
       this.changeDetector.detectChanges()
+
+
     }
 
   }

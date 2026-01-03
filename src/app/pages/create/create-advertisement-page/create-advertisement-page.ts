@@ -21,6 +21,7 @@ import {TuiValidationError} from '@taiga-ui/cdk';
 import {map} from 'rxjs';
 import {Image} from '../../../models/Image';
 import {TaskService} from '../../../services/task-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -54,6 +55,8 @@ export class CreateAdvertisementPage implements OnInit{
   imageService = inject(ImageService)
 
   changeDetector = inject(ChangeDetectorRef)
+
+  router = inject(Router)
 
   newAdvertisement = new Order()
 
@@ -117,6 +120,7 @@ export class CreateAdvertisementPage implements OnInit{
             console.log('newAdverticement', this.newAdvertisement)
             if(this.createType == 'advertisement'){
               this.adverticementService.addNewAdverticement(this.newAdvertisement).subscribe()
+              this.router.navigate(['advertisements'])
             }
             else{
               this.newAdvertisement.orderType = 'task'
