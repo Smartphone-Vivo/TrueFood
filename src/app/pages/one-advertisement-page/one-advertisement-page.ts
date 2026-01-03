@@ -63,7 +63,7 @@ export class OneAdvertisementPage implements OnInit{
     )
     this.getAdvertisement()
     this.getCategories()
-    this.getAdvertisements('')
+    this.getAdvertisements()
     this.getFavouriteAdvertisements()
   }
   //todo категории сделать по человечески
@@ -131,8 +131,8 @@ export class OneAdvertisementPage implements OnInit{
     this.router.navigate(['/advertisements'])
   }
 
-  getAdvertisements(search: string){
-    this.advertisementService.getAllAdvertisements("ADVERTISEMENT",0, 6, '')
+  getAdvertisements(){
+    this.advertisementService.getAdvertisements(0, 6, '', '')
       .subscribe({
           next: (response: any) => {
             this.newAdvertisements = response.content

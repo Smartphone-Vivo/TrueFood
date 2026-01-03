@@ -45,7 +45,7 @@ export class AdvertisementsPage implements OnInit{
 
   favouriteAdvertisements: Order[] = []
 
-  currentCategory: number | null = null
+  currentCategory: string = ''
 
   protected length = 6
 
@@ -77,7 +77,7 @@ export class AdvertisementsPage implements OnInit{
     this.openProfile = active && this.openProfile;
   }
 
-  setCategory(categoryName: number | null){
+  setCategory(categoryName: string){
     this.currentCategory = categoryName
     this.getAdverticements(this.searchValue)
     console.log('выбранная категория', this.currentCategory)
@@ -91,8 +91,8 @@ export class AdvertisementsPage implements OnInit{
 
   getAdverticements(search: string){
     console.log('значение поиск', this.searchValue)
-    if(this.currentCategory == null) {
-      this.adverticementService.getAllAdvertisements('ADVERTISEMENT', this.index, 12, search)
+    if(this.currentCategory == '') {
+      this.adverticementService.getAdvertisements(this.index, 12, search, this.currentCategory)
         .subscribe({
             next: (response: any) => {
               this.newAdverticements = response.content
@@ -106,8 +106,8 @@ export class AdvertisementsPage implements OnInit{
           }
         )
     }
-      else{
-        this.adverticementService.getAdverticementsByCategory(this.index, search, this.currentCategory)
+      else{ //todo это вообще снести можно
+        this.adverticementService.getAdvertisements(this.index, 12, search, this.currentCategory)
           .subscribe({
               next: (response: any) => {
                 this.newAdverticements = response.content

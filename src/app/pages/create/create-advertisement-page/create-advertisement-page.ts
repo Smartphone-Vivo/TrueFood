@@ -116,14 +116,14 @@ export class CreateAdvertisementPage implements OnInit{
             const imageUrls = response.map((item : any) => item.fileUrl)
 
             this.newAdvertisement.imagesId.imageUrls = imageUrls
-            this.newAdvertisement.orderType = 'advertisement'
+            this.newAdvertisement.orderType = 'ADVERTISEMENT'
             console.log('newAdverticement', this.newAdvertisement)
             if(this.createType == 'advertisement'){
-              this.adverticementService.addNewAdverticement(this.newAdvertisement).subscribe()
+              this.adverticementService.addNewAdvertisement(this.newAdvertisement).subscribe()
               this.router.navigate(['advertisements'])
             }
             else{
-              this.newAdvertisement.orderType = 'task'
+              this.newAdvertisement.orderType = 'TASK'
               this.taskService.addNewTask(this.newAdvertisement).subscribe()
             }
           }

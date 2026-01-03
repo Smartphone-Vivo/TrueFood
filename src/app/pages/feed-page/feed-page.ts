@@ -34,7 +34,7 @@ export class FeedPage implements OnInit{
   }
 
   getAdvertisements(){
-    this.advertisementService.getAllAdvertisements('ADVERTISEMENT',this.index, 12,'')
+    this.advertisementService.getAdvertisements(this.index, 12,'', '')
       .subscribe({
           next: (response: any) => {
             this.advertisements = response.content

@@ -10,28 +10,21 @@ export class AdverticementService {
 
   http = inject(HttpClient)
 
-  getAllAdvertisements(orderType: string, page : number, size: number, name: string){
-    return this.http.get<Order[]>(`http://localhost:8080/api/general/order/${orderType}/${page}/${size}?name=${name}`)
-  }
-
-  getAdverticementsByCategory(page : number, name: string, categoryId: number){
-    return this.http.get<Order[]>(`http://localhost:8080/api/general/adverticement/${page}/12?name=${name}&categoryId=${categoryId}`)
+  getAdvertisements(page : number, size: number, name: string, categoryId: string){
+    return this.http.get<Order[]>(`http://localhost:8080/api/guest/advertisements/${page}/${size}?name=${name}&categoryId=${categoryId}`)
   }
 
   getAdvertisementById(id: string){
-    return this.http.get(`http://localhost:8080/api/general/advertisement/${id}`)
+    return this.http.get(`http://localhost:8080/api/guest/advertisement/${id}`)
   }
 
-  addNewAdverticement(adverticement: Order){
-    return this.http.post<Order>('http://localhost:8080/api/general/adverticement', adverticement)
+  addNewAdvertisement(advertisement: Order){
+    console.log('addNewAdvertisement')
+    return this.http.post<Order>('http://localhost:8080/api/user/advertisement', advertisement)
   }
 
   getCategories(){
-    return this.http.get('http://localhost:8080/api/general/categories')
-  }
-
-  uploadFile(file: FormControl<File | null>){
-    return this.http.put('http://localhost:9001/api/v1/buckets/images', file)
+    return this.http.get('http://localhost:8080/api/guest/categories')
   }
 
   getAdvertisementsByUser(id: number| null, page: number){
@@ -46,9 +39,8 @@ export class AdverticementService {
     return this.http.get(`http://localhost:8080/api/user/get-favourite-advertisements/${page}/8`)
   }
 
-
   deleteFromFavouriteAdvertisements(advId: number){
-    return this.http.delete(`http://localhost:8080/api/user/delete-favoirite-advertisement/${advId}`)
+    return this.http.delete(`http://localhost:8080/api/user/delete-favourite-advertisement/${advId}`)
   }
 
 }

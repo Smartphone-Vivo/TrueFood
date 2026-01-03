@@ -54,8 +54,8 @@ export class AddReviewDialog implements OnInit{
     console.log('dialog-add-review', this.review)
     if(this.review.reviewText != '' && this.review.rating != null){
       this.profileService.addReview(this.review, this.currentPath).subscribe()
-
+      window.location.reload()
     }
-
   }
+
 }

@@ -3,6 +3,7 @@ import {Search} from '../../common-ui/search/search';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
 import {TaskCard} from '../../common-ui/task-card/task-card';
+import {TaskService} from '../../services/task-service';
 
 @Component({
   selector: 'app-task-page',
@@ -16,12 +17,12 @@ import {TaskCard} from '../../common-ui/task-card/task-card';
 })
 export class TaskPage implements OnInit{
 
-  advertisementsService = inject(AdverticementService)
+  taskService = inject(TaskService)
   cdr = inject(ChangeDetectorRef)
 
   newTasks: Order[] = []
 
-  currentCategory: number | null = null
+  currentCategory: string = ''
 
   protected length = 6
 
@@ -37,8 +38,7 @@ export class TaskPage implements OnInit{
 
   getTasks(search: string){
     console.log('значение поиск', this.searchValue)
-    if(this.currentCategory == null) {
-      this.advertisementsService.getAllAdvertisements('TASK', this.index, 12, search)
+      this.taskService.getTasks(this.index, 12, search, this.currentCategory)
         .subscribe({
             next: (response: any) => {
               this.newTasks = response.content
@@ -52,21 +52,6 @@ export class TaskPage implements OnInit{
           }
         )
     }
-    else{
-      this.advertisementsService.getAdverticementsByCategory(this.index, search, this.currentCategory)
-        .subscribe({
-            next: (response: any) => {
-              this.newTasks = response.content
-              this.length = response.totalPages
-              this.index = response.number
-              this.currentPage = response.number
-              console.log(this.newTasks)
 
-              this.cdr.detectChanges()
-            }
-          }
-        )
-    }
-  }
 
 }

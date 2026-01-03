@@ -1,12 +1,12 @@
 export class Category{
 
   constructor() {
-    this.id = null
+    this.id = ''
     this.parent = null
     this.name = ""
   }
 
-  id: number | null
+  id: string
   parent: Category | null
   name: string
 
