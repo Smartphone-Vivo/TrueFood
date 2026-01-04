@@ -3,11 +3,17 @@
 <div class="main-container">
 
   <div
+
     class="card-container"
     tuiAppearance="floating"
     [class.swipe-left]="swipeDirection === 'left'"
     [class.swipe-right]="swipeDirection === 'right'"
+    [class.swiping]="isSwiping"
   >
+    <app-profile-card
+      class="profile-button"
+      [id]="advertisements[currentCard].authorId"
+    ></app-profile-card>
     <div class="main-image">
       <img
         class="tinder-image"
@@ -20,7 +26,7 @@
 
     <div class="text">{{advertisements[currentCard].description}}</div>
 
-    <div class="text">{{advertisements[currentCard].price}} ₽</div>
+    <div class="text-price">{{advertisements[currentCard].price}} ₽</div>
 
     <div class="actions">
       <button

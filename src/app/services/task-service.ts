@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Order} from '../models/Order';
+import {Task} from '../models/Task';
 
 
 @Injectable({
@@ -18,6 +19,10 @@ export class TaskService {
 
   addNewTask(task: Order){
     return this.http.post<Order>(`${this.baseUrl}/task`, task)
+  }
+
+  addResponseTask(taskId: number | null){
+    return this.http.get<Task>(`${this.baseUrl}/add-task-response/${taskId}`)
   }
 
 }

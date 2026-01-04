@@ -25,11 +25,11 @@
             size="l"
             tuiButton
             type="button"
-            (click)="answer()"> Откликнуться
+            (click)="responseTask(task.id)"> Откликнуться
           </button>
 
           <div>
-            <div class="card-description">Откликов: 0</div>
+            <div class="card-description">Откликов: {{task.workers.length}}</div>
 
             <div class="card-description">Дедлайн: 18.01.26</div>
 

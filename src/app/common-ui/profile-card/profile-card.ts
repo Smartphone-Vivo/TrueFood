@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, numberAttribute, OnInit} from '@angular/core';
 import {ProfileService} from '../../services/profile-service';
 import {required} from '@angular/forms/signals';
 import {User} from '../../models/User';
@@ -27,7 +27,7 @@ export class ProfileCard implements OnInit{
     this.getUserProfile()
   }
 
-  @Input({required: true}) id!: number;
+  @Input({transform: numberAttribute, required: true}) id!: number;
 
   getUserProfile(){
     this.profileService.getProfile(this.id).subscribe({

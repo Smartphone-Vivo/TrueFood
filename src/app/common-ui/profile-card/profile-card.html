@@ -3,7 +3,7 @@
     @if (user.avatar.imageUrls[0]){
       <tui-avatar
         src="{{user.avatar.imageUrls[0]}}"
-        size="xl"
+        size="l"
       />
     } @else {
       <tui-avatar
@@ -13,20 +13,23 @@
     }
   </div>
   <div class="profile-text">
-    <h1
-      class="seller-name"
-    (click)="toProfile()"
-    >{{user.fio}}</h1>
-
-    <label>
-      <tui-rating
-        class="rating"
-        icon="@tui.star-filled"
-        [max]="5"
-        [ngModel]="user.rating"
-        [readOnly]="true"
-      />
-    </label>
+    <div
+        class="seller-name"
+      (click)="toProfile()"
+      >{{user.fio}}
+      <label>
+        <tui-rating
+          class="rating"
+          icon="@tui.star-filled"
+          [max]="5"
+          [ngModel]="user.rating"
+          [readOnly]="true"
+        />
+      </label>
+    </div>
+    <div class="reviews-count">
+      Отзывов: {{user.reviews.length}}
+    </div>
 
   </div>
 

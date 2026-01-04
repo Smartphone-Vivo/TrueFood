@@ -1,6 +1,8 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, OnChanges, OnInit} from '@angular/core';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {Order} from '../../models/Order';
+import {TaskService} from '../../services/task-service';
+import {Task} from '../../models/Task';
 
 @Component({
   selector: 'app-task-card',
@@ -14,13 +16,29 @@ import {Order} from '../../models/Order';
 })
 export class TaskCard implements OnChanges{
 
-  @Input({required: true}) tasks!: Order[]
+  @Input({required: true}) tasks!: Task[]
+
+  taskService = inject(TaskService)
+
+  cdr = inject(ChangeDetectorRef)
+
+
 
   ngOnChanges() {
     console.log('tasks', this.tasks)
   }
 
-  answer() {
+  //todo пофиксить логику
+  responseTask(id: number | null){
+    this.taskService.addResponseTask(id).subscribe(
+      {
+      next: (updatedTask: any) => {
+        if(id != null){
+          this.tasks = this.tasks.map(task =>
+        task.id === id ? updatedTask : task)
+        }
+      }
+    })
 
   }
 }

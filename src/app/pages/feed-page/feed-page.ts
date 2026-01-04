@@ -3,13 +3,15 @@ import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiLike} from '@taiga-ui/kit';
+import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 
 @Component({
   selector: 'app-feed-page',
   imports: [
     TuiAppearance,
     TuiLike,
-    TuiButton
+    TuiButton,
+    ProfileCard
   ],
   templateUrl: './feed-page.html',
   styleUrl: './feed-page.scss',
@@ -28,6 +30,9 @@ export class FeedPage implements OnInit{
   protected index = 0
 
   currentPage = 0
+
+  isSwiping = false
+  swipeDirection: 'left' | 'right' | '' = ''
 
   ngOnInit() {
     this.getAdvertisements()
@@ -53,16 +58,45 @@ export class FeedPage implements OnInit{
 
   }
 
-  swipeDirection: string = '';
-
   swipeLeft() {
+    this.swipeDirection = 'left'
     this.currentCard++;
+    this.isSwiping = true
 
-  }
+    setTimeout(() => {
+      this.nextCard()
+      this.cdr.detectChanges()
+    }, 300)
+    }
 
   swipeRight() {
+    this.swipeDirection = 'right'
     this.currentCard++;
+    this.isSwiping = true
+
+    setTimeout(() => {
+      this.nextCard()
+      this.cdr.detectChanges()
+    }, 300)
   }
 
+  nextCard(){
+    if(this.currentCard < this.advertisements.length - 1){
+      this.currentCard++
+      this.resetSwipeState()
+    }
+    else{
+      this.getAdvertisements()
+      this.currentCard = 0
+    }
+    this.resetSwipeState()
+  }
 
+  resetSwipeState(){
+    setTimeout(() => {
+      this.swipeDirection = ''
+      this.isSwiping = false
+      this.cdr.detectChanges()
+    }, 50)
+  }
 }
