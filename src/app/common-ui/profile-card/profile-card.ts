@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, Input, numberAttribute, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, numberAttribute, OnChanges, OnInit} from '@angular/core';
 import {ProfileService} from '../../services/profile-service';
 import {required} from '@angular/forms/signals';
 import {User} from '../../models/User';
@@ -16,14 +16,14 @@ import {Router} from '@angular/router';
   templateUrl: './profile-card.html',
   styleUrl: './profile-card.scss',
 })
-export class ProfileCard implements OnInit{
+export class ProfileCard implements OnChanges{
 
   profileService = inject(ProfileService)
   router = inject(Router)
   cdr = inject(ChangeDetectorRef)
   user: User = new User()
 
-  ngOnInit(){
+  ngOnChanges(){
     this.getUserProfile()
   }
 

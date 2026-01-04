@@ -43,12 +43,11 @@ export class OneAdvertisementPage implements OnInit{
 
   advertisementId: string = ''
 
-// @ts-ignore
-  currentAdvertisement: Advertisement = null
+  currentAdvertisement: Order = new Order
 
   categories: Category[] = []
 
-  categoriesList: string[] = []
+  categoriesList: Category[] = []
 
   newAdvertisements: Order[] = []
 
@@ -67,15 +66,24 @@ export class OneAdvertisementPage implements OnInit{
     this.getFavouriteAdvertisements()
   }
   //todo категории сделать по человечески
-  getCategoriesList(){
+  category: Category = new Category();
 
-    const category = Number(this.currentAdvertisement.categoryId) - 1
-    // @ts-ignore
-    this.categoriesList.unshift(this.categories[category] )
-    if(this.currentAdvertisement.category.parent.id != null){
-      this.categoriesList.unshift(this.currentAdvertisement.category.parent.id)
+  getCategoriesList(){
+    let category = this.currentAdvertisement.category
+    this.categoriesList = []
+
+    console.log('let category', category)
+    while(category){
+      this.categoriesList.unshift(category)
+      if(category.parent && category.parent.id !== null && category.parent.id !== undefined){
+        category = category.parent
+      } else{
+        break
+      }
+
     }
-    console.log('текущий список категорий',this.categoriesList, this.categories[0].name)
+    console.log('категории', this.categoriesList)
+
   }
 
   getCategories(){
@@ -110,16 +118,20 @@ export class OneAdvertisementPage implements OnInit{
     },
   ];
 
+  goToAdvertisements(id: number | null){
+    this.router.navigate([''])
+  }
+
   setCurrentImage(id: number){
     this.currentImageId = id
   }
 
   getAdvertisement(){
     this.advertisementService.getAdvertisementById(this.advertisementId).subscribe(
-      response => {
+      (response: any) => {
         this.currentAdvertisement = response
         this.imageUrls = this.currentAdvertisement.imagesId.imageUrls
-        console.log('currentAdvertisement', this.imageUrls)
+        console.log('currentAdvertisement', this.currentAdvertisement)
         this.getCategoriesList()
         this.getCategories()
         this.changeDetector.detectChanges()
@@ -145,7 +157,7 @@ export class OneAdvertisementPage implements OnInit{
   toAdvertisement(id: number | null){
     if(id != null){
       this.advertisementId = String(id)
-      window.location.reload()
+      // window.location.reload()
       this.changeDetector.detectChanges()
 
 

@@ -4,6 +4,7 @@ import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
 import {TaskCard} from '../../common-ui/task-card/task-card';
 import {TaskService} from '../../services/task-service';
+import {Task} from '../../models/Task';
 
 @Component({
   selector: 'app-task-page',
@@ -20,7 +21,7 @@ export class TaskPage implements OnInit{
   taskService = inject(TaskService)
   cdr = inject(ChangeDetectorRef)
 
-  newTasks: Order[] = []
+  newTasks: Task[] = []
 
   currentCategory: string = ''
 

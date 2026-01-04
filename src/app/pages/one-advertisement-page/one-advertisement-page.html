@@ -49,14 +49,14 @@
     <div class="navigation">
       <tui-breadcrumbs>
         <ng-container>
-          @for (item of items; track item) {
-            <a
+          @for (category of categoriesList; track category) {
+            <div
               *tuiItem
-              tuiLink
-              [routerLink]="item.routerLink"
+              (click)="goToAdvertisements(category.id)"
             >
-              {{ item.caption }}
-            </a>
+              <div class="category-name">{{ category.name }}</div>
+
+            </div>
           }
         </ng-container>
       </tui-breadcrumbs>
@@ -95,10 +95,11 @@
     <div class="text">{{currentAdvertisement.description}}</div>
 
     <h1>Автор:</h1>
-    <app-profile-card
-      [id]="currentAdvertisement.authorId"
-    ></app-profile-card>
-
+    @if(currentAdvertisement.authorId){
+      <app-profile-card
+        [id]="currentAdvertisement.authorId"
+      ></app-profile-card>
+    }
 
     <h1>Другие объявления:</h1>
     <div class="cards-container">

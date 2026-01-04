@@ -77,8 +77,8 @@ export class AdvertisementsPage implements OnInit{
     this.openProfile = active && this.openProfile;
   }
 
-  setCategory(categoryName: string){
-    this.currentCategory = categoryName
+  setCategory(categoryName: number | null){
+    this.currentCategory = String(categoryName)
     this.getAdverticements(this.searchValue)
     console.log('выбранная категория', this.currentCategory)
   }

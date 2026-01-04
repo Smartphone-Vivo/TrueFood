@@ -1,4 +1,5 @@
 import {Image} from './Image';
+import {Category} from './category';
 
 export class Order {
 
@@ -7,6 +8,11 @@ export class Order {
     this.id = null
     this.title = ""
     this.description = ""
+    this.category = {
+      id: null,
+      parent: null,
+      name: ''
+    }
     this.categoryId = null
     this.price = null
     this.location = ""
@@ -24,6 +30,7 @@ export class Order {
   id: number | null
   title: string
   description: string
+  category: Category
   categoryId: number | null
   price: number | null
   location: string
