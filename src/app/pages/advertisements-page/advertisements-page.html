@@ -11,26 +11,9 @@
         role="tree"
         [tuiTreeController]="true"
       >
-        @for(category of categories; track category){
-          @if(category.parent == null){
-            <tui-tree-item>
-              {{category.name}}
-              @for (childCategory of categories; track childCategory){
-                <tui-tree-item>
-                @if (childCategory.parent != null && childCategory.id != null){
-                  @if(childCategory.parent.id == category.id){
-                    <button
-                      (click)="setCategory(childCategory.id)"
-                      class="category-button">
-                      {{childCategory.name}}
-                    </button>
-                  }
-                }
-                </tui-tree-item>
-              }
-            </tui-tree-item>
-          }
-        }
+        <app-category-tree
+          [categories]="categories"
+        ></app-category-tree>
 
       </div>
     </div>

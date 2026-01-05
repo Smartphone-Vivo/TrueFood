@@ -9,6 +9,7 @@ import {Search} from '../../common-ui/search/search';
 import {Category} from '../../models/category';
 import {TuiLoader} from '@taiga-ui/core';
 import {Router} from '@angular/router';
+import {CategoryTree} from '../../common-ui/category-tree/category-tree';
 
 @Component({
   selector: 'app-advertisements-page',
@@ -26,6 +27,7 @@ import {Router} from '@angular/router';
     Search,
     TuiAppearance,
     TuiLoader,
+    CategoryTree,
   ],
   templateUrl: './advertisements-page.html',
   styleUrl: './advertisements-page.scss',
