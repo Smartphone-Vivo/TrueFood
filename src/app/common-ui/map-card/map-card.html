@@ -3,22 +3,11 @@
   <div
     tuiAppearance="floating"
     tuiCardLarge
+    class="map-wrapper"
   >
     <div class="container">
-
+      <!-- Контейнер для карты с конкретными размерами -->
+      <div id="map-container" style="width: 100%; height: 500px; border-radius: 8px;"></div>
     </div>
-
   </div>
 </div>
-
-<y-map
-  [props]="{
-      location: {
-        center: [-0.127696, 51.507351],
-        zoom: 10,
-      },
-      theme: 'dark',
-    }"
->
-  <y-map-default-scheme-layer />
-</y-map>
