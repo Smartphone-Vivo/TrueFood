@@ -16,10 +16,6 @@ declare const ymaps3: any;
 export class MapCard implements OnInit, OnDestroy {
   private map: any;
 
-
-
-  constructor() { }
-
   async ngOnInit(): Promise<void> {
     await this.initMap();
   }

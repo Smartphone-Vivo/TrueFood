@@ -1,30 +1,24 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
-import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
-import {TuiAppearance, TuiButton, TuiLink, TuiLoader} from '@taiga-ui/core';
-import {TuiBreadcrumbs, TuiLike} from '@taiga-ui/kit';
-import {TuiItem} from '@taiga-ui/cdk';
+import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {Category} from '../../models/category';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {LikeButton} from '../../common-ui/like-button/like-button';
 import {ProfileCard} from '../../common-ui/profile-card/profile-card';
+import {Navigation} from '../../common-ui/navigation/navigation';
 
 @Component({
   selector: 'app-one-advertisement-page',
   imports: [
     TuiAppearance,
     TuiButton,
-    TuiLike,
-    TuiBreadcrumbs,
-    RouterLink,
-    TuiLink,
-    TuiItem,
     AdverticementCard,
     TuiLoader,
     LikeButton,
-    ProfileCard
+    ProfileCard,
+    Navigation
   ],
   templateUrl: './one-advertisement-page.html',
   styleUrl: './one-advertisement-page.scss',
@@ -65,7 +59,6 @@ export class OneAdvertisementPage implements OnInit{
     this.getAdvertisements()
     this.getFavouriteAdvertisements()
   }
-  //todo категории сделать по человечески
 
   getCategoriesList(){
     let category = this.currentAdvertisement.category
@@ -79,10 +72,7 @@ export class OneAdvertisementPage implements OnInit{
       } else{
         break
       }
-
     }
-    console.log('категории', this.categoriesList)
-
   }
 
   getCategories(){
@@ -95,30 +85,6 @@ export class OneAdvertisementPage implements OnInit{
         }
       }
     )
-  }
-
-  protected items = [
-    {
-      caption: 'Selects',
-      routerLink: '/components/select',
-    },
-    {
-      caption: 'Multi',
-      routerLink: '/components/multi-select',
-    },
-    {
-      caption: 'With tags',
-      routerLink: '/components/multi-select',
-    },
-    {
-      caption: 'Current',
-      routerLink: '/navigation/breadcrumbs',
-      routerLinkActiveOptions: {exact: true},
-    },
-  ];
-
-  goToAdvertisements(id: number | null){
-    this.router.navigate(['advertisements', id])
   }
 
   setCurrentImage(id: number){
@@ -138,8 +104,8 @@ export class OneAdvertisementPage implements OnInit{
     )
   }
 
-  toAdvertisements(){
-    this.router.navigate(['/advertisements'])
+  toAdvertisements(id: number | null){
+    this.router.navigate(['/advertisements', id])
   }
 
   getAdvertisements(){
@@ -156,10 +122,8 @@ export class OneAdvertisementPage implements OnInit{
   toAdvertisement(id: number | null){
     if(id != null){
       this.advertisementId = String(id)
-      // window.location.reload()
+      window.location.reload()
       this.changeDetector.detectChanges()
-
-
     }
 
   }

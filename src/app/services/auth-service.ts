@@ -46,7 +46,6 @@ export class AuthService {
   logout(){
     this.cookieService.deleteAll()
     this.isAuth
-
   }
 
   getDecodedAccessToken(token: string){

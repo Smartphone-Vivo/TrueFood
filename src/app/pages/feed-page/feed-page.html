@@ -37,7 +37,7 @@
         tuiIconButton
         type="button"
         [style.border-radius.%]="100"
-        (click)="swipeLeft()"
+        (click)="swipeLeft(advertisements[currentCard].id)"
       >
         Favorite
       </button>
@@ -50,7 +50,7 @@
         tuiIconButton
         type="button"
         [style.border-radius.%]="100"
-        (click)="toFavoritePage()"
+        (click)="toProfilePage()"
       >
         Favorite
       </button>

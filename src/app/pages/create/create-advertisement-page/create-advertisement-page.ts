@@ -38,8 +38,6 @@ import {Router} from '@angular/router';
     TuiChevron,
     TuiError,
     TuiFieldErrorPipe,
-    TuiIcon,
-    TuiBadgeNotification,
     TuiSegmented
   ],
   templateUrl: './create-advertisement-page.html',

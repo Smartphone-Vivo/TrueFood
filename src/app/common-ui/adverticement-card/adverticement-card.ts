@@ -1,7 +1,6 @@
-import {Component, inject, Input, OnInit, Output} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {TuiAppearance, TuiIcon} from '@taiga-ui/core';
 import {Order} from '../../models/Order';
-import {TuiLike} from '@taiga-ui/kit';
 import {Router} from '@angular/router';
 import {AdverticementService} from '../../services/adverticement-service';
 import {FormsModule} from '@angular/forms';
@@ -12,7 +11,6 @@ import {LikeButton} from '../like-button/like-button';
   imports: [
     TuiAppearance,
     TuiIcon,
-    TuiLike,
     FormsModule,
     LikeButton
   ],

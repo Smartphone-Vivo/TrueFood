@@ -4,12 +4,13 @@ import {Order} from '../../models/Order';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiLike} from '@taiga-ui/kit';
 import {ProfileCard} from '../../common-ui/profile-card/profile-card';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth-service';
 
 @Component({
   selector: 'app-feed-page',
   imports: [
     TuiAppearance,
-    TuiLike,
     TuiButton,
     ProfileCard
   ],
@@ -19,7 +20,10 @@ import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 export class FeedPage implements OnInit{
 
   advertisementService = inject(AdverticementService)
+  router = inject(Router)
   cdr = inject(ChangeDetectorRef)
+
+  authService = inject(AuthService)
 
   advertisements: Order[] = []
 
@@ -54,11 +58,14 @@ export class FeedPage implements OnInit{
       )
   }
 
-  toFavoritePage() {
+  swipeLeft(id: number | null) {
+    if(id && this.authService.isAuth){
+      this.advertisementService.addAdvertisementToFavourites(id).subscribe()
+    }
+    else{
+      this.router.navigate(['login'])
+    }
 
-  }
-
-  swipeLeft() {
     this.swipeDirection = 'left'
     this.currentCard++;
     this.isSwiping = true
@@ -98,5 +105,9 @@ export class FeedPage implements OnInit{
       this.isSwiping = false
       this.cdr.detectChanges()
     }, 50)
+  }
+
+  toProfilePage() {
+    this.router.navigate(['profile', this.advertisements[this.currentCard].authorId])
   }
 }

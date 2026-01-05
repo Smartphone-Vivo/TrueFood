@@ -12,7 +12,7 @@
           tuiIconButton
           type="button"
           [style.border-radius.%]="100"
-          (click)="toAdvertisements()"
+          (click)="toAdvertisements(currentAdvertisement.categoryId)"
         >
           Favorite
         </button>
@@ -47,19 +47,10 @@
 
 
     <div class="navigation">
-      <tui-breadcrumbs>
-        <ng-container>
-          @for (category of categoriesList; track category) {
-            <div
-              *tuiItem
-              (click)="goToAdvertisements(category.id)"
-            >
-              <div class="category-name">{{ category.name }}</div>
 
-            </div>
-          }
-        </ng-container>
-      </tui-breadcrumbs>
+      <app-navigation
+      [categoryId]="currentAdvertisement.categoryId"
+      ></app-navigation>
 
     </div>
 

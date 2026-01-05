@@ -9,3 +9,52 @@
   width: 80%;
   margin: 0 auto;
 }
+
+.main-navigation-cards-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1000px;
+}
+
+.main-navigation-cards{
+  width: 100%;
+
+}
+
+.nav-container{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 4 колонки */
+  gap: 10px;
+
+  /* Адаптив */
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* 1 колонка */
+    gap: 10px;
+  }
+}
+
+.hdr{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.adv-container{
+  display: flex;
+  justify-content: center;
+}

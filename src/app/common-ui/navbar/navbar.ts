@@ -145,10 +145,13 @@ export class Navbar implements OnInit{
 
   logout() {
     this.authService.logout()
-    this.router.navigate(['/advertisements']).then(() => {
-      window.location.reload();
-    })
     this.cdr.detectChanges()
+    this.router.navigate(['/advertisements', 1]).then(() => {
+      setTimeout(() => {
+        window.location.reload()
+      }, 200)
+    })
+
   }
 
 

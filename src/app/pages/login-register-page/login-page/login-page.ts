@@ -38,7 +38,7 @@ export class LoginPage {
         response => {
           if(response){
 
-            this.router.navigate(['/advertisements']).then(() => {
+            this.router.navigate(['/advertisements', 1]).then(() => {
               window.location.reload();
             })
             this.authService.isAuth

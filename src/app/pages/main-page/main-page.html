@@ -1,11 +1,85 @@
 <div class="main-container">
   <div class="container">
+
     <app-search></app-search>
 
     <app-map-card></app-map-card>
-  </div>
+
+    <div class="nav-container">
+      <div class="main-navigation-cards-container">
+        <div class="main-navigation-cards">
+          <h1>Не знаешь чего хочешь?</h1>
+
+          <button class="send-button"
+                  appearance="positive"
+                  size="xl"
+                  tuiButton
+                  type="button"
+                  (click)="toFeedPage()"
+          >
+            Жми здесь
+          </button>
+        </div>
+
+        <div class="main-navigation-cards">
+          <h1>Знаешь чего хочешь?</h1>
+
+          <button class="send-button"
+                  appearance="positive"
+                  size="xl"
+                  tuiButton
+                  type="button"
+                  (click)="toAdvertisementPage()"
+          >
+            Тыкай сюда
+          </button>
+        </div>
+
+        <div class="main-navigation-cards">
+          <h1>Хочешь денег?</h1>
+
+          <button class="send-button"
+                  appearance="positive"
+                  size="xl"
+                  tuiButton
+                  type="button"
+                  (click)="toTasksPage()"
+          >
+            Нажимай сюда
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="hdr">
+      <h1 class="fresh-ads-header">Свежие объявления:</h1>
+    </div>
+
+    <div class="adv-container">
+        @if (newAdvertisements.length > 0) {
+          <div class="cards-container">
+            @for (ad of newAdvertisements; track ad.id) {
+              <div
+                class="adv-container">
+
+                <app-adverticement-card
+                  [advertisement]="ad"
+                />
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="cards-container">
+            <h1>Нет объявлений(((</h1>
+          </div>
+        }
+    </div>
+    </div>
+
 
 </div>
+
 
 
 
