@@ -66,7 +66,6 @@ export class OneAdvertisementPage implements OnInit{
     this.getFavouriteAdvertisements()
   }
   //todo категории сделать по человечески
-  category: Category = new Category();
 
   getCategoriesList(){
     let category = this.currentAdvertisement.category
@@ -119,7 +118,7 @@ export class OneAdvertisementPage implements OnInit{
   ];
 
   goToAdvertisements(id: number | null){
-    this.router.navigate([''])
+    this.router.navigate(['advertisements', id])
   }
 
   setCurrentImage(id: number){
@@ -144,7 +143,7 @@ export class OneAdvertisementPage implements OnInit{
   }
 
   getAdvertisements(){
-    this.advertisementService.getAdvertisements(0, 6, '', '')
+    this.advertisementService.getAdvertisements(0, 6, '', 1)
       .subscribe({
           next: (response: any) => {
             this.newAdvertisements = response.content

@@ -1,11 +1,15 @@
-.category-button{
+.tree-container{
+  width: 300px;
+}
+
+.goToCategory{
   padding: 5px;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
 }
 
-.category-button:hover {
+.goToCategory:hover {
   font-weight: bold;
 }

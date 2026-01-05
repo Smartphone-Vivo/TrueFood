@@ -1,14 +1,14 @@
-import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
-import {TuiChevron, TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
+import {TuiBreadcrumbs, TuiChevron, TuiPagination, TuiTreeItem, TuiTreeItemController} from '@taiga-ui/kit';
 import {TuiAppearance, TuiButton, TuiDropdownDirective, TuiDropdownManual} from '@taiga-ui/core';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import {Search} from '../../common-ui/search/search';
 import {Category} from '../../models/category';
 import {TuiLoader} from '@taiga-ui/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryTree} from '../../common-ui/category-tree/category-tree';
 
 @Component({
@@ -28,6 +28,7 @@ import {CategoryTree} from '../../common-ui/category-tree/category-tree';
     TuiAppearance,
     TuiLoader,
     CategoryTree,
+    TuiBreadcrumbs,
   ],
   templateUrl: './advertisements-page.html',
   styleUrl: './advertisements-page.scss',
@@ -41,13 +42,15 @@ export class AdvertisementsPage implements OnInit{
 
   router = inject(Router)
 
+  route = inject(ActivatedRoute)
+
   newAdverticements: Order[] = []
 
   categories: Category[] = []
 
   favouriteAdvertisements: Order[] = []
 
-  currentCategory: string = ''
+  currentCategory: number = 1
 
   protected length = 6
 
@@ -58,9 +61,13 @@ export class AdvertisementsPage implements OnInit{
   searchValue: string = ''
 
   ngOnInit() {
-    this.getAdverticements('')
+    this.route.params.subscribe(
+      params => this.currentCategory = params['id']
+    )
+    this.getAdverticements('', this.currentCategory)
     this.getCategories()
     this.getFavouriteAdvertisements()
+
   }
 
   protected openProfile = false;
@@ -79,57 +86,40 @@ export class AdvertisementsPage implements OnInit{
     this.openProfile = active && this.openProfile;
   }
 
-  setCategory(categoryName: number | null){
-    this.currentCategory = String(categoryName)
-    this.getAdverticements(this.searchValue)
-    console.log('выбранная категория', this.currentCategory)
-  }
-
   onSearch(searchValue: string){
     console.log('searchValue',searchValue)
-    this.getAdverticements(searchValue)
+    this.getAdverticements(searchValue, this.currentCategory)
     this.searchValue = searchValue
   }
 
-  getAdverticements(search: string){
-    console.log('значение поиск', this.searchValue)
-    if(this.currentCategory == '') {
-      this.adverticementService.getAdvertisements(this.index, 12, search, this.currentCategory)
-        .subscribe({
-            next: (response: any) => {
-              this.newAdverticements = response.content
-              this.length = response.totalPages
-              this.index = response.number
-              this.currentPage = response.number
-              console.log(this.newAdverticements)
+  setCategory(id: number){
+    console.log('выбранный id')
+    this.currentCategory = id
+    console.log('currentCategory', id)
+    this.getAdverticements(this.searchValue, this.currentCategory)
+  }
 
-              this.changeDetector.detectChanges()
-            }
+  getAdverticements(search: string, category: number){
+    console.log('значение поиск', this.currentCategory)
+
+    this.adverticementService.getAdvertisements(this.index, 12, search, category)
+      .subscribe({
+          next: (response: any) => {
+            this.newAdverticements = response.content
+            this.length = response.totalPages
+            this.index = response.number
+            this.currentPage = response.number
+            console.log(this.newAdverticements)
+
+            this.changeDetector.detectChanges()
           }
-        )
-    }
-      else{ //todo это вообще снести можно
-        this.adverticementService.getAdvertisements(this.index, 12, search, this.currentCategory)
-          .subscribe({
-              next: (response: any) => {
-                this.newAdverticements = response.content
-                this.length = response.totalPages
-                this.index = response.number
-                this.currentPage = response.number
-                console.log(this.newAdverticements)
-
-                this.changeDetector.detectChanges()
-              }
-            }
-          )
       }
+      )
     }
-
-
 
   protected goToPage(index: number): void {
     this.index = index;
-    this.getAdverticements(this.searchValue)
+    this.getAdverticements(this.searchValue, this.currentCategory)
     console.info('New page:', index);
   }
 

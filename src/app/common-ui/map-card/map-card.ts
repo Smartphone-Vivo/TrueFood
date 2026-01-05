@@ -38,8 +38,8 @@ export class MapCard implements OnInit, OnDestroy {
 
     // Конфигурация карты
     let LOCATION = {
-      center: [37.588144, 55.733842] as [number, number],
-      zoom: 9
+      center: [39.1538, 51.7070] as [number, number],
+      zoom: 15
     };
 
       // Ждем загрузки API Яндекс Карт

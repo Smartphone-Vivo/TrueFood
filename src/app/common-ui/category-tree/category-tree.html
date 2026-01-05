@@ -1,21 +1,23 @@
-@for(superParent of rootCategories; track superParent.id){
-  <tui-tree-item>
-    <div class="goToCaregory" (click)="goToCategory(superParent.id)">
-      {{ superParent.name }}
-    </div>
-    @for(child of getChildren(superParent.id); track child.id){
-      <tui-tree-item>
-        <div class="goToCaregory" (click)="goToCategory(child.id)">
-          {{ child.name }}
-        </div>
-        @for(grandChild of getChildren(child.id); track grandChild.id){
-          <tui-tree-item>
-            <div class="goToCaregory" (click)="goToCategory(grandChild.id)">
-              {{ grandChild.name }}
-            </div>
-          </tui-tree-item>
-        }
-      </tui-tree-item>
-    }
-  </tui-tree-item>
-}
+<div class="tree-container">
+  @for(superParent of rootCategories; track superParent.id){
+    <tui-tree-item>
+      <div class="goToCategory" (click)="goToCategory(superParent.id)">
+        {{ superParent.name }}
+      </div>
+      @for(child of getChildren(superParent.id); track child.id){
+        <tui-tree-item>
+          <div class="goToCategory" (click)="goToCategory(child.id)">
+            {{ child.name }}
+          </div>
+          @for(grandChild of getChildren(child.id); track grandChild.id){
+            <tui-tree-item>
+              <div class="goToCategory" (click)="goToCategory(grandChild.id)">
+                {{ grandChild.name }}
+              </div>
+            </tui-tree-item>
+          }
+        </tui-tree-item>
+      }
+    </tui-tree-item>
+  }
+</div>

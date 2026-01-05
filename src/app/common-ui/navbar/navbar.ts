@@ -87,7 +87,7 @@ export class Navbar implements OnInit{
 
   toAdvertisementPage(){
     console.log('to main')
-    this.router.navigate(['/advertisements'])
+    this.router.navigate(['/advertisements', 1])
   }
 
   toFeedPage(){

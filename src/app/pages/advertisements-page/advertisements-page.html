@@ -13,12 +13,14 @@
       >
         <app-category-tree
           [categories]="categories"
+          (toCategory)="setCategory($event)"
         ></app-category-tree>
 
       </div>
     </div>
 
     <div class="cards-block">
+
 
       <div class="sort">
         Сортировка:

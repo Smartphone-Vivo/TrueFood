@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {TuiTreeItem} from "@taiga-ui/kit";
 import {Category} from '../../models/category';
 
@@ -14,9 +14,11 @@ export class CategoryTree implements OnChanges{
 
   @Input ({required: true}) categories!: Category[]
 
+  @Output() toCategory = new EventEmitter<number>();
+
   ngOnChanges() {
-    this.categorySort()
   }
+
   get rootCategories() {
     return this.categories.filter(cat => cat.parent === null);
   }
@@ -27,18 +29,14 @@ export class CategoryTree implements OnChanges{
     );
   }
 
-  categorySort(){
-    let category: Category;
-    for(category of this.categories){
-      console.log('категории', this.categories)
-    }
-  }
-
   goToCategory(id: number | null){
     console.log('goToCategory ',id)
+    // @ts-ignore
+    this.toCategory.emit(id)
   }
 
-  setCategory(id: number) {
+  setCategory(id: number){
 
   }
+
 }
