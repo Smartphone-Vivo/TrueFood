@@ -30,7 +30,7 @@ export class AuthService {
         tap(val => {
           this.token = val.accessToken
 
-          this.cookieService.set('accessToken', val.accessToken)
+          this.cookieService.set('accessToken', val.accessToken, {path: '/'})
         })
     )
   }
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   logout(){
-    this.cookieService.deleteAll()
+    this.cookieService.deleteAll('/')
     this.isAuth
   }
 
