@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {TuiButton, TuiError, TuiIcon, TuiTextfield} from '@taiga-ui/core';
+import {TuiButton, TuiDataList, TuiError, TuiIcon, TuiTextfield} from '@taiga-ui/core';
 import {
   TuiBadgeNotification,
   TuiChevron, TuiFieldErrorPipe,
@@ -19,7 +19,6 @@ import {Category} from '../../../models/category';
 import {ImageService} from '../../../services/image-service';
 import {TuiValidationError} from '@taiga-ui/cdk';
 import {map} from 'rxjs';
-import {Image} from '../../../models/Image';
 import {TaskService} from '../../../services/task-service';
 import {Router} from '@angular/router';
 
@@ -38,7 +37,8 @@ import {Router} from '@angular/router';
     TuiChevron,
     TuiError,
     TuiFieldErrorPipe,
-    TuiSegmented
+    TuiSegmented,
+    TuiDataList
   ],
   templateUrl: './create-advertisement-page.html',
   styleUrl: './create-advertisement-page.scss',
@@ -73,36 +73,54 @@ export class CreateAdvertisementPage implements OnInit{
     this.changeDetector.detectChanges()
   }
 
-  getCategories(){
-    this.adverticementService.getCategories().subscribe(
-      {
-        next:(response: any) => {
-          this.categories = response
-          console.log('Категории', this.categories)
-          this.changeDetector.detectChanges()
-        }
+  getCategories() {
+    this.adverticementService.getCategories().subscribe({
+      next: (response: any) => {
+        this.categories = response;
+        console.log('Категории', this.categories);
+        this.groupCategories();
+        this.changeDetector.detectChanges();
       }
+    });
+  }
+
+  protected labels: string[] = [];
+
+  groupCategories() {
+
+    const level2Categories = this.categories.filter(cat => cat.parent?.id === 1)
+
+    this.labels = level2Categories.map(cat => cat.name)
+
+    this.groupItems = level2Categories.map(parentCat =>
+      this.categories
+        .filter(cat => cat.parent?.id === parentCat.id)
+        .map(cat => cat.name)
     )
   }
 
-  protected groupItems: ReadonlyArray<readonly string[]> = [
-    ['Caesar', 'Greek', 'Apple and Chicken'],
-    ['Broccoli Cheddar', 'Chicken and Rice', 'Chicken Noodle'],
-  ];
 
-  protected readonly labels = ['Salad', 'Soup'];
+  protected groupItems: ReadonlyArray<readonly string[]> = [[], []];
 
   protected readonly categoryControl = new FormControl<string | null>(null);
-  // protected readonly control = new FormControl<File>(null!);
 
   protected removeFile(): void {
     this.control.setValue(null);
   }
 
-  addNewAdvertisement() {
-    console.log('Новое объявление', this.newAdvertisement, this.control)
+  getCategoryByName(categoryaName: string | null): number | null{
+    return this.categories.filter(cat => cat.name === categoryaName)
+      .map(
+        cat => cat.id
+      )[0]
+  }
 
-    this.newAdvertisement.categoryId = 3 //todo это убрать надо
+  addNewAdvertisement() {
+    console.log('Новое объявление', this.newAdvertisement, this.control, this.categoryControl)
+
+    this.newAdvertisement.categoryId = this.getCategoryByName(this.categoryControl.value) //todo это убрать надо
+
+    console.log('выбранная категория', this.categoryControl.value, this.getCategoryByName(this.categoryControl.value))
 
     if (this.control.value) {
       console.log('control.value', this.control.value)
@@ -130,10 +148,6 @@ export class CreateAdvertisementPage implements OnInit{
     }
   }
 
-  addNewTask() {
-
-  }
-
   protected readonly control = new FormControl<File[]>([], [maxFilesLength(5)]);
   protected readonly accepted$ = this.control.valueChanges.pipe(
     map(() => tuiFilesAccepted(this.control)),
@@ -151,10 +165,7 @@ export class CreateAdvertisementPage implements OnInit{
       this.control.value?.filter((current) => current !== file) ?? [],
     );
   }
-
-
 }
-
 
 export function maxFilesLength(maxLength: number): ValidatorFn {
   return ({value}: AbstractControl) =>
@@ -165,7 +176,5 @@ export function maxFilesLength(maxLength: number): ValidatorFn {
         ),
       }
       : null;
-
-
 }
 
