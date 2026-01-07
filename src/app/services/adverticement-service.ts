@@ -28,7 +28,7 @@ export class AdverticementService {
   }
 
   getAdvertisementsByUser(id: number| null, page: number){
-    return this.http.get<Order[]>(`http://localhost:8080/api/user/advertisements-by-user/${id}/${page}/6`)
+    return this.http.get<Order[]>(`http://localhost:8080/api/guest/advertisements-by-user/${id}/${page}/6`)
   }
 
   addAdvertisementToFavourites(id: number){

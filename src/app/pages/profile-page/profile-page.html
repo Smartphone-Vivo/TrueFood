@@ -2,22 +2,39 @@
   <div class="profile-container">
     <h1>Профиль:</h1>
 
-    <div class="header">
-      @if (user.avatar.imageUrls[0]){
-        <tui-avatar
-          src="{{user.avatar.imageUrls[0]}}"
-          size="xxl"
-        />
-      } @else {
-        <tui-avatar
-          src="@tui.user"
-          size="xxl"
-        />
-      }
+    <div class="header-container">
+      <div class="header">
+        <div class="avatar">
+          @if (user.avatar.imageUrls[0]){
+            <tui-avatar
+              src="{{user.avatar.imageUrls[0]}}"
+              size="xxl"
+            />
+          } @else {
+            <tui-avatar
+              src="@tui.user"
+              size="xxl"
+            />
+          }
+        </div>
 
 
-      <div class="header-info">
-        <h1>{{user.fio}}</h1>
+        <div class="header-info">
+          <h1>{{user.fio}}</h1>
+
+          <button
+            class="to-contacts-button"
+            appearance="primary-grayscale"
+            iconStart="message-circle"
+            size="m"
+            tuiButton
+            type="button"
+            (click)="toContacts()"
+          >
+            Связаться
+          </button>
+
+        </div>
 
         <label>
           <tui-rating
@@ -28,20 +45,14 @@
             [readOnly]="true"
           />
         </label>
+
       </div>
+
+
     </div>
 
-    <button
-      class="add-review-button"
-      appearance="primary-grayscale"
-      iconStart="message-circle"
-      size="l"
-      tuiButton
-      type="button"
-      (click)="toContacts()"
-    >
-      Связаться
-    </button>
+
+
 
     <div class="reviews-container">
       <h1>Отзывы:</h1>
@@ -53,31 +64,77 @@
 
     </div>
 
-    <div class="advertisements-card">
-      <h1>Объявления:</h1>
-      <div class="advertisement-container">
-        @if (advertisements.length > 0) {
-          <div class="cards-container">
-            @for (ad of advertisements; track ad.id) {
-              <div>
-                <app-adverticement-card
-                  [advertisement]="ad"
-                />
-              </div>
-            }
 
+    <div class="choose-type">
+      <tui-segmented
+        size="m"
+        class="choose-create-type">
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setCreateionType('advertisement')"
+        >Объявления</button>
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setCreateionType('task')"
+        >Заказы</button>
+      </tui-segmented>
+    </div>
+
+    @if(orderType == 'advertisement'){
+      <div class="advertisements-card">
+        @if (advertisements.length > 0) {
+          <h1>Мои объявления: {{totalOrders}}</h1>
+          <div class="advertisement-container">
+
+            <div class="cards-container">
+              @for (ad of advertisements; track ad.id) {
+                <div>
+                  <app-adverticement-card
+                    [advertisement]="ad"
+                  />
+                </div>
+              }
+            </div>
           </div>
         } @else {
-          <div class="loading-state">
-            <tui-loader
-              size="l"
-            />
-          </div>
+          <h1>Нет объявлений</h1>
         }
-
       </div>
+    } @else {
+      <div class="task-card">
+        @if (tasks.length > 0) {
+          <h1>Мои заказы: {{totalOrders}}</h1>
+          <div class="task-container">
 
-  </div>
+            <div class="tasks-container">
+              <div><app-task-card
+                [tasks]="tasks">
+                </app-task-card>
+              </div>
+
+            </div>
+          </div>
+        } @else {
+          <h1>Нет заказов</h1>
+        }
+      </div>
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
   <tui-pagination class="pagination"

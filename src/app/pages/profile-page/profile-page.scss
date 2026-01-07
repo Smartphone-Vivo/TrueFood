@@ -8,6 +8,16 @@
   fill: currentColor;
   font-size: 0.4rem;
   inline-size: 7rem;
+  margin-top: 30px;
+}
+
+
+.avatar{
+  margin-top: 20px;
+}
+
+.header-container{
+  display: flex;
 }
 
 .header{
@@ -20,6 +30,11 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+}
+
+.to-contacts-button{
+  font-weight: 500;
+
 }
 
 .adv{
@@ -76,4 +91,14 @@
   margin-top: 20px;
   display: flex;
   justify-content: center;
+}
+
+.choose-create-type{
+
+  width: 200px;
+
+}
+
+.choose-type-button{
+  font-weight: 500;
 }

@@ -17,6 +17,10 @@ export class TaskService {
     return this.http.get<Order[]>(`http://localhost:8080/api/guest/tasks/${page}/${size}?name=${name}&categoryId=${categoryId}`)
   }
 
+  getUserTask(id: number | null){
+    return this.http.get<Task[]>(`http://localhost:8080/api/guest/tasks-by-user/${id}/0/3`)
+  }
+
   addNewTask(task: Order){
     return this.http.post<Order>(`${this.baseUrl}/task`, task)
   }

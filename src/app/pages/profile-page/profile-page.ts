@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth-service';
 import {ProfileService} from '../../services/profile-service';
 import {User} from '../../models/User';
-import {TuiAvatar, TuiPagination, TuiRating} from '@taiga-ui/kit';
+import {TuiAvatar, TuiPagination, TuiRating, TuiSegmented} from '@taiga-ui/kit';
 import {FormsModule} from '@angular/forms';
 import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
 import {AdverticementService} from '../../services/adverticement-service';
@@ -12,6 +12,9 @@ import {TuiButton, TuiLoader} from '@taiga-ui/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ReviewCard} from '../../common-ui/review-card/review-card';
 import {Review} from '../../models/Review';
+import {TaskService} from '../../services/task-service';
+import {Task} from '../../models/Task';
+import {TaskCard} from '../../common-ui/task-card/task-card';
 
 @Component({
   selector: 'app-profile-page',
@@ -23,7 +26,9 @@ import {Review} from '../../models/Review';
     TuiLoader,
     TuiPagination,
     ReviewCard,
-    TuiButton
+    TuiButton,
+    TuiSegmented,
+    TaskCard
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
@@ -33,9 +38,11 @@ export class ProfilePage implements OnInit{
   authService = inject(AuthService)
   profileService = inject(ProfileService)
   advertisementService = inject(AdverticementService)
+  taskService = inject(TaskService)
   router = inject(Router)
 
   advertisements: Order[] = []
+  tasks: Task[] = []
 
   cdr = inject(ChangeDetectorRef)
 
@@ -55,6 +62,10 @@ export class ProfilePage implements OnInit{
 
   reviews: Review[] = []
 
+  totalOrders: number = 0
+
+
+  orderType = 'advertisement'
 
   ngOnInit() {
     this.getCurrentPath()
@@ -62,6 +73,8 @@ export class ProfilePage implements OnInit{
     this.authService.getMe()
     this.getProfile()
     this.getAdvertisementsByUser()
+
+
   }
 
   getCurrentPath(){
@@ -90,12 +103,26 @@ export class ProfilePage implements OnInit{
           this.length = response.totalPages
           this.index = response.number
           this.currentPage = response.number
-
+          this.totalOrders = response.totalElements
           this.cdr.detectChanges()
         }
       }
 
     )
+  }
+
+  getTasksByUser(){
+    this.taskService.getUserTask(this.currentPath).subscribe({
+      next: (response: any) => {
+        console.log('таски', response)
+        this.tasks = response.content
+        this.length = response.totalPages
+        this.index = response.number
+        this.currentPage = response.number
+        this.totalOrders = response.totalElements
+        this.cdr.detectChanges()
+    }
+    })
   }
 
   toAdvertisement(id: number | null) {
@@ -111,5 +138,15 @@ export class ProfilePage implements OnInit{
 
   toContacts() {
 
+  }
+
+  setCreateionType(orderType: string) {
+    this.orderType = orderType
+    if(orderType == 'advertisement'){
+      this.getAdvertisementsByUser()
+    }else{
+      this.getTasksByUser()
+    }
+    this.cdr.detectChanges()
   }
 }
