@@ -1,4 +1,28 @@
 <app-search></app-search>
-<app-task-card
-  [tasks]="newTasks"
-></app-task-card>
+
+
+<div class="main-container">
+  <div class="main-block">
+    <div class="categories-block">
+      <h1>Категории:</h1>
+      <app-category-tree
+        [categories]="categories"
+        (toCategory)="setCategory($event)"
+      ></app-category-tree>
+    </div>
+
+    <div class="task-block">
+
+      <app-navigation
+        [categoryId]="currentCategory"
+      ></app-navigation>
+
+      <app-task-card
+        [tasks]="newTasks"
+      ></app-task-card>
+    </div>
+
+  </div>
+</div>
+
+

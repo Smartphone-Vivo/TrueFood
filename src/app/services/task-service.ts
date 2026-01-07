@@ -13,7 +13,7 @@ export class TaskService {
 
   baseUrl = 'http://localhost:8080/api/user'
 
-  getTasks(page : number, size: number, name: string, categoryId: string){
+  getTasks(page : number, size: number, name: string, categoryId: number){
     return this.http.get<Order[]>(`http://localhost:8080/api/guest/tasks/${page}/${size}?name=${name}&categoryId=${categoryId}`)
   }
 

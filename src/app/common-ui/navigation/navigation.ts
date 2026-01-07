@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, Input, numberAttribute, OnChanges, SimpleChanges} from '@angular/core';
 import {TuiBreadcrumbs} from '@taiga-ui/kit';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Category} from '../../models/category';
@@ -24,7 +24,7 @@ export class Navigation implements OnChanges {
   categories: Category[] = []
   categoriesList: Category[] = []
 
-  @Input({required: true}) categoryId!: number | null
+  @Input({transform: numberAttribute, required: true}) categoryId!: number | null
 
   ngOnChanges() {
     this.getCategories()

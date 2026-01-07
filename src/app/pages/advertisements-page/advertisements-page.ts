@@ -110,7 +110,6 @@ export class AdvertisementsPage implements OnInit{
   }
 
   getCategoriesList(){
-    let categoryId = this.currentCategory
     let category = this.categories[this.currentCategory]
     this.categoriesList = []
 

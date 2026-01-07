@@ -89,7 +89,6 @@ export class FeedPage implements OnInit{
 
   nextCard(){
     if(this.currentCard < this.advertisements.length - 1){
-      this.currentCard++
       this.resetSwipeState()
     }
     else{

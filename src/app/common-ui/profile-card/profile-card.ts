@@ -33,7 +33,7 @@ export class ProfileCard implements OnChanges{
     this.profileService.getProfile(this.id).subscribe({
       next:(response) => {
         this.user = response
-        console.log('пользователь', this.user)
+        console.log('пользовательddd', this.user)
         this.cdr.detectChanges()
       }
       }

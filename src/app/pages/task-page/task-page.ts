@@ -1,16 +1,21 @@
-import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnChanges, OnInit} from '@angular/core';
 import {Search} from '../../common-ui/search/search';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
 import {TaskCard} from '../../common-ui/task-card/task-card';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/Task';
+import {Navigation} from '../../common-ui/navigation/navigation';
+import {CategoryTree} from '../../common-ui/category-tree/category-tree';
+import {Category} from '../../models/category';
 
 @Component({
   selector: 'app-task-page',
   imports: [
     Search,
-    TaskCard
+    TaskCard,
+    Navigation,
+    CategoryTree
   ],
   templateUrl: './task-page.html',
   styleUrl: './task-page.scss',
@@ -20,10 +25,11 @@ export class TaskPage implements OnInit{
 
   taskService = inject(TaskService)
   cdr = inject(ChangeDetectorRef)
+  advertisementService = inject(AdverticementService)
 
   newTasks: Task[] = []
 
-  currentCategory: string = ''
+  currentCategory: number = 1
 
   protected length = 6
 
@@ -33,8 +39,14 @@ export class TaskPage implements OnInit{
 
   searchValue: string = ''
 
+  categories: Category[] = []
+
+  categoriesList: Category[] = []
+
   ngOnInit() {
     this.getTasks('')
+    this.getCategories()
+    this.getCategoriesList()
   }
 
   getTasks(search: string){
@@ -54,5 +66,41 @@ export class TaskPage implements OnInit{
         )
     }
 
+
+  setCategory(id: number) {
+    this.currentCategory = id
+    this.getTasks(this.searchValue)
+  }
+
+
+getCategoriesList(){
+  let category = this.categories[this.currentCategory]
+  this.categoriesList = []
+
+  console.log('let category', category)
+  while(category){
+    this.categoriesList.unshift(category)
+    if(category.parent && category.parent.id !== null && category.parent.id !== undefined){
+      category = category.parent
+    } else{
+      break
+    }
+
+  }
+  console.log('категории', this.categoriesList)
+
+}
+
+getCategories(){
+  this.advertisementService.getCategories().subscribe(
+    {
+      next:(response: any) => {
+        this.categories = response
+        console.log('Категории', this.categories)
+        this.cdr.detectChanges()
+      }
+    }
+  )
+}
 
 }
