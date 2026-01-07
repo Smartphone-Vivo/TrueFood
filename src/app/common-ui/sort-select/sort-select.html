@@ -1,0 +1,58 @@
+<div class="sort">
+  Сортировка:
+
+  <button
+    appearance="flat-grayscale"
+    size="s"
+    tuiIconButton
+    tuiButton
+    tuiChevron
+    type="button"
+    [tuiDropdown]="dropdownContentProfile"
+    [tuiDropdownManual]="openProfile"
+    [tuiObscuredEnabled]="openProfile"
+    (click)="onClickProfile ()"
+    (tuiActiveZoneChange)="onActiveZoneProfile($event)"
+    (tuiObscured)="onObscuredProfile($event)"
+  >
+    По цене
+    <ng-template #dropdownContentProfile>
+      <div class="dropdown-buttons">
+        <button
+          class="profile-button"
+          appearance="flat-grayscale"
+          tuiButton
+          type="button"
+          size="s"
+          (click)="toDorogo()"
+        >
+          Дороже
+        </button>
+
+        <button
+          class="profile-button"
+          appearance="flat-grayscale"
+          tuiButton
+          type="button"
+          size="s"
+          (click)="toDeshevo()"
+        >
+          Дешевле
+        </button>
+
+        <button
+          class="profile-button"
+          appearance="flat-grayscale"
+          tuiButton
+          type="button"
+          size="s"
+          (click)="toDate()"
+        >
+          По дате
+        </button>
+
+      </div>
+    </ng-template>
+
+  </button>
+</div>

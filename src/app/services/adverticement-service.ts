@@ -10,8 +10,8 @@ export class AdverticementService {
 
   http = inject(HttpClient)
 
-  getAdvertisements(page : number, size: number, name: string, categoryId: number){
-    return this.http.get<Order[]>(`http://localhost:8080/api/guest/advertisements/${page}/${size}?name=${name}&categoryId=${categoryId}`)
+  getAdvertisements(page : number, size: number, name: string, categoryId: number, sortValue: string){
+    return this.http.get<Order[]>(`http://localhost:8080/api/guest/advertisements/${page}/${size}?name=${name}&categoryId=${categoryId}&sort=${sortValue}`)
   }
 
   getAdvertisementById(id: string){

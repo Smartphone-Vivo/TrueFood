@@ -17,9 +17,14 @@
         [categoryId]="currentCategory"
       ></app-navigation>
 
-      <app-task-card
-        [tasks]="newTasks"
-      ></app-task-card>
+      @if (newTasks){
+        <app-task-card
+          [tasks]="newTasks"
+        ></app-task-card>
+      } @else {
+        <h1>Пусто</h1>
+      }
+
     </div>
 
   </div>

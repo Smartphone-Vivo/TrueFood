@@ -10,14 +10,12 @@ import {Category} from '../../models/category';
   templateUrl: './category-tree.html',
   styleUrl: './category-tree.scss',
 })
-export class CategoryTree implements OnChanges{
+export class CategoryTree{
 
   @Input ({required: true}) categories!: Category[]
 
   @Output() toCategory = new EventEmitter<number>();
 
-  ngOnChanges() {
-  }
 
   get rootCategories() {
     return this.categories.filter(cat => cat.parent === null);

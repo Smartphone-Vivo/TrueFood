@@ -32,7 +32,7 @@ export class MainPage implements OnInit{
   }
 
   getAdvertisements(search: string, category: number){
-    this.advertisementService.getAdvertisements(0, 10, search, category)
+    this.advertisementService.getAdvertisements(0, 10, search, category, 'id,asc')
       .subscribe({
           next: (response: any) => {
             this.newAdvertisements = response.content

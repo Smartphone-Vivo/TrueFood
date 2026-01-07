@@ -109,7 +109,7 @@ export class OneAdvertisementPage implements OnInit{
   }
 
   getAdvertisements(){
-    this.advertisementService.getAdvertisements(0, 6, '', 1)
+    this.advertisementService.getAdvertisements(0, 6, '', 1, 'createdAt,desc')
       .subscribe({
           next: (response: any) => {
             this.newAdvertisements = response.content

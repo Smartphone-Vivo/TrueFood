@@ -28,57 +28,12 @@
           ></app-navigation>
 
           <div class="sort">
-            Сортировка:
-
-            <button
-              appearance="positive"
-              size="s"
-              tuiIconButton
-              tuiButton
-              tuiChevron
-              type="button"
-              [tuiDropdown]="dropdownContentProfile"
-              [tuiDropdownManual]="openProfile"
-              [tuiObscuredEnabled]="openProfile"
-              (click)="onClickProfile ()"
-              (tuiActiveZoneChange)="onActiveZoneProfile($event)"
-              (tuiObscured)="onObscuredProfile($event)"
-            >
-              По цене
-              <ng-template #dropdownContentProfile>
-                <div class="dropdown-buttons">
-                  <button
-                    class="profile-button"
-                    appearance="flat-grayscale"
-                    tuiButton
-                    type="button"
-                    size="s"
-                    (click)="toDorogo()"
-                  >
-                    Подороже
-                  </button>
-
-                  <button
-                    class="profile-button"
-                    appearance="flat-grayscale"
-                    tuiButton
-                    type="button"
-                    size="s"
-                    (click)="toDeshevo()"
-                  >
-                    Подешевле
-                  </button>
-
-                </div>
-              </ng-template>
-
-            </button>
+            <app-sort-select (value)="getSortValue($event)"></app-sort-select>
           </div>
 
-
-        @if (newAdverticements.length > 0) {
+        @if (newAdvertisements.length > 0) {
           <div class="cards-container">
-            @for (ad of newAdverticements; track ad.id) {
+            @for (ad of newAdvertisements; track ad.id) {
               <div
                 class="adv-container">
 
