@@ -70,6 +70,7 @@ export class TaskPage implements OnInit{
   setCategory(id: number) {
     this.currentCategory = id
     this.getTasks(this.searchValue)
+    this.cdr.detectChanges()
   }
 
 

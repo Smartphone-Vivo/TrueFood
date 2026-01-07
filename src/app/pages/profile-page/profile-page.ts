@@ -8,7 +8,7 @@ import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Order} from '../../models/Order';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
-import {TuiLoader} from '@taiga-ui/core';
+import {TuiButton, TuiLoader} from '@taiga-ui/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ReviewCard} from '../../common-ui/review-card/review-card';
 import {Review} from '../../models/Review';
@@ -22,7 +22,8 @@ import {Review} from '../../models/Review';
     AdverticementCard,
     TuiLoader,
     TuiPagination,
-    ReviewCard
+    ReviewCard,
+    TuiButton
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',
@@ -105,6 +106,10 @@ export class ProfilePage implements OnInit{
     this.index = index;
     console.info('New page:', index);
     this.getAdvertisementsByUser()
+
+  }
+
+  toContacts() {
 
   }
 }

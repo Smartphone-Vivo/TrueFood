@@ -15,6 +15,7 @@
 
       <app-navigation
         [categoryId]="currentCategory"
+        (toCategory)="setCategory($event)"
       ></app-navigation>
 
       @if (newTasks){
