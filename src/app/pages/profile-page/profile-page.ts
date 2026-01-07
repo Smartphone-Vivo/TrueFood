@@ -23,7 +23,6 @@ import {TaskCard} from '../../common-ui/task-card/task-card';
     TuiRating,
     FormsModule,
     AdverticementCard,
-    TuiLoader,
     TuiPagination,
     ReviewCard,
     TuiButton,
@@ -50,8 +49,6 @@ export class ProfilePage implements OnInit{
 
   user: User = new User()
 
-  currentId: any = this.authService.getMe()
-
   protected length = 12
 
   protected index = 0
@@ -64,7 +61,6 @@ export class ProfilePage implements OnInit{
 
   totalOrders: number = 0
 
-
   orderType = 'advertisement'
 
   ngOnInit() {
@@ -73,8 +69,6 @@ export class ProfilePage implements OnInit{
     this.authService.getMe()
     this.getProfile()
     this.getAdvertisementsByUser()
-
-
   }
 
   getCurrentPath(){

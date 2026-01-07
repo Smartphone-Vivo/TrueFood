@@ -1,5 +1,30 @@
-<p>my-tasks-page works!</p>
+<div class="header-container">
+  <div class="header">
+    @if (contentType == 'myTasks'){
+      <h1>Мои заказы:</h1>
+    } @else {
+      <h1>Мои отклики:</h1>
+    }
 
-<app-task-card
+    <div class="choose-type">
+      <tui-segmented
+        size="m"
+        class="choose-type">
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setContentType('myTasks')"
+        >Мои заказы</button>
+        <button
+          class="choose-type-button"
+          type="button"
+          (click)="setContentType('myResponses')"
+        >Мои отклики</button>
+      </tui-segmented>
+    </div>
+  </div>
+</div>
+
+<app-my-task-card
 [tasks]="tasks">
-</app-task-card>
+</app-my-task-card>

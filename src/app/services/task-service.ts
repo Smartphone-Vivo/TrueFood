@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Order} from '../models/Order';
 import {Task} from '../models/Task';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,10 +16,6 @@ export class TaskService {
     return this.http.get<Order[]>(`http://localhost:8080/api/guest/tasks/${page}/${size}?name=${name}&categoryId=${categoryId}`)
   }
 
-  getUserTask(id: number | null){
-    return this.http.get<Task[]>(`http://localhost:8080/api/guest/tasks-by-user/${id}/0/3`)
-  }
-
   addNewTask(task: Order){
     return this.http.post<Order>(`${this.baseUrl}/task`, task)
   }
@@ -29,4 +24,11 @@ export class TaskService {
     return this.http.get<Task>(`${this.baseUrl}/add-task-response/${taskId}`)
   }
 
+  getUserTask(id: number | null){
+    return this.http.get<Task[]>(`http://localhost:8080/api/user/tasks-by-user/${id}/0/3`)
+  }
+
+  getUserResponses(){
+    return this.http.get<Task[]>('http://localhost:8080/api/user/responses-by-user/0/12')
+  }
 }
