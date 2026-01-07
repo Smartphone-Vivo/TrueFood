@@ -125,15 +125,8 @@ export class OneAdvertisementPage implements OnInit{
       window.location.reload()
       this.changeDetector.detectChanges()
     }
-
   }
 
-  addToFavourites() {
-    if(this.currentAdvertisement.id){
-      this.advertisementService.addAdvertisementToFavourites(this.currentAdvertisement.id).subscribe()
-    }
-
-  }
 
   getFavouriteAdvertisements(){
     this.advertisementService.getFavouriteAdvertisements(0, 5)
@@ -144,5 +137,10 @@ export class OneAdvertisementPage implements OnInit{
           }
         }
       )
+  }
+
+  setCategory(id: number){
+    this.router.navigate(['advertisements', id])
+    this.changeDetector.detectChanges()
   }
 }

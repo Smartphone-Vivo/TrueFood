@@ -33,8 +33,5 @@ export class CategoryTree{
     this.toCategory.emit(id)
   }
 
-  setCategory(id: number){
-
-  }
 
 }

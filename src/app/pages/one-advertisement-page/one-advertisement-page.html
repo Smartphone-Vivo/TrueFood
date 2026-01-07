@@ -50,6 +50,7 @@
 
       <app-navigation
       [categoryId]="currentAdvertisement.categoryId"
+      (toCategory)="setCategory($event)"
       ></app-navigation>
 
     </div>

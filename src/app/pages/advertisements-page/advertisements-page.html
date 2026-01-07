@@ -25,6 +25,7 @@
 
           <app-navigation
             [categoryId]="currentCategory"
+            (toCategory)="setCategory($event)"
           ></app-navigation>
 
           <div class="sort">

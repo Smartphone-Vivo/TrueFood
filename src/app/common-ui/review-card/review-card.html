@@ -1,26 +1,35 @@
 <div class="review-cards-container">
-@for(review of reviews; track review){
-  <div
-    class="review-card"
-    tuiAppearance="neutral"
-    tuiCardMedium>
-    <div class="card-content">
-      <div class="review-card-header">
-        <div class="review-author" >Аноним</div>
-        <label>
-          <tui-rating
-            class="rating"
-            icon="@tui.star-filled"
-            [max]="5"
-            [ngModel]="review.rating"
-            [readOnly]="true"
-          />
-        </label>
+  @if (reviews.length > 1){
+    @for(review of reviews; track review){
+      <div
+        class="review-card"
+        tuiAppearance="neutral"
+        tuiCardMedium>
+        <div class="card-content">
+          <div class="review-card-header">
+            <div class="review-author" >Аноним</div>
+            <label>
+              <tui-rating
+                class="rating"
+                icon="@tui.star-filled"
+                [max]="5"
+                [ngModel]="review.rating"
+                [readOnly]="true"
+              />
+            </label>
+          </div>
+          <div class="review-text" >{{review.reviewText}}</div>
+        </div>
       </div>
-      <div class="review-text" >{{review.reviewText}}</div>
+    }
+  } @else {
+    <div class="no-reviews">
+      <h1 class="no-reviews-header">Отзывов нет</h1>
     </div>
-  </div>
-}
+
+  }
+
+
 </div>
 
 <button

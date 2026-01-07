@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, Component, inject, Input, numberAttribute, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component, EventEmitter,
+  inject,
+  Input,
+  numberAttribute,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {TuiBreadcrumbs} from '@taiga-ui/kit';
 import {AdverticementService} from '../../services/adverticement-service';
 import {Category} from '../../models/category';
@@ -25,6 +34,8 @@ export class Navigation implements OnChanges {
   categoriesList: Category[] = []
 
   @Input({transform: numberAttribute, required: true}) categoryId!: number | null
+
+  @Output() toCategory = new EventEmitter<number>()
 
   ngOnChanges() {
     this.getCategories()
@@ -56,7 +67,9 @@ export class Navigation implements OnChanges {
   }
 
   goToAdvertisements(id: number | null) {
-    this.router.navigate(['advertisements', id])
+    if(id){
+      this.toCategory.emit(id)
+    }
   }
 
 }
