@@ -1,48 +1,91 @@
 <div class="very-main-container">
   <div class="main-container">
     @if(tasks.length > 0){
-      <h1>На рассмотрении: </h1>
-
       @for(task of tasks; track task){
         @if (task.acceptedWorker){
+          <div
+            class="card-container"
+            tuiAppearance="floating"
+          >
+            <div class="task-container">
+              <div class="card-text-left">
+                <div>
+                  <tui-badge
+                    appearance="positive"
+                    tuiStatus
+                    style="font-size: 18px; font-weight: 500"
+                  >
+                    Одобрено
+                  </tui-badge>
+                  <h1>{{task.title}}</h1>
+                  <div class="card-description">{{task.description}}</div>
 
-        }
-        <div
-          class="card-container"
-          tuiAppearance="floating"
-        >
-          <div class="task-container">
-            <div class="card-text-left">
-              <div>
-                <h1>{{task.title}}</h1>
-                <div class="card-description">{{task.description}}</div>
+                </div>
 
+                <div class="card-price">{{task.price}} ₽</div>
               </div>
 
-              <div class="card-price">{{task.price}} ₽</div>
-            </div>
+              <div class="card-text-right">
+                <button
+                  class="answer-button"
+                  iconStart="@tui.message-circle"
+                  appearance="primary-grayscale"
+                  size="m"
+                  tuiButton
+                  type="button"
+                  (click)="responseTask(task.id)"> Связаться с заказчиком
+                </button>
 
-            <div class="card-text-right">
-              <button
-                class="answer-button"
-                iconStart="@tui.message-circle"
-                appearance="primary-grayscale"
-                size="m"
-                tuiButton
-                type="button"
-                (click)="responseTask(task.id)"> Связаться с заказчиком
-              </button>
+                <div>
+                  <div class="card-description">Откликов: {{task.workers.length}}</div>
 
-              <div>
-                <div class="card-description">Откликов: {{task.workers.length}}</div>
+                  <div class="card-description">Дедлайн: 18.01.26</div>
 
-                <div class="card-description">Дедлайн: 18.01.26</div>
-
+                </div>
               </div>
             </div>
+
           </div>
+        } @else {
+          <div
+            class="card-container"
+            tuiAppearance="floating"
+          >
+            <div class="task-container">
+              <div class="card-text-left">
+                <div>
+                  <span tuiStatus="var(--tui-status-warning)" style="font-size: 18px; font-weight: 500">На рассмотрении</span>
+                  <h1>{{task.title}}</h1>
+                  <div class="card-description">{{task.description}}</div>
 
-        </div>
+                </div>
+
+                <div class="card-price">{{task.price}} ₽</div>
+              </div>
+
+              <div class="card-text-right">
+                <button
+                  class="answer-button"
+                  iconStart="@tui.message-circle"
+                  appearance="primary-grayscale"
+                  size="m"
+                  tuiButton
+                  type="button"
+                  (click)="responseTask(task.id)"> Связаться с заказчиком
+                </button>
+
+                <div>
+                  <div class="card-description">Откликов: {{task.workers.length}}</div>
+
+                  <div class="card-description">Дедлайн: 18.01.26</div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        }
+
       }
     } @else {
       <h1 style="color: #939393">Вы пока не откликались на объявления...</h1>

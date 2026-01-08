@@ -1,4 +1,5 @@
 .tree-container{
+  width: 300px;
 }
 
 .goToCategory{
@@ -7,8 +8,10 @@
   background: none;
   cursor: pointer;
   font-size: 18px;
+  font-weight: 500;
 }
 
 .goToCategory:hover {
-  font-weight: bold;
+  font-weight: 700;
+
 }
