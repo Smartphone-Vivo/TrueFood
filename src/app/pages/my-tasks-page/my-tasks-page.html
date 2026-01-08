@@ -24,7 +24,12 @@
     </div>
   </div>
 </div>
+@if (contentType == 'myTasks'){
+  <app-my-task-card [tasks]="myTasks"></app-my-task-card>
+} @else {
 
-<app-my-task-card
-[tasks]="tasks">
-</app-my-task-card>
+  <app-my-response-card
+  [tasks]="myResponses">
+  </app-my-response-card>
+}
+

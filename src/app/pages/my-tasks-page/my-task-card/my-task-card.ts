@@ -1,9 +1,9 @@
-import {ChangeDetectorRef, Component, inject, Input} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {Task} from '../../../models/Task';
 import {TaskService} from '../../../services/task-service';
 import {ProfileCard} from '../../../common-ui/profile-card/profile-card';
-import {TuiSegmented} from '@taiga-ui/kit';
+import {TuiBadge, TuiSegmented, TuiStatus} from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-my-task-card',
@@ -11,7 +11,9 @@ import {TuiSegmented} from '@taiga-ui/kit';
     TuiAppearance,
     TuiButton,
     ProfileCard,
-    TuiSegmented
+    TuiSegmented,
+    TuiBadge,
+    TuiStatus
   ],
   templateUrl: './my-task-card.html',
   styleUrl: './my-task-card.scss',
@@ -19,12 +21,11 @@ import {TuiSegmented} from '@taiga-ui/kit';
 export class MyTaskCard {
 
   @Input({required: true}) tasks!: Task[]
+  @Output() taskUpdated = new EventEmitter<Task>()
 
   taskService = inject(TaskService)
 
   cdr = inject(ChangeDetectorRef)
-
-  contentType: string = 'myTasks'
 
   //todo пофиксить логику
   responseTask(id: number | null){
@@ -40,10 +41,17 @@ export class MyTaskCard {
 
   }
 
-  confirmWorker() {
+  confirmWorker(workerId: number | null, taskId: number | null) {
+    this.taskService.confirmWorker(taskId, workerId).subscribe()
+    window.location.reload()
   }
 
-  setContentType(contentType: string) {
-    this.contentType = contentType
+  removeWorker(taskId: number | null, workerId: number | null) {
+    this.taskService.removeResponse(taskId, workerId).subscribe()
+    window.location.reload()
+  }
+
+  getContacts() {
+
   }
 }

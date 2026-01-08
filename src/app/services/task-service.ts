@@ -31,4 +31,13 @@ export class TaskService {
   getUserResponses(){
     return this.http.get<Task[]>('http://localhost:8080/api/user/responses-by-user/0/12')
   }
+
+  removeResponse(taskId: number | null, workerId: number | null){
+    return this.http.delete(`http://localhost:8080/api/user/remove-response/${taskId}/${workerId}`)
+  }
+
+
+  confirmWorker(taskId: number | null, workerId: number | null){
+    return this.http.get(`http://localhost:8080/api/user/confirm-worker/${taskId}/${workerId}`)
+  }
 }

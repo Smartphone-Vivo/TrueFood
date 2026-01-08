@@ -9,12 +9,14 @@ import {User} from '../../models/User';
 import {Review} from '../../models/Review';
 import {MyTaskCard} from './my-task-card/my-task-card';
 import {TuiSegmented} from '@taiga-ui/kit';
+import {MyResponseCard} from './my-response-card/my-response-card';
 
 @Component({
   selector: 'app-my-tasks-page',
   imports: [
     MyTaskCard,
-    TuiSegmented
+    TuiSegmented,
+    MyResponseCard
   ],
   templateUrl: './my-tasks-page.html',
   styleUrl: './my-tasks-page.scss',
@@ -25,7 +27,9 @@ export class MyTasksPage implements OnInit{
   authService = inject(AuthService)
 
   advertisements: Order[] = []
-  tasks: Task[] = []
+
+  myTasks: Task[] = []
+  myResponses: Task[] = []
 
   cdr = inject(ChangeDetectorRef)
 
@@ -39,19 +43,17 @@ export class MyTasksPage implements OnInit{
 
   totalOrders: number = 0
 
-
-  contentType: string = 'myTasks'
+  contentType: string = 'myTasks' //todo поменять обратно наTasks
 
   ngOnInit(){
     this.getMyTasks()
-    this.getMyResponses()
   }
 
   getMyTasks(){
     this.taskService.getUserTask(Number(this.authService.getMe())).subscribe({
       next: (response: any) => {
         console.log('таски', Number(this.authService.getMe()))
-        this.tasks = response.content
+        this.myTasks = response.content
         this.length = response.totalPages
         this.index = response.number
         this.currentPage = response.number
@@ -64,7 +66,7 @@ export class MyTasksPage implements OnInit{
   getMyResponses(){
     this.taskService.getUserResponses().subscribe({
       next: (response: any) => {
-        this.tasks = response.content
+        this.myResponses = response.content
         this.length = response.totalPages
         this.index = response.number
         this.currentPage = response.number
@@ -76,7 +78,22 @@ export class MyTasksPage implements OnInit{
 
   setContentType(contentType: string) {
     if(contentType == 'myTasks'){
+      this.contentType = 'myTasks'
       this.getMyTasks()
+      this.cdr.detectChanges()
+    }
+    else{
+      this.contentType = 'myResponses'
+      this.getMyResponses()
+      this.cdr.detectChanges()
+    }
+    console.log('contenttype', this.contentType)
+  }
+
+  updateTask(updatedTask: Task) {
+    if(this.contentType == 'myTasks'){
+      this.getMyTasks()
+      this.cdr.detectChanges()
     }
     else{
       this.getMyResponses()

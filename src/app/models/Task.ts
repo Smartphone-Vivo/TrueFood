@@ -3,11 +3,13 @@ import {User} from './User';
 
 export class Task extends Order{
 
-  constructor(workers: User[]) {
+  constructor(workers: User[], acceptedWorker: User) {
     super()
     this.workers = workers
+    this.acceptedWorker = acceptedWorker
   }
 
-  workers: User[] = []
+  workers: User[]
 
+  acceptedWorker: User
 }
