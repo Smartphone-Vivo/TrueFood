@@ -1,46 +1,47 @@
 <div class="very-main-container">
   <div class="main-container">
-    @for(task of tasks; track task){
-      <div
-        class="card-container"
-        tuiAppearance="floating"
-      >
-        <div class="card-text-left">
-          <div>
-            <h1>{{task.title}}</h1>
+    @if (tasks.length > 0){
+      @for(task of tasks; track task){
+        <div
+          class="card-container"
+          tuiAppearance="floating"
+        >
+          <div class="card-text-left">
+            <div>
+              <h1>{{task.title}}</h1>
 
-            <div class="card-description">{{task.description}}</div>
+              <div class="card-description">{{task.description}}</div>
 
-          </div>
+            </div>
 
-          <div class="card-price">{{task.price}} ₽</div>
-
-        </div>
-
-        <div class="card-text-right">
-
-          <button
-            class="answer-button"
-            appearance="primary-grayscale"
-            size="l"
-            tuiButton
-            type="button"
-            (click)="responseTask(task.id)"> Откликнуться
-          </button>
-
-          <div>
-            <div class="card-description">Откликов: {{task.workers.length}}</div>
-
-            <div class="card-description">Дедлайн: 18.01.26</div>
+            <div class="card-price">{{task.price}} ₽</div>
 
           </div>
 
+          <div class="card-text-right">
 
+            <button
+              class="answer-button"
+              appearance="primary-grayscale"
+              size="l"
+              tuiButton
+              type="button"
+              (click)="responseTask(task.id)"> Откликнуться
+            </button>
+            <div>
+              <div class="card-description">Откликов: {{task.workers.length}}</div>
+              <div class="card-description">Дедлайн: 18.01.26</div>
+            </div>
+          </div>
         </div>
-
+      }
+    } @else {
+      <div class="card-container">
+        <h1 style="color: #939393" >В этой категории ничего нет...</h1>
       </div>
 
     }
+
   </div>
 </div>
 

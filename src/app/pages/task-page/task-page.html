@@ -14,9 +14,13 @@
     <div class="task-block">
 
       <app-navigation
+        class="navigation-block"
         [categoryId]="currentCategory"
         (toCategory)="setCategory($event)"
       ></app-navigation>
+
+      <app-sort-select>
+      </app-sort-select>
 
       @if (newTasks){
         <app-task-card

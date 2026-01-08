@@ -22,23 +22,14 @@ export class TaskCard implements OnChanges{
 
   cdr = inject(ChangeDetectorRef)
 
-
-
   ngOnChanges() {
     console.log('tasks', this.tasks)
   }
 
   //todo пофиксить логику
   responseTask(id: number | null){
-    this.taskService.addResponseTask(id).subscribe(
-      {
-      next: (updatedTask: any) => {
-        if(id != null){
-          this.tasks = this.tasks.map(task =>
-        task.id === id ? updatedTask : task)
-        }
-      }
-    })
+    this.taskService.addResponseTask(id).subscribe()
+    window.location.reload()
 
   }
 }

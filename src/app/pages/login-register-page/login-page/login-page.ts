@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {TuiAppearance, TuiButton, TuiTextfield, TuiTextfieldComponent} from '@taiga-ui/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {TuiTextarea} from '@taiga-ui/kit';
+import {TuiPassword, TuiTextarea} from '@taiga-ui/kit';
 import {Login} from '../../../models/Login';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../services/auth-service';
@@ -15,7 +15,8 @@ import {AuthService} from '../../../services/auth-service';
     TuiTextfieldComponent,
     FormsModule,
     TuiButton,
-    TuiTextfield
+    TuiTextfield,
+    TuiPassword
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',

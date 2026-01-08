@@ -8,6 +8,7 @@ import {Task} from '../../models/Task';
 import {Navigation} from '../../common-ui/navigation/navigation';
 import {CategoryTree} from '../../common-ui/category-tree/category-tree';
 import {Category} from '../../models/category';
+import {SortSelect} from '../../common-ui/sort-select/sort-select';
 
 @Component({
   selector: 'app-task-page',
@@ -15,7 +16,8 @@ import {Category} from '../../models/category';
     Search,
     TaskCard,
     Navigation,
-    CategoryTree
+    CategoryTree,
+    SortSelect
   ],
   templateUrl: './task-page.html',
   styleUrl: './task-page.scss',

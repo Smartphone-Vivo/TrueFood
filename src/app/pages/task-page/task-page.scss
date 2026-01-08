@@ -6,7 +6,6 @@
 .main-block{
   display: flex;
   flex-direction: row;
-  gap: 100px;
 }
 
 .categories-block{
@@ -18,3 +17,8 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.navigation-block{
+  margin-top: 30px;
+}
+

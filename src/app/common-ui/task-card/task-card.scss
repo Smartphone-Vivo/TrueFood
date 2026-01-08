@@ -1,7 +1,6 @@
 .very-main-container{
   display: flex;
   justify-content: center;
-  margin-top: 70px;
 }
 
 .main-container{
@@ -14,10 +13,9 @@
 .card-container{
   display: flex;
   justify-content: space-between;
-  height: 250px;
-  width: 1000px;
+  min-height: 250px;
+  min-width: 750px;
   border-radius: 15px;
-
 }
 
 .card-description{
