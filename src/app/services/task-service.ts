@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Order} from '../models/Order';
+import {Advertisement} from '../models/Advertisement';
 import {Task} from '../models/Task';
 
 @Injectable({
@@ -13,11 +13,11 @@ export class TaskService {
   baseUrl = 'http://localhost:8080/api/user'
 
   getTasks(page : number, size: number, name: string, categoryId: number){
-    return this.http.get<Order[]>(`http://localhost:8080/api/guest/tasks/${page}/${size}?name=${name}&categoryId=${categoryId}`)
+    return this.http.get<Advertisement[]>(`http://localhost:8080/api/guest/tasks/${page}/${size}?name=${name}&categoryId=${categoryId}`)
   }
 
-  addNewTask(task: Order){
-    return this.http.post<Order>(`${this.baseUrl}/task`, task)
+  addNewTask(task: Advertisement){
+    return this.http.post<Advertisement>(`${this.baseUrl}/task`, task)
   }
 
   addResponseTask(taskId: number | null){

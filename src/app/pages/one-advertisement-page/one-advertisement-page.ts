@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {Category} from '../../models/category';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
@@ -27,7 +27,7 @@ import {Navigation} from '../../common-ui/navigation/navigation';
 export class OneAdvertisementPage implements OnInit{
 
   route = inject(ActivatedRoute)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   router = inject(Router)
   changeDetector = inject(ChangeDetectorRef)
 
@@ -37,15 +37,15 @@ export class OneAdvertisementPage implements OnInit{
 
   advertisementId: string = ''
 
-  currentAdvertisement: Order = new Order
+  currentAdvertisement: Advertisement = new Advertisement
 
   categories: Category[] = []
 
   categoriesList: Category[] = []
 
-  newAdvertisements: Order[] = []
+  newAdvertisements: Advertisement[] = []
 
-  favouriteAdvertisements: Order[] = []
+  favouriteAdvertisements: Advertisement[] = []
 
   ngOnInit(){
     this.route.params.subscribe(

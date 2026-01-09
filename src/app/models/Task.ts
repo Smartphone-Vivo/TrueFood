@@ -1,7 +1,7 @@
-import {Order} from './Order';
+import {Advertisement} from './Advertisement';
 import {User} from './User';
 
-export class Task extends Order{
+export class Task extends Advertisement{
 
   constructor(workers: User[], acceptedWorker: User) {
     super()

@@ -12,8 +12,8 @@ import {
 } from '@taiga-ui/kit';
 import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn} from '@angular/forms';
 import {form} from '@angular/forms/signals';
-import {Order} from '../../../models/Order';
-import {AdverticementService} from '../../../services/adverticement-service';
+import {Advertisement} from '../../../models/Advertisement';
+import {AdvertisementService} from '../../../services/advertisement-service';
 import {AsyncPipe} from '@angular/common';
 import {Category} from '../../../models/category';
 import {ImageService} from '../../../services/image-service';
@@ -46,7 +46,7 @@ import {Router} from '@angular/router';
 })
 export class CreateAdvertisementPage implements OnInit{
 
-  adverticementService = inject(AdverticementService)
+  adverticementService = inject(AdvertisementService)
 
   taskService = inject(TaskService)
 
@@ -56,7 +56,7 @@ export class CreateAdvertisementPage implements OnInit{
 
   router = inject(Router)
 
-  newAdvertisement = new Order()
+  newAdvertisement = new Advertisement()
 
   categories: Category[] = []
 

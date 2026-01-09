@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnChanges, OnInit} from '@angular/core';
 import {Search} from '../../common-ui/search/search';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 import {TaskCard} from '../../common-ui/task-card/task-card';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/Task';
@@ -27,7 +27,7 @@ export class TaskPage implements OnInit{
 
   taskService = inject(TaskService)
   cdr = inject(ChangeDetectorRef)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
 
   newTasks: Task[] = []
 

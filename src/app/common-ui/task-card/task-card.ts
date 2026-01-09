@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, inject, Input, OnChanges, OnInit} from '@angular/core';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
-import {Order} from '../../models/Order';
+import {Advertisement} from '../../models/Advertisement';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/Task';
 

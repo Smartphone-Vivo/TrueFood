@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiLike} from '@taiga-ui/kit';
 import {ProfileCard} from '../../common-ui/profile-card/profile-card';
@@ -19,13 +19,13 @@ import {AuthService} from '../../services/auth-service';
 })
 export class FeedPage implements OnInit{
 
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   router = inject(Router)
   cdr = inject(ChangeDetectorRef)
 
   authService = inject(AuthService)
 
-  advertisements: Order[] = []
+  advertisements: Advertisement[] = []
 
   currentCard: number = 0
 

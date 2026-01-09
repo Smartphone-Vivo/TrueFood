@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {TaskCard} from '../../common-ui/task-card/task-card';
 import {TaskService} from '../../services/task-service';
 import {AuthService} from '../../services/auth-service';
-import {Order} from '../../models/Order';
+import {Advertisement} from '../../models/Advertisement';
 import {Task} from '../../models/Task';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../models/User';
@@ -26,7 +26,7 @@ export class MyTasksPage implements OnInit{
   taskService = inject(TaskService)
   authService = inject(AuthService)
 
-  advertisements: Order[] = []
+  advertisements: Advertisement[] = []
 
   myTasks: Task[] = []
   myResponses: Task[] = []

@@ -1,9 +1,9 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TuiLike} from "@taiga-ui/kit";
-import {Order} from '../../models/Order';
+import {Advertisement} from '../../models/Advertisement';
 import {Router} from '@angular/router';
-import {AdverticementService} from '../../services/adverticement-service';
+import {AdvertisementService} from '../../services/advertisement-service';
 
 @Component({
   selector: 'app-like-button',
@@ -18,8 +18,8 @@ import {AdverticementService} from '../../services/adverticement-service';
 })
 export class LikeButton implements OnInit{
 
-  @Input({ required: true }) advertisement!: Order;
-  @Input({ required: false }) favouriteAdvertisements!: Order[];
+  @Input({ required: true }) advertisement!: Advertisement;
+  @Input({ required: false }) favouriteAdvertisements!: Advertisement[];
 
   ngOnInit(): void {
     this.likeCheck()
@@ -27,7 +27,7 @@ export class LikeButton implements OnInit{
   }
 
   router = inject(Router)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   liked: boolean = false;
 
   addToFavourites() {

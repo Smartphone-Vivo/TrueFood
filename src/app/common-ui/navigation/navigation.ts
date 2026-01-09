@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {TuiBreadcrumbs} from '@taiga-ui/kit';
-import {AdverticementService} from '../../services/adverticement-service';
+import {AdvertisementService} from '../../services/advertisement-service';
 import {Category} from '../../models/category';
 import {Router} from '@angular/router';
 import {TuiItem} from '@taiga-ui/cdk';
@@ -25,7 +25,7 @@ import {TuiItem} from '@taiga-ui/cdk';
   standalone: true
 })
 export class Navigation implements OnChanges {
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
 
   cdr = inject(ChangeDetectorRef)
   router = inject(Router)

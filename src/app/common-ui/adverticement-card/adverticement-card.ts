@@ -1,8 +1,8 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {TuiAppearance, TuiIcon} from '@taiga-ui/core';
-import {Order} from '../../models/Order';
+import {Advertisement} from '../../models/Advertisement';
 import {Router} from '@angular/router';
-import {AdverticementService} from '../../services/adverticement-service';
+import {AdvertisementService} from '../../services/advertisement-service';
 import {FormsModule} from '@angular/forms';
 import {LikeButton} from '../like-button/like-button';
 
@@ -20,12 +20,12 @@ import {LikeButton} from '../like-button/like-button';
 })
 export class AdverticementCard implements OnInit{
 
-  @Input({ required: true }) advertisement!: Order;
-  @Input({ required: false }) favouriteAdvertisements!: Order[];
+  @Input({ required: true }) advertisement!: Advertisement;
+  @Input({ required: false }) favouriteAdvertisements!: Advertisement[];
 
 
   router = inject(Router)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   liked: boolean = false;
 
   ngOnInit() {

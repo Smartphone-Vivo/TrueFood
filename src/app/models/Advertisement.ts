@@ -1,7 +1,7 @@
 import {Image} from './Image';
 import {Category} from './category';
 
-export class Order {
+export class Advertisement {
 
   constructor() {
 

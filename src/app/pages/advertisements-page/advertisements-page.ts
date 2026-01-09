@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnChanges, OnInit} from '@angular/core';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 import {TuiPagination, TuiTreeItemController} from '@taiga-ui/kit';
 import {Search} from '../../common-ui/search/search';
 import {Category} from '../../models/category';
@@ -27,14 +27,14 @@ import {SortSelect} from '../../common-ui/sort-select/sort-select';
 })
 export class AdvertisementsPage implements OnInit, OnChanges{
 
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   changeDetector = inject(ChangeDetectorRef)
   router = inject(Router)
   route = inject(ActivatedRoute)
 
-  newAdvertisements: Order[] = []
+  newAdvertisements: Advertisement[] = []
   categories: Category[] = []
-  favouriteAdvertisements: Order[] = []
+  favouriteAdvertisements: Advertisement[] = []
   currentCategory: number = 1
   protected length = 6
   protected index = 0

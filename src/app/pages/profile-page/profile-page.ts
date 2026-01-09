@@ -5,8 +5,8 @@ import {User} from '../../models/User';
 import {TuiAvatar, TuiPagination, TuiRating, TuiSegmented} from '@taiga-ui/kit';
 import {FormsModule} from '@angular/forms';
 import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
 import {TuiButton, TuiLoader} from '@taiga-ui/core';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -36,11 +36,11 @@ export class ProfilePage implements OnInit{
 
   authService = inject(AuthService)
   profileService = inject(ProfileService)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   taskService = inject(TaskService)
   router = inject(Router)
 
-  advertisements: Order[] = []
+  advertisements: Advertisement[] = []
   tasks: Task[] = []
 
   cdr = inject(ChangeDetectorRef)

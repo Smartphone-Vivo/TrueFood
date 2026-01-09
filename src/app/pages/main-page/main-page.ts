@@ -4,8 +4,8 @@ import {Search} from '../../common-ui/search/search';
 import {TuiButton} from '@taiga-ui/core';
 import {Router} from '@angular/router';
 import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
-import {AdverticementService} from '../../services/adverticement-service';
-import {Order} from '../../models/Order';
+import {AdvertisementService} from '../../services/advertisement-service';
+import {Advertisement} from '../../models/Advertisement';
 
 @Component({
   selector: 'app-main-page',
@@ -22,10 +22,10 @@ import {Order} from '../../models/Order';
 export class MainPage implements OnInit{
 
   router = inject(Router)
-  advertisementService = inject(AdverticementService)
+  advertisementService = inject(AdvertisementService)
   cdr = inject(ChangeDetectorRef)
 
-  newAdvertisements: Order[] = []
+  newAdvertisements: Advertisement[] = []
 
   ngOnInit() {
     this.getAdvertisements('', 1)
