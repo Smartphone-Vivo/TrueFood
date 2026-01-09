@@ -10,6 +10,7 @@ import {
 import {Review} from '../../../models/Review';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileService} from '../../../services/profile-service';
+import {ReviewService} from '../../../services/review-service';
 
 @Component({
   selector: 'app-add-review-dialog',
@@ -26,19 +27,13 @@ import {ProfileService} from '../../../services/profile-service';
   styleUrl: './add-review-dialog.scss',
 })
 export class AddReviewDialog implements OnInit{
-  value: number | undefined;
 
-  review: Review = new Review()
-
-  currentPath : number| null = null
-
+  reviewService = inject(ReviewService)
   route = inject(ActivatedRoute)
 
-  profileService = inject(ProfileService)
-
-
-
-
+  value: number | undefined;
+  review: Review = new Review()
+  currentPath : number| null = null
 
   ngOnInit() {
     this.getCurrentPath()
@@ -53,7 +48,7 @@ export class AddReviewDialog implements OnInit{
   addReview(){
     console.log('dialog-add-review', this.review)
     if(this.review.reviewText != '' && this.review.rating != null){
-      this.profileService.addReview(this.review, this.currentPath).subscribe()
+      this.reviewService.addReview(this.review, this.currentPath).subscribe()
       window.location.reload()
     }
   }

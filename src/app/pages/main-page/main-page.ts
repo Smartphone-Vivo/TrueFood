@@ -3,7 +3,7 @@ import {MapCard} from '../../common-ui/map-card/map-card';
 import {Search} from '../../common-ui/search/search';
 import {TuiButton} from '@taiga-ui/core';
 import {Router} from '@angular/router';
-import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {AdvertisementCard} from '../../common-ui/adverticement-card/advertisement-card';
 import {AdvertisementService} from '../../services/advertisement-service';
 import {Advertisement} from '../../models/Advertisement';
 
@@ -14,7 +14,7 @@ import {Advertisement} from '../../models/Advertisement';
     MapCard,
     Search,
     TuiButton,
-    AdverticementCard,
+    AdvertisementCard,
   ],
   templateUrl: './main-page.html',
   styleUrl: './main-page.scss',

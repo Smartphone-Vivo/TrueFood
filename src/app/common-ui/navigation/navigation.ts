@@ -13,6 +13,7 @@ import {AdvertisementService} from '../../services/advertisement-service';
 import {Category} from '../../models/category';
 import {Router} from '@angular/router';
 import {TuiItem} from '@taiga-ui/cdk';
+import {CategoryService} from '../../services/category-service';
 
 @Component({
   selector: 'app-navigation',
@@ -25,10 +26,11 @@ import {TuiItem} from '@taiga-ui/cdk';
   standalone: true
 })
 export class Navigation implements OnChanges {
-  advertisementService = inject(AdvertisementService)
+  categoryService = inject(CategoryService)
 
   cdr = inject(ChangeDetectorRef)
   router = inject(Router)
+
 
   categories: Category[] = []
   categoriesList: Category[] = []
@@ -42,7 +44,7 @@ export class Navigation implements OnChanges {
   }
 
   getCategories() {
-    this.advertisementService.getCategories().subscribe(
+    this.categoryService.getCategories().subscribe(
       {
         next: (response: any) => {
           this.categories = response

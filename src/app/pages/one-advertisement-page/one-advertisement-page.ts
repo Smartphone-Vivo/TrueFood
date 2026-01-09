@@ -4,17 +4,19 @@ import {AdvertisementService} from '../../services/advertisement-service';
 import {Advertisement} from '../../models/Advertisement';
 import {TuiAppearance, TuiButton, TuiLoader} from '@taiga-ui/core';
 import {Category} from '../../models/category';
-import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {AdvertisementCard} from '../../common-ui/adverticement-card/advertisement-card';
 import {LikeButton} from '../../common-ui/like-button/like-button';
 import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 import {Navigation} from '../../common-ui/navigation/navigation';
+import {CategoryService} from '../../services/category-service';
+import {FavouritesService} from '../../services/favourites-service';
 
 @Component({
   selector: 'app-one-advertisement-page',
   imports: [
     TuiAppearance,
     TuiButton,
-    AdverticementCard,
+    AdvertisementCard,
     TuiLoader,
     LikeButton,
     ProfileCard,
@@ -26,11 +28,13 @@ import {Navigation} from '../../common-ui/navigation/navigation';
 })
 export class OneAdvertisementPage implements OnInit{
 
-  route = inject(ActivatedRoute)
   advertisementService = inject(AdvertisementService)
+  categoryService = inject(CategoryService)
+  favouritesService = inject(FavouritesService)
+
   router = inject(Router)
   changeDetector = inject(ChangeDetectorRef)
-
+  route = inject(ActivatedRoute)
   imageUrls: string[] = []
 
   currentImageId: number = 0
@@ -76,7 +80,7 @@ export class OneAdvertisementPage implements OnInit{
   }
 
   getCategories(){
-    this.advertisementService.getCategories().subscribe(
+    this.categoryService.getCategories().subscribe(
       {
         next:(response: any) => {
           this.categories = response
@@ -129,7 +133,7 @@ export class OneAdvertisementPage implements OnInit{
 
 
   getFavouriteAdvertisements(){
-    this.advertisementService.getFavouriteAdvertisements(0, 5)
+    this.favouritesService.getFavouriteAdvertisements(0, 5)
       .subscribe({
           next: (response: any) => {
             this.favouriteAdvertisements = response.content

@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, inject, OnChanges, OnInit} from '@angular/core';
-import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {AdvertisementCard} from '../../common-ui/adverticement-card/advertisement-card';
 import {AdvertisementService} from '../../services/advertisement-service';
 import {Advertisement} from '../../models/Advertisement';
 import {TuiPagination, TuiTreeItemController} from '@taiga-ui/kit';
@@ -9,11 +9,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryTree} from '../../common-ui/category-tree/category-tree';
 import {Navigation} from '../../common-ui/navigation/navigation';
 import {SortSelect} from '../../common-ui/sort-select/sort-select';
+import {CategoryService} from '../../services/category-service';
+import {FavouritesService} from '../../services/favourites-service';
 
 @Component({
   selector: 'app-advertisements-page',
   imports: [
-    AdverticementCard,
+    AdvertisementCard,
     TuiTreeItemController,
     TuiPagination,
     Search,
@@ -28,6 +30,9 @@ import {SortSelect} from '../../common-ui/sort-select/sort-select';
 export class AdvertisementsPage implements OnInit, OnChanges{
 
   advertisementService = inject(AdvertisementService)
+  categoryService = inject(CategoryService)
+  favouritesService = inject(FavouritesService)
+
   changeDetector = inject(ChangeDetectorRef)
   router = inject(Router)
   route = inject(ActivatedRoute)
@@ -109,7 +114,7 @@ export class AdvertisementsPage implements OnInit, OnChanges{
   }
 
   getCategories(){
-    this.advertisementService.getCategories().subscribe({
+    this.categoryService.getCategories().subscribe({
         next:(response: any) => {
           this.categories = response
           console.log('Категории', this.categories)
@@ -119,7 +124,7 @@ export class AdvertisementsPage implements OnInit, OnChanges{
   }
 
   getFavouriteAdvertisements(){
-    this.advertisementService.getFavouriteAdvertisements(this.index, 5)
+    this.favouritesService.getFavouriteAdvertisements(this.index, 5)
       .subscribe({
           next: (response: any) => {
             this.favouriteAdvertisements = response.content

@@ -9,6 +9,7 @@ import {Navigation} from '../../common-ui/navigation/navigation';
 import {CategoryTree} from '../../common-ui/category-tree/category-tree';
 import {Category} from '../../models/category';
 import {SortSelect} from '../../common-ui/sort-select/sort-select';
+import {CategoryService} from '../../services/category-service';
 
 @Component({
   selector: 'app-task-page',
@@ -26,8 +27,8 @@ import {SortSelect} from '../../common-ui/sort-select/sort-select';
 export class TaskPage implements OnInit{
 
   taskService = inject(TaskService)
+  categoryService = inject(CategoryService)
   cdr = inject(ChangeDetectorRef)
-  advertisementService = inject(AdvertisementService)
 
   newTasks: Task[] = []
 
@@ -95,7 +96,7 @@ getCategoriesList(){
 }
 
 getCategories(){
-  this.advertisementService.getCategories().subscribe(
+  this.categoryService.getCategories().subscribe(
     {
       next:(response: any) => {
         this.categories = response

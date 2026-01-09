@@ -35,6 +35,23 @@
         </tui-textfield>
       </div>
 
+      <div>
+        <h3>Контакты:</h3>
+        <tui-textfield
+          class="input-login"
+          [style.margin-block-end.rem]="1">
+          <label tuiLabel>Telegram/Max/Номер телефона:</label>
+          <textarea
+            [(ngModel)]="newUser.contacts"
+            name="contacts"
+            tuiTextarea
+            [limit]="100"
+            [max]="6"
+            [min]="3"
+          ></textarea>
+        </tui-textfield>
+      </div>
+
       <div class="input-login">
         <h3>Пароль:</h3>
         <tui-textfield>

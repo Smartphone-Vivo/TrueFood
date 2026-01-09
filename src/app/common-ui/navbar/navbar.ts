@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {TuiActiveZone, TuiObscured} from '@taiga-ui/cdk';
 import { TuiDropdown} from '@taiga-ui/core';
 import {TuiChevron} from '@taiga-ui/kit';
-import {AuthService} from '../../services/auth-service';
+import {AuthService} from '../../auth/auth-service';
 import {BehaviorSubject} from 'rxjs';
 
 @Component({
@@ -61,21 +61,6 @@ export class Navbar implements OnInit{
     this.openProfile = active && this.openProfile;
   }
 
-
-  protected onClickAdd(): void {
-    this.openAdd = !this.openAdd;
-  }
-
-  protected onObscuredAdd(obscured: boolean): void {
-    if (obscured) {
-      this.openAdd = false;
-    }
-  }
-
-  protected onActiveZoneAdd(active: boolean): void {
-    this.openAdd = active && this.openAdd;
-  }
-
   toLoginPage(){
     this.router.navigate(['/login'])
   }
@@ -120,17 +105,6 @@ export class Navbar implements OnInit{
     }
   }
 
-  toCreateTaskPage(){
-    if(this.isAuth()) {
-      console.log('to main')
-      this.router.navigate(['/newtask'])
-      this.openAdd = false;
-    }
-    else{
-      this.toLoginPage()
-    }
-  }
-
   toProfilePage(){
     console.log('to profile', this.authService.getMe())
     this.router.navigate(['/profile', this.authService.getMe()])
@@ -153,9 +127,4 @@ export class Navbar implements OnInit{
     })
 
   }
-
-
-
-
-
 }

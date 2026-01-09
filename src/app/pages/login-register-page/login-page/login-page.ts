@@ -4,7 +4,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {TuiPassword, TuiTextarea} from '@taiga-ui/kit';
 import {Login} from '../../../models/Login';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth-service';
+import {AuthService} from '../../../auth/auth-service';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +16,6 @@ import {AuthService} from '../../../services/auth-service';
     FormsModule,
     TuiButton,
     TuiTextfield,
-    TuiPassword
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',

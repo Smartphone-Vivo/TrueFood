@@ -21,6 +21,7 @@ import {TuiValidationError} from '@taiga-ui/cdk';
 import {map} from 'rxjs';
 import {TaskService} from '../../../services/task-service';
 import {Router} from '@angular/router';
+import {CategoryService} from '../../../services/category-service';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -46,7 +47,8 @@ import {Router} from '@angular/router';
 })
 export class CreateAdvertisementPage implements OnInit{
 
-  adverticementService = inject(AdvertisementService)
+  advertisementService = inject(AdvertisementService)
+  categoryService = inject(CategoryService)
 
   taskService = inject(TaskService)
 
@@ -74,7 +76,7 @@ export class CreateAdvertisementPage implements OnInit{
   }
 
   getCategories() {
-    this.adverticementService.getCategories().subscribe({
+    this.categoryService.getCategories().subscribe({
       next: (response: any) => {
         this.categories = response;
         console.log('Категории', this.categories);
@@ -135,12 +137,13 @@ export class CreateAdvertisementPage implements OnInit{
             this.newAdvertisement.orderType = 'ADVERTISEMENT'
             console.log('newAdverticement', this.newAdvertisement)
             if(this.createType == 'advertisement'){
-              this.adverticementService.addNewAdvertisement(this.newAdvertisement).subscribe()
-              this.router.navigate(['advertisements'])
+              this.advertisementService.addNewAdvertisement(this.newAdvertisement).subscribe()
+              this.router.navigate(['advertisements', 1])
             }
             else{
               this.newAdvertisement.orderType = 'TASK'
               this.taskService.addNewTask(this.newAdvertisement).subscribe()
+              this.router.navigate(['tasks'])
             }
           }
         }

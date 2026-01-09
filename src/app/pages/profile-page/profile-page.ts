@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
-import {AuthService} from '../../services/auth-service';
+import {AuthService} from '../../auth/auth-service';
 import {ProfileService} from '../../services/profile-service';
 import {User} from '../../models/User';
 import {TuiAvatar, TuiPagination, TuiRating, TuiSegmented} from '@taiga-ui/kit';
@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {AdvertisementsPage} from '../advertisements-page/advertisements-page';
 import {AdvertisementService} from '../../services/advertisement-service';
 import {Advertisement} from '../../models/Advertisement';
-import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {AdvertisementCard} from '../../common-ui/adverticement-card/advertisement-card';
 import {TuiButton, TuiLoader} from '@taiga-ui/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ReviewCard} from '../../common-ui/review-card/review-card';
@@ -15,6 +15,7 @@ import {Review} from '../../models/Review';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/Task';
 import {TaskCard} from '../../common-ui/task-card/task-card';
+import {GetContactsButton} from '../../common-ui/get-contacts-button/get-contacts-button';
 
 @Component({
   selector: 'app-profile-page',
@@ -22,12 +23,13 @@ import {TaskCard} from '../../common-ui/task-card/task-card';
     TuiAvatar,
     TuiRating,
     FormsModule,
-    AdverticementCard,
+    AdvertisementCard,
     TuiPagination,
     ReviewCard,
     TuiButton,
     TuiSegmented,
-    TaskCard
+    TaskCard,
+    GetContactsButton
   ],
   templateUrl: './profile-page.html',
   styleUrl: './profile-page.scss',

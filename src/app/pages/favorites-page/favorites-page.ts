@@ -3,9 +3,10 @@ import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {AdvertisementService} from '../../services/advertisement-service';
 import {Advertisement} from '../../models/Advertisement';
-import {AdverticementCard} from '../../common-ui/adverticement-card/adverticement-card';
+import {AdvertisementCard} from '../../common-ui/adverticement-card/advertisement-card';
 import {Router} from '@angular/router';
 import {TuiPagination} from '@taiga-ui/kit';
+import {FavouritesService} from '../../services/favourites-service';
 
 
 
@@ -13,7 +14,7 @@ import {TuiPagination} from '@taiga-ui/kit';
   standalone: true,
   selector: 'app-favorites-page',
   imports: [
-    AdverticementCard,
+    AdvertisementCard,
     TuiPagination
   ],
   templateUrl: './favorites-page.html',
@@ -22,7 +23,7 @@ import {TuiPagination} from '@taiga-ui/kit';
 })
 export class FavoritesPage implements OnInit{
 
-  advertisementServise = inject(AdvertisementService)
+  favouritesService = inject(FavouritesService)
   cdr = inject(ChangeDetectorRef)
   router = inject(Router)
 
@@ -39,7 +40,7 @@ export class FavoritesPage implements OnInit{
   }
 
   getFavouriteAdvertisements(){
-    this.advertisementServise.getFavouriteAdvertisements(this.index, 5)
+    this.favouritesService.getFavouriteAdvertisements(this.index, 5)
       .subscribe({
         next: (response: any) => {
           this.favouriteAdvertisements = response.content

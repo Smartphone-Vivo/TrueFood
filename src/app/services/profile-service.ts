@@ -9,14 +9,16 @@ import {Review} from '../models/Review';
 export class ProfileService {
 
   http = inject(HttpClient)
-  profileUrl = 'http://localhost:8080/api/user'
+  baseUrl = 'http://localhost:8080/api/profile'
 
   getProfile(id: number | null){
-    return this.http.get<User>(`http://localhost:8080/api/guest/profile/${id}`)
+    return this.http.get<User>(`${this.baseUrl}/${id}`)
   }
 
-  addReview(review: Review, id: number| null){
-    return this.http.post<Review>(`${this.profileUrl}/add-review/${id}`, review)
+  getUserContacts(id: number | null){
+    return this.http.get(`${this.baseUrl}/user-contacts/${id}`)
   }
+
+  //todo getMyProfile
 
 }

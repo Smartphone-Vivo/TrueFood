@@ -5,7 +5,8 @@ import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiLike} from '@taiga-ui/kit';
 import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/auth-service';
+import {AuthService} from '../../auth/auth-service';
+import {FavouritesService} from '../../services/favourites-service';
 
 @Component({
   selector: 'app-feed-page',
@@ -20,6 +21,8 @@ import {AuthService} from '../../services/auth-service';
 export class FeedPage implements OnInit{
 
   advertisementService = inject(AdvertisementService)
+  favouritesService = inject(FavouritesService)
+
   router = inject(Router)
   cdr = inject(ChangeDetectorRef)
 
@@ -60,7 +63,7 @@ export class FeedPage implements OnInit{
 
   swipeLeft(id: number | null) {
     if(id && this.authService.isAuth){
-      this.advertisementService.addAdvertisementToFavourites(id).subscribe()
+      this.favouritesService.addAdvertisementToFavourites(id).subscribe()
     }
     else{
       this.router.navigate(['login'])

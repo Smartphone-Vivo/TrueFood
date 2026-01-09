@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {TaskCard} from '../../common-ui/task-card/task-card';
 import {TaskService} from '../../services/task-service';
-import {AuthService} from '../../services/auth-service';
+import {AuthService} from '../../auth/auth-service';
 import {Advertisement} from '../../models/Advertisement';
 import {Task} from '../../models/Task';
 import {ActivatedRoute} from '@angular/router';

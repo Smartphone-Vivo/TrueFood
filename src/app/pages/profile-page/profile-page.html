@@ -22,17 +22,15 @@
         <div class="header-info">
           <h1>{{user.fio}}</h1>
 
-          <button
-            class="to-contacts-button"
-            appearance="primary-grayscale"
-            iconStart="message-circle"
-            size="m"
-            tuiButton
-            type="button"
-            (click)="toContacts()"
-          >
-            Связаться
-          </button>
+          <div class="contacts-container" style="display: flex; gap: 20px;">
+
+            <div style="font-size: 18px; font-weight: 500; color: #939393; margin-top: 10px">Показать контакты:</div>
+
+            <app-get-contacts-button
+              [id]="user.id"
+            ></app-get-contacts-button>
+          </div>
+
 
         </div>
 

@@ -1,10 +1,10 @@
 import {Component, inject} from '@angular/core';
 import {Register} from '../../../models/Register';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {TuiAppearance, TuiButton, TuiTextfieldComponent} from '@taiga-ui/core';
-import {TuiFileLike, TuiFiles, TuiTextarea} from '@taiga-ui/kit';
+import {TuiAppearance, TuiButton, TuiLabel, TuiTextfieldComponent} from '@taiga-ui/core';
+import {TuiFileLike, TuiFiles, TuiTextarea, TuiTextareaLimit} from '@taiga-ui/kit';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth-service';
+import {AuthService} from '../../../auth/auth-service';
 import {form, validate} from '@angular/forms/signals';
 import {finalize, map, Observable, of, Subject, switchMap, timer} from 'rxjs';
 import {AsyncPipe} from '@angular/common';
@@ -22,7 +22,9 @@ import {Image} from '../../../models/Image';
     TuiTextfieldComponent,
     FormsModule,
     TuiFiles,
-    AsyncPipe
+    AsyncPipe,
+    TuiLabel,
+    TuiTextareaLimit
   ],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
@@ -50,7 +52,7 @@ export class RegisterPage {
 
               this.newUser.rating = "0"
 
-              console.log('fileUrl', fileUrl)
+              console.log('fileUrl', this.newUser)
 
               this.authService.registerNewUser(this.newUser).subscribe()
               this.router.navigate(['/login'])
@@ -61,8 +63,6 @@ export class RegisterPage {
       }
 
   }
-
-
 
   toLoginPage() {
     this.router.navigate(['/login'])

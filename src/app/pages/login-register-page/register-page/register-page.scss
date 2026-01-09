@@ -1,7 +1,8 @@
 .main-container{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .card-container {
@@ -9,9 +10,10 @@
   flex-direction: column;
   gap: 21px;
   align-items: center;
-  height: 800px;
+  min-height: 800px;
   width: 600px;
-  border-radius: 15px;
+  border-radius: 20px;
+  padding: 40px;
 }
 
 .input-login{

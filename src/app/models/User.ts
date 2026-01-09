@@ -15,6 +15,7 @@ export class User{
       imageUrls: []
     }
     this.reviews = []
+    this.contacts = ''
   }
   id: number | null
   email: string
@@ -24,4 +25,5 @@ export class User{
   imageUrl: string //todo url и urls и вообще с данными перелопатить эту кучу
   rating: string
   reviews: Review[]
+  contacts: string
 }

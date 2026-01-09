@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Register} from '../models/Register';
 import {tap} from 'rxjs';
-import {TokenResponse} from '../auth/auth.interface';
+import {TokenResponse} from './auth.interface';
 import {CookieService} from 'ngx-cookie-service';
 import {jwtDecode} from 'jwt-decode';
 import {User} from '../models/User';

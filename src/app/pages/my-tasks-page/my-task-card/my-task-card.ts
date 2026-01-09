@@ -4,6 +4,7 @@ import {Task} from '../../../models/Task';
 import {TaskService} from '../../../services/task-service';
 import {ProfileCard} from '../../../common-ui/profile-card/profile-card';
 import {TuiBadge, TuiSegmented, TuiStatus} from '@taiga-ui/kit';
+import {GetContactsButton} from '../../../common-ui/get-contacts-button/get-contacts-button';
 
 @Component({
   selector: 'app-my-task-card',
@@ -11,9 +12,7 @@ import {TuiBadge, TuiSegmented, TuiStatus} from '@taiga-ui/kit';
     TuiAppearance,
     TuiButton,
     ProfileCard,
-    TuiSegmented,
-    TuiBadge,
-    TuiStatus
+    GetContactsButton,
   ],
   templateUrl: './my-task-card.html',
   styleUrl: './my-task-card.scss',

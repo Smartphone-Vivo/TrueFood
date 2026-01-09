@@ -4,6 +4,7 @@ import {TuiLike} from "@taiga-ui/kit";
 import {Advertisement} from '../../models/Advertisement';
 import {Router} from '@angular/router';
 import {AdvertisementService} from '../../services/advertisement-service';
+import {FavouritesService} from '../../services/favourites-service';
 
 @Component({
   selector: 'app-like-button',
@@ -23,21 +24,21 @@ export class LikeButton implements OnInit{
 
   ngOnInit(): void {
     this.likeCheck()
-    // console.log('likecheck' ,this.favouriteAdvertisements)
   }
 
+  favouritesService = inject(FavouritesService)
   router = inject(Router)
-  advertisementService = inject(AdvertisementService)
+
   liked: boolean = false;
 
   addToFavourites() {
     if(this.advertisement.id){
       if(!this.liked){
-        this.advertisementService.addAdvertisementToFavourites(this.advertisement.id).subscribe()
+        this.favouritesService.addAdvertisementToFavourites(this.advertisement.id).subscribe()
         this.liked = true
       }
       else{
-        this.advertisementService.deleteFromFavouriteAdvertisements(this.advertisement.id).subscribe()
+        this.favouritesService.deleteFromFavouriteAdvertisements(this.advertisement.id).subscribe()
         this.liked = false
       }
     }
