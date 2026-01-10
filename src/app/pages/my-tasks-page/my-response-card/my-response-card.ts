@@ -3,6 +3,7 @@ import {Task} from '../../../models/Task';
 import {TaskService} from '../../../services/task-service';
 import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {TuiBadge, TuiStatus} from '@taiga-ui/kit';
+import {GetContactsButton} from '../../../common-ui/get-contacts-button/get-contacts-button';
 
 @Component({
   selector: 'app-my-response-card',
@@ -10,7 +11,8 @@ import {TuiBadge, TuiStatus} from '@taiga-ui/kit';
     TuiAppearance,
     TuiButton,
     TuiBadge,
-    TuiStatus
+    TuiStatus,
+    GetContactsButton,
   ],
   templateUrl: './my-response-card.html',
   styleUrl: './my-response-card.scss',

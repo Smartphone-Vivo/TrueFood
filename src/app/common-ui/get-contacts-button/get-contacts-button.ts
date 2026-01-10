@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
   ],
   templateUrl: './get-contacts-button.html',
   styleUrl: './get-contacts-button.scss',
+  standalone: true
 })
 export class GetContactsButton implements OnInit{
 

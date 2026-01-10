@@ -8,9 +8,10 @@ import {Review} from '../models/Review';
 export class ReviewService {
 
   http = inject(HttpClient)
+  baseUrl = 'http://localhost:8080/api/reviews'
 
   addReview(review: Review, id: number| null){
-    return this.http.post<Review>(`http://localhost:8080/reviews/add-review/${id}`, review)
+    return this.http.post<Review>(`${this.baseUrl}/add-review/${id}`, review)
   }
 
 }

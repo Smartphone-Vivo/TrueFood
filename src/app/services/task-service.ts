@@ -33,7 +33,7 @@ export class TaskService {
   }
 
   removeResponse(taskId: number | null, workerId: number | null){
-    return this.http.delete(`${this.baseUrl}/${taskId}/${workerId}`)
+    return this.http.delete(`${this.baseUrl}/remove-worker/${taskId}/${workerId}`)
   }
 
   confirmWorker(taskId: number | null, workerId: number | null){
