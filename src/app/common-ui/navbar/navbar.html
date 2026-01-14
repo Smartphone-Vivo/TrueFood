@@ -12,72 +12,97 @@
   </div>
 
   <div class="nav-buttons">
-    <button class="nav-button"
-      appearance="action-grayscale"
-      tuiButton
-      type="button"
-      size="s"
-      (click)="toMainPage()"
-    >
-      Главная
-    </button>
+
+    @if (authService.getRole() == 'ADMIN'){
+      <div class="nav-buttons">
+        <button class="nav-button"
+                appearance="action-grayscale"
+                tuiButton
+                type="button"
+                size="s"
+                (click)="toAdminPage()"
+        >
+          Пользователи
+        </button>
+
+      </div>
+    }
+
+    @if (authService.getRole() != 'ADMIN'){
+
+      <button class="nav-button"
+              appearance="action-grayscale"
+              tuiButton
+              type="button"
+              size="s"
+              (click)="toMainPage()"
+      >
+        Главная
+      </button>
+
+      <button class="nav-button"
+              appearance="action-grayscale"
+              tuiButton
+              type="button"
+              size="s"
+              (click)="toFeedPage()"
+      >
+        Лента
+      </button>
+    }
 
     <button class="nav-button"
-      appearance="action-grayscale"
-      tuiButton
-      type="button"
-      size="s"
-      (click)="toFeedPage()"
-    >
-      Лента
-    </button>
-
-    <button class="nav-button"
-      appearance="action-grayscale"
-      tuiButton
-      type="button"
-      size="s"
-      (click)="toAdvertisementPage()"
+            appearance="action-grayscale"
+            tuiButton
+            type="button"
+            size="s"
+            (click)="toAdvertisementPage()"
     >
       Объявления
     </button>
 
     <button class="nav-button"
-      appearance="action-grayscale"
-      tuiButton
-      type="button"
-      size="s"
-      (click)="toTasksPage()"
+            appearance="action-grayscale"
+            tuiButton
+            type="button"
+            size="s"
+            (click)="toTasksPage()"
     >
       Заказы
     </button>
+
+
   </div>
 
 
+
 <div class="right-buttons">
-  <button
-    appearance="positive"
-    iconStart="@tui.heart"
-    size="m"
-    tuiIconButton
-    type="button"
-    [style.border-radius.%]="100"
-    (click)="toFavoritePage()"
-  >
-    Favorite
-  </button>
+  @if (authService.getRole() != 'ADMIN'){
+    <button
+      appearance="positive"
+      iconStart="@tui.heart"
+      size="m"
+      tuiIconButton
+      type="button"
+      [style.border-radius.%]="100"
+      (click)="toFavoritePage()"
+    >
+      Favorite
+    </button>
 
-  <button
-    appearance="positive"
-    iconStart="@tui.plus"
-    size="m"
-    tuiIconButton
+    <button
+      appearance="positive"
+      iconStart="@tui.plus"
+      size="m"
+      tuiIconButton
 
-    tuiButton
-    tuiChevron
-    type="button"
-    (click)="toCreateAdvertisementPage()">
-  </button>
+      tuiButton
+      tuiChevron
+      type="button"
+      (click)="toCreateAdvertisementPage()">
+    </button>
+  }
+
 
   @if (isAuth()){
     <button
@@ -97,44 +122,37 @@
       (tuiObscured)="onObscuredProfile($event)"
     >
       Choose
+
+
       <ng-template #dropdownContentProfile>
-        <div class="dropdown-buttons">
-          <button
-            class="profile-button"
-            appearance="flat-grayscale"
-            tuiButton
-            type="button"
-            size="s"
-            iconStart="@tui.user"
-            (click)="toProfilePage()"
-          >
-            Профиль
-          </button>
 
-          <button
-            class="profile-button"
-            appearance="flat-grayscale"
-            tuiButton
-            type="button"
-            size="s"
-            iconStart="@tui.layout-list"
-            (click)="toMyAdvertisementsPage()"
-          >
-            Мои объявления
-          </button>
 
-          <button
-            class="profile-button"
-            appearance="flat-grayscale"
-            tuiButton
-            type="button"
-            size="s"
-            iconStart="@tui.layout-list"
-            (click)="toMyTasksPage()"
-          >
-            Мои заказы
-          </button>
+          <div class="dropdown-buttons">
+            @if (authService.getRole() == 'USER') {
+            <button
+              class="profile-button"
+              appearance="flat-grayscale"
+              tuiButton
+              type="button"
+              size="s"
+              iconStart="@tui.user"
+              (click)="toProfilePage()"
+            >
+              Профиль
+            </button>
 
+            <button
+              class="profile-button"
+              appearance="flat-grayscale"
+              tuiButton
+              type="button"
+              size="s"
+              iconStart="@tui.layout-list"
+              (click)="toMyTasksPage()"
+            >
+              Мои заказы
+            </button>
+        }
           <button
             class="profile-button"
             appearance="flat-destructive"

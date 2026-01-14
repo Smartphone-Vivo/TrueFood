@@ -16,6 +16,7 @@ export class User{
     }
     this.reviews = []
     this.contacts = ''
+    this.enable = true
   }
   id: number | null
   email: string
@@ -26,4 +27,5 @@ export class User{
   rating: string
   reviews: Review[]
   contacts: string
+  enable: boolean
 }

@@ -123,6 +123,11 @@ export class Navbar implements OnInit{
     this.openProfile = false;
   }
 
+  toAdminPage() {
+    this.router.navigate(['adminpage'])
+    this.openProfile = false;
+  }
+
   logout() {
     this.authService.logout()
     this.cdr.detectChanges()
@@ -133,4 +138,6 @@ export class Navbar implements OnInit{
     })
 
   }
+
+
 }

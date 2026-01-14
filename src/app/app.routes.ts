@@ -15,6 +15,7 @@ import {RegisterPage} from './pages/login-register-page/register-page/register-p
 import {canActivateAuth} from './auth/access.guard';
 import {EditAdvOrderPage} from './pages/edit-delete/edit-adv-order-page/edit-adv-order-page';
 import {EditTask} from './pages/edit-delete/edit-task/edit-task';
+import {AdminPage} from './pages/admin-page/admin-page';
 
 export const routes: Routes = [
   {path: "", component: Layout, children:[
@@ -32,6 +33,7 @@ export const routes: Routes = [
       {path: 'favorite', component: FavoritesPage, canActivate: [canActivateAuth]},
       {path: 'profile/:id', component: ProfilePage},
       {path: 'mytasks', component: MyTasksPage, canActivate: [canActivateAuth]},
+      {path: 'adminpage', component: AdminPage, canActivate: [canActivateAuth]},
 
       {path: 'login', component: LoginPage},
       {path: 'register', component: RegisterPage},

@@ -38,7 +38,6 @@ export class AuthService {
   get isAuth(){
     if(!this.token){
       this.token = this.cookieService.get('accessToken')
-      // console.log('decoded token')
     }
     return !!this.token
   }
@@ -60,6 +59,17 @@ export class AuthService {
     if(this.isAuth){
       this.token = this.cookieService.get('accessToken')
       return this.getDecodedAccessToken(this.token)?.id
+    } else{
+      return null
+    }
+  }
+
+  getRole(){
+    if(this.isAuth){
+      this.token = this.cookieService.get('accessToken')
+      // @ts-ignore
+      return this.getDecodedAccessToken(this.token).roles
+
     } else{
       return null
     }

@@ -1,0 +1,66 @@
+<div class="header">
+  <h1>Пользователи:</h1>
+</div>
+
+<div class="table-container">
+
+
+  @if (users && users.length > 0) {
+    <table
+      tuiTable
+      class="table"
+    >
+      <thead>
+      <tr tuiThGroup>
+        <th tuiTh [resizable]="true">Id</th>
+        <th tuiTh [resizable]="true">Email</th>
+        <th tuiTh [resizable]="true">Профиль</th>
+        <th tuiTh [resizable]="true">Активен</th>
+        <th tuiTh [resizable]="true">Действия</th>
+      </tr>
+      </thead>
+      <tbody tuiTbody [data]="users">
+        @for (user of users; track user.id) {
+          <tr tuiTr>
+            <td tuiTd>{{ user.id }}</td>
+            <td tuiTd>{{ user.email }}</td>
+            <td tuiTd>
+              <app-profile-card
+                [id]="user.id"
+              ></app-profile-card>
+            </td>
+            <td tuiTd>{{ user.enable}}</td>
+            <td tuiTd>
+
+              @if(user.enable){
+                <button
+                  tuiButton size="s"
+                  appearance="secondary-destructive"
+                  (click)="banControlUser(user.id)"
+                >Забанить
+                </button>
+              } @else {
+                <button
+                  tuiButton size="s"
+                  appearance="positive"
+                  (click)="banControlUser(user.id)"
+                >Разбанить
+                </button>
+              }
+
+
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else {
+    <p>Загрузка или нет данных...</p>
+  }
+</div>
+
+<tui-pagination class="pagination"
+                [index]="index"
+                [length]="length"
+                (indexChange)="goToPage($event)"
+/>

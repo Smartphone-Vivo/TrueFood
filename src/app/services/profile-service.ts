@@ -19,6 +19,11 @@ export class ProfileService {
     return this.http.get(`${this.baseUrl}/user-contacts/${id}`)
   }
 
-  //todo getMyProfile
+  getAllUsers(index: number){
+    return this.http.get(`${this.baseUrl}/get-all-users/${index}/12`)
+  }
 
+  banControlUser(id: number | null){
+    return this.http.get(`${this.baseUrl}/ban-user/${id}`)
+  }
 }
