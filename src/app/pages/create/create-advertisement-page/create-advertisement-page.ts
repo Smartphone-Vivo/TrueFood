@@ -22,6 +22,7 @@ import {map} from 'rxjs';
 import {TaskService} from '../../../services/task-service';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../../services/category-service';
+import {AuthService} from '../../../auth/auth-service';
 
 @Component({
   selector: 'app-create-advertisement-page',
@@ -49,10 +50,9 @@ export class CreateAdvertisementPage implements OnInit{
 
   advertisementService = inject(AdvertisementService)
   categoryService = inject(CategoryService)
-
   taskService = inject(TaskService)
-
   imageService = inject(ImageService)
+  authService = inject(AuthService)
 
   changeDetector = inject(ChangeDetectorRef)
 
@@ -122,6 +122,8 @@ export class CreateAdvertisementPage implements OnInit{
 
     this.newAdvertisement.categoryId = this.getCategoryByName(this.categoryControl.value) //todo это убрать надо
 
+    this.newAdvertisement.authorId = Number(this.authService.getMe())
+
     console.log('выбранная категория', this.categoryControl.value, this.getCategoryByName(this.categoryControl.value))
 
     if (this.control.value) {
@@ -133,15 +135,13 @@ export class CreateAdvertisementPage implements OnInit{
 
             const imageUrls = response.map((item : any) => item.fileUrl)
 
-            this.newAdvertisement.imagesId.imageUrls = imageUrls
-            this.newAdvertisement.orderType = 'ADVERTISEMENT'
+            this.newAdvertisement.images.imageUrls = imageUrls
             console.log('newAdverticement', this.newAdvertisement)
             if(this.createType == 'advertisement'){
               this.advertisementService.addNewAdvertisement(this.newAdvertisement).subscribe()
               this.router.navigate(['advertisements', 1])
             }
             else{
-              this.newAdvertisement.orderType = 'TASK'
               this.taskService.addNewTask(this.newAdvertisement).subscribe()
               this.router.navigate(['tasks'])
             }

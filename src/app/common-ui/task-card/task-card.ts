@@ -3,6 +3,8 @@ import {TuiAppearance, TuiButton} from '@taiga-ui/core';
 import {Advertisement} from '../../models/Advertisement';
 import {TaskService} from '../../services/task-service';
 import {Task} from '../../models/Task';
+import {AuthService} from '../../auth/auth-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-task-card',
@@ -19,7 +21,9 @@ export class TaskCard implements OnChanges{
   @Input({required: true}) tasks!: Task[]
 
   taskService = inject(TaskService)
+  authService = inject(AuthService)
 
+  router = inject(Router)
   cdr = inject(ChangeDetectorRef)
 
   ngOnChanges() {
@@ -31,5 +35,9 @@ export class TaskCard implements OnChanges{
     this.taskService.addResponseTask(id).subscribe()
     window.location.reload()
 
+  }
+
+  editTask(id: number | null) {
+    this.router.navigate(['edittask', id])
   }
 }

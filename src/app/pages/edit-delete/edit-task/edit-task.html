@@ -1,0 +1,65 @@
+<div class="center">
+  <div class="create-card">
+    <h1>Редактировать</h1>
+    <div class="choose-type">
+    </div>
+    <div>
+      <h3>Название:</h3>
+      <tui-textfield>
+        <textarea
+          [(ngModel)]="currentTask.title"
+          placeholder="Название"
+          tuiTextarea
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+    <div>
+      <h3>Описание:</h3>
+      <tui-textfield [style.margin-block-end.rem]="1">
+        <label tuiLabel>Описание</label>
+        <textarea
+          [(ngModel)]="currentTask.description"
+          tuiTextarea
+          [limit]="100"
+          [max]="6"
+          [min]="3"
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+
+    <div>
+      <h3>Стоимость:</h3>
+      <tui-textfield>
+        <textarea
+          [(ngModel)]="currentTask.price"
+          placeholder="Стоимость"
+          tuiTextarea
+        ></textarea>
+      </tui-textfield>
+    </div>
+
+
+    <button class="send-button"
+            appearance="positive"
+            size="m"
+            tuiButton
+            type="button"
+            (click)="confirmChanges()"
+    >
+      Редактировать
+    </button>
+
+    <button class="send-button"
+            appearance="secondary-destructive"
+            size="m"
+            tuiButton
+            type="button"
+            (click)="deleteTask(currentTask.id)"
+    >
+      Удалить
+    </button>
+  </div>
+</div>
+

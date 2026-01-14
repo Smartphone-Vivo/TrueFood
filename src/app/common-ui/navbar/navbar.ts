@@ -111,6 +111,12 @@ export class Navbar implements OnInit{
     this.openProfile = false;
   }
 
+  toMyAdvertisementsPage(){
+    console.log('to main')
+    this.router.navigate(['/myadvertisements'])
+    this.openProfile = false;
+  }
+
   toMyTasksPage(){
     console.log('to main')
     this.router.navigate(['/mytasks'])

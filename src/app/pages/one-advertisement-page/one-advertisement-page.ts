@@ -10,6 +10,7 @@ import {ProfileCard} from '../../common-ui/profile-card/profile-card';
 import {Navigation} from '../../common-ui/navigation/navigation';
 import {CategoryService} from '../../services/category-service';
 import {FavouritesService} from '../../services/favourites-service';
+import {AuthService} from '../../auth/auth-service';
 
 @Component({
   selector: 'app-one-advertisement-page',
@@ -30,6 +31,7 @@ export class OneAdvertisementPage implements OnInit{
 
   advertisementService = inject(AdvertisementService)
   categoryService = inject(CategoryService)
+  authService = inject(AuthService)
   favouritesService = inject(FavouritesService)
 
   router = inject(Router)
@@ -39,7 +41,7 @@ export class OneAdvertisementPage implements OnInit{
 
   currentImageId: number = 0
 
-  advertisementId: string = ''
+  advertisementId: number | null = null
 
   currentAdvertisement: Advertisement = new Advertisement
 
@@ -99,7 +101,7 @@ export class OneAdvertisementPage implements OnInit{
     this.advertisementService.getAdvertisementById(this.advertisementId).subscribe(
       (response: any) => {
         this.currentAdvertisement = response
-        this.imageUrls = this.currentAdvertisement.imagesId.imageUrls
+        this.imageUrls = this.currentAdvertisement.images.imageUrls
         console.log('currentAdvertisement', this.currentAdvertisement)
         this.getCategoriesList()
         this.getCategories()
@@ -125,7 +127,7 @@ export class OneAdvertisementPage implements OnInit{
 
   toAdvertisement(id: number | null){
     if(id != null){
-      this.advertisementId = String(id)
+      this.advertisementId = id
       window.location.reload()
       this.changeDetector.detectChanges()
     }

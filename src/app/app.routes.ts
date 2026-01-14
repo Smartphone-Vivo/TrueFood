@@ -13,6 +13,8 @@ import {OneAdvertisementPage} from './pages/one-advertisement-page/one-advertise
 import {LoginPage} from './pages/login-register-page/login-page/login-page';
 import {RegisterPage} from './pages/login-register-page/register-page/register-page';
 import {canActivateAuth} from './auth/access.guard';
+import {EditAdvOrderPage} from './pages/edit-delete/edit-adv-order-page/edit-adv-order-page';
+import {EditTask} from './pages/edit-delete/edit-task/edit-task';
 
 export const routes: Routes = [
   {path: "", component: Layout, children:[
@@ -24,6 +26,8 @@ export const routes: Routes = [
 
       {path: 'newadvertisement', component: CreateAdvertisementPage, canActivate: [canActivateAuth]},
       {path: 'newtask', component: CreateTaskPage, canActivate: [canActivateAuth]},
+      {path: 'editadvertisement/:id', component: EditAdvOrderPage, canActivate: [canActivateAuth]},
+      {path: 'edittask/:id', component: EditTask, canActivate: [canActivateAuth]},
 
       {path: 'favorite', component: FavoritesPage, canActivate: [canActivateAuth]},
       {path: 'profile/:id', component: ProfilePage},

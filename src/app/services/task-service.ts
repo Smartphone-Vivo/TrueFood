@@ -39,4 +39,17 @@ export class TaskService {
   confirmWorker(taskId: number | null, workerId: number | null){
     return this.http.get(`${this.baseUrl}/confirm-worker/${taskId}/${workerId}`)
   }
+
+  getTaskById(id: number | null){
+    return this.http.get(`${this.baseUrl}/${id}`)
+  }
+
+  editTask(task: Task){
+    return this.http.put<Task>(`${this.baseUrl}/edit-task`, task)
+  }
+
+  deleteTask(id: number | null){
+    return this.http.delete(`${this.baseUrl}/delete-task/${id}`)
+  }
+
 }

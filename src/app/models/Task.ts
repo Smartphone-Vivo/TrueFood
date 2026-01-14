@@ -3,10 +3,10 @@ import {User} from './User';
 
 export class Task extends Advertisement{
 
-  constructor(workers: User[], acceptedWorker: User) {
+  constructor() {
     super()
-    this.workers = workers
-    this.acceptedWorker = acceptedWorker
+    this.workers = []
+    this.acceptedWorker = new User
   }
 
   workers: User[]

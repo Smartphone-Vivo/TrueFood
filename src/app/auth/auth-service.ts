@@ -59,7 +59,6 @@ export class AuthService {
   getMe(){
     if(this.isAuth){
       this.token = this.cookieService.get('accessToken')
-      console.log('расшифровка токена ',this.getDecodedAccessToken(this.token)?.id)
       return this.getDecodedAccessToken(this.token)?.id
     } else{
       return null

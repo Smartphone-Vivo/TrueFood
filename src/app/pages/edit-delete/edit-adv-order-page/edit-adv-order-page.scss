@@ -1,0 +1,36 @@
+.create-card{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 500px;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.send-button{
+  margin-top: 30px;
+}
+
+.choose-type{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.choose-create-type{
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  width: 150px;
+}
+
+.choose-type-button{
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+}

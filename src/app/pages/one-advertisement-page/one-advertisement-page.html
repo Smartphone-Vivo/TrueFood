@@ -3,6 +3,10 @@
     class="card-container"
     tuiAppearance="floating"
   >
+    @if(authService.getMe() == currentAdvertisement.authorId){
+      моя объява
+    }
+
     <div class="top-buttons">
       <div class="back-button">
         <button
@@ -61,7 +65,7 @@
     <div class="photo-container">
       <div class="main-image">
         <img
-          [src]="currentAdvertisement.imagesId.imageUrls[currentImageId]"
+          [src]="currentAdvertisement.images.imageUrls[currentImageId]"
           class="adv-image"
           [alt]="currentAdvertisement.title"
         />

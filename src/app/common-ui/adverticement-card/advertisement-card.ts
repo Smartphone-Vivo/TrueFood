@@ -1,11 +1,14 @@
-import {Component, inject, Input, OnInit} from '@angular/core';
-import {TuiAppearance, TuiIcon} from '@taiga-ui/core';
+import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import {TuiAppearance, TuiButton, TuiIcon} from '@taiga-ui/core';
 import {Advertisement} from '../../models/Advertisement';
 import {Router} from '@angular/router';
 import {AdvertisementService} from '../../services/advertisement-service';
 import {FormsModule} from '@angular/forms';
 import {LikeButton} from '../like-button/like-button';
 import {FavouritesService} from '../../services/favourites-service';
+import {AuthService} from '../../auth/auth-service';
+import {TuiButtonLoading, TuiChevron, TuiLike} from '@taiga-ui/kit';
+import {Task} from '../../models/Task';
 
 @Component({
   selector: 'app-adverticement-card',
@@ -13,7 +16,8 @@ import {FavouritesService} from '../../services/favourites-service';
     TuiAppearance,
     TuiIcon,
     FormsModule,
-    LikeButton
+    LikeButton,
+    TuiButton,
   ],
   templateUrl: './advertisement-card.html',
   styleUrl: './advertisement-card.scss',
@@ -24,10 +28,17 @@ export class AdvertisementCard {
   @Input({ required: true }) advertisement!: Advertisement;
   @Input({ required: false }) favouriteAdvertisements!: Advertisement[];
 
+  authService = inject(AuthService)
+
   router = inject(Router)
 
   toAdvertisement(id: number | null){
     this.router.navigate(['/advertisement', id])
+  }
+
+  editAdvertisement(id: number | null){
+    console.log('navigatetiedit', id)
+    this.router.navigate(['editadvertisement', id])
   }
 
 }
