@@ -7,7 +7,6 @@ export const canActivateAuth = () => {
   const authService = inject(AuthService)
 
   if(authService.isAuth){
-    console.log('canActivateAuth', authService.isAuth)
     return true
   }
 

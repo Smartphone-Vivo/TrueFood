@@ -16,6 +16,8 @@ export class AuthService {
   cookieService = inject(CookieService)
 
   token: string | null = null
+  refreshToken: string | null = null
+  role: string | null = null
 
   authUrl: string = 'http://localhost:8080/api/auth'
 
@@ -47,6 +49,24 @@ export class AuthService {
     this.isAuth
   }
 
+  refreshAuthToken(){
+
+    if(!this.refreshToken){
+      this.refreshToken = this.cookieService.get('refreshToken')
+    }
+
+    return this.http.post<TokenResponse>(
+      `${this.authUrl}/token`, {refreshToken : this.refreshToken})
+      .pipe(
+        tap(res => {
+          if (res.accessToken){
+            this.token = res.accessToken
+            this.cookieService.set('token', res.accessToken)
+          }
+        })
+      )
+  }
+
   getDecodedAccessToken(token: string){
     try{
       return jwtDecode(token)
@@ -58,7 +78,8 @@ export class AuthService {
   getMe(){
     if(this.isAuth){
       this.token = this.cookieService.get('accessToken')
-      return this.getDecodedAccessToken(this.token)?.id
+      // @ts-ignore
+      return this.getDecodedAccessToken(this.token).id
     } else{
       return null
     }

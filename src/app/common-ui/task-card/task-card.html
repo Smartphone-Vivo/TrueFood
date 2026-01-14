@@ -20,7 +20,7 @@
 
           <div class="card-text-right">
 
-            @if(authService.getMe() == task.authorId){
+            @if(authService.getMe() == task.authorId || authService.getRole() == 'ADMIN'){
               <button
                 appearance="action-grayscale"
                 iconStart="pencil"
