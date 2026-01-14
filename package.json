@@ -44,8 +44,8 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.0.2",
-    "@angular/cli": "^21.0.2",
+    "@angular/build": "^21.0.6",
+    "@angular/cli": "^21.0.6",
     "@angular/compiler-cli": "^21.0.0",
     "@yandex/ymaps3-types": "^1.0.18413413",
     "jsdom": "^27.1.0",
