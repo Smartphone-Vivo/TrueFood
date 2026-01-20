@@ -23,7 +23,7 @@ import {Task} from '../../models/Task';
   styleUrl: './advertisement-card.scss',
   standalone: true
 })
-export class AdvertisementCard {
+export class AdvertisementCard implements OnInit{
 
   @Input({ required: true }) advertisement!: Advertisement;
   @Input({ required: false }) favouriteAdvertisements!: Advertisement[];
@@ -31,6 +31,10 @@ export class AdvertisementCard {
   authService = inject(AuthService)
 
   router = inject(Router)
+
+  ngOnInit(){
+    console.log(this.advertisement.authorId)
+  }
 
   toAdvertisement(id: number | null){
     this.router.navigate(['/advertisement', id])

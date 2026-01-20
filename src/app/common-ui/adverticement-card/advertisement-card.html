@@ -29,7 +29,7 @@
 
     <div class="card-actions">
 
-      @if(authService.getMe() == advertisement.authorId || authService.getRole() == 'ADMIN'){
+      @if((authService.getMe() != null) && authService.getMe() == advertisement.authorId || authService.getRole() == 'ADMIN'){
         <button
           appearance="action-grayscale"
           iconStart="pencil"

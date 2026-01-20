@@ -83,6 +83,7 @@ export class AuthService {
     } else{
       return null
     }
+    console.log('auth get me',this.getMe())
   }
 
   getRole(){

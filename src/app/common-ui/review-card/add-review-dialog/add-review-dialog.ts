@@ -11,6 +11,7 @@ import {Review} from '../../../models/Review';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileService} from '../../../services/profile-service';
 import {ReviewService} from '../../../services/review-service';
+import {AuthService} from '../../../auth/auth-service';
 
 @Component({
   selector: 'app-add-review-dialog',
@@ -29,6 +30,7 @@ import {ReviewService} from '../../../services/review-service';
 export class AddReviewDialog implements OnInit{
 
   reviewService = inject(ReviewService)
+  authService = inject(AuthService)
   route = inject(ActivatedRoute)
 
   value: number | undefined;
@@ -48,8 +50,9 @@ export class AddReviewDialog implements OnInit{
   addReview(){
     console.log('dialog-add-review', this.review)
     if(this.review.reviewText != '' && this.review.rating != null){
+      this.review.authorId = this.authService.getMe()
       this.reviewService.addReview(this.review, this.currentPath).subscribe()
-      window.location.reload()
+
     }
   }
 

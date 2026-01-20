@@ -32,15 +32,9 @@ export class LikeButton implements OnInit{
   liked: boolean = false;
 
   addToFavourites() {
-    if(this.advertisement.id){
-      if(!this.liked){
-        this.favouritesService.addAdvertisementToFavourites(this.advertisement.id).subscribe()
-        this.liked = true
-      }
-      else{
-        this.favouritesService.deleteFromFavouriteAdvertisements(this.advertisement.id).subscribe()
-        this.liked = false
-      }
+    if(this.advertisement.id != null){
+      this.favouritesService.addAdvertisementToFavourites(this.advertisement.id).subscribe()
+      this.liked = true
     }
   }
 

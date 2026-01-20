@@ -18,8 +18,6 @@ export class FavouritesService {
     return this.http.get(`${this.baseUrl}/get-favourite-advertisements/${page}/8`)
   }
 
-  deleteFromFavouriteAdvertisements(advId: number){
-    return this.http.delete(`${this.baseUrl}/delete-favourite-advertisement/${advId}`)
-  }
+
 
 }
